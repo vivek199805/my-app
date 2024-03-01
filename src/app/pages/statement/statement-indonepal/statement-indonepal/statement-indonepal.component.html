@@ -1,0 +1,33 @@
+<div class="layout-px-spacing">
+  <div class="row layout-top-spacing">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing p-0 p-md-2">
+          <div class="widget">
+              <h5>IndoNepal Statement</h5>
+              <!--  <p class="text-center">DMT Statement</p> -->
+              <form (submit)="filter()" [formGroup]="form">
+                  <div class="row">
+                      <div class="col-md-4 mt-1">
+                          <label for="">Select Date</label>
+                          <!-- <input type="text" placeholder="Select Date" class="form-control" bsDaterangepicker
+                              [maxDate]="maxDate"onkeydown="return false" formControlName="selectdate" [bsConfig]="bsCustConfg"
+                              #rangePicker="bsDaterangepicker" (onShown)="onDateRangePickerShow()"> -->
+                              <input type="text" placeholder="Select Date" class="form-control" bsDaterangepicker
+                              [maxDate]="maxDate"onkeydown="return false" formControlName="selectdate" [bsConfig]="bsCustConfg"
+                              #rangePicker="bsDaterangepicker"  >
+                      </div>
+                      <div class="col-md-3 mt-1">
+                          <div class="form-group">
+                              <button class="btn btn-primary mt-2 btn-lg" type="submit">Submit</button>
+                          </div>
+                      </div>
+                  </div>
+              </form>
+              <div>
+                  <!-- <button (click)="download($event)" *ngIf="downloadexl" class="btn btn-danger mb-2 mr-2"
+                      style="float: right;">Export</button> -->
+              </div>
+              <app-data-table-tools [columns]="columns" [url]="url" (btnexl)="GetChildData($event)"></app-data-table-tools>
+          </div>
+      </div>
+  </div>
+</div>

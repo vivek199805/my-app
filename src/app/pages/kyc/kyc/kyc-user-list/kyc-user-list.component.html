@@ -1,0 +1,191 @@
+<div class="layout-px-spacing">
+    <div class="row layout-top-spacing">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing p-0 p-md-2">
+            <div class="widget">
+                <h5>KYC User List</h5>
+                <form (submit)="filter()"  [formGroup]="form">
+                    <div class="row">
+                        <!-- <div class="col-md-3 mt-1">
+                            <div class="form-group">
+                                <label>Start Date: <span class="alert-error">*</span></label>
+                                <input  onkeydown="return false"class="form-control" name="startdate" id="startdate" placeholder="yyyy-mm-dd" #dp="bsDatepicker" bsDatepicker [(ngModel)]="search.startdate" autocomplete="off">
+
+                            </div>
+                        </div>
+                        <div class="col-md-3 mt-1">
+                            <div class="form-group">
+                                <label>End Date : <span class="alert-error">*</span></label>
+                                <input onkeydown="return false" class="form-control" name="enddate" id="enddate" placeholder="yyyy-mm-dd" #dp="bsDatepicker" bsDatepicker [maxDate]="maxDate" [(ngModel)]="search.enddate" autocomplete="off">
+                            </div>
+                        </div> -->
+
+                        <div class="col-md-3 mt-1">
+                            <div class="form-group">
+                            <label for="">Select Date</label>
+                            <input type="text" placeholder="Select Date" class="form-control" bsDaterangepicker [maxDate]="maxDate"
+                              formControlName="selectdate" [bsConfig]="bsCustConfg" #rangePicker="bsDaterangepicker"
+                              (onShown)="onDateRangePickerShow()">
+                            </div>
+                        </div>
+                        <div class="col-md-3 mt-1">
+                            <div class="form-group">
+                                <label>Status </label>
+                                    <select name="status" formControlName="status"  class="form-control" >
+                                        <option value="1">Approved</option>
+                                        <option value="2">Rejected</option>
+                                        <option value="0">Pending</option> 
+                                    </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mt-1">
+                            <div class="form-group">
+                                <button class="btn btn-primary mt-2 btn-lg" type="submit">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <app-data-table-tools [columns]="columns" (funObj)="funObj($event)" [url]="url"></app-data-table-tools>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="uploadeDoc" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl signup" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- <button type="button" class="close" data-dismiss="modal">x</button> -->
+                <h4 class="modal-title" id="myModalLabel">Uploaded Document</h4>
+              </div>
+                <div class="modal-body">
+                    <h4>Pancard Image</h4><br>
+                    <img class="w-100" src="{{panImage}}" id="imagepreview"  >
+                    <h4>Aadhar Card Front Image</h4><br>
+                    <img  class="w-100" src="{{aadhar_front}}" id="imagepreview" >
+                    <h4>Aadhar Card Back Image</h4><br>
+                    <img class="w-100" src="{{aadhar_back}}" id="imagepreview" >
+                </div>
+                <div class="modal-footer">
+                    <button id="discard" class="btn" data-dismiss="modal">Close</button>
+                </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="kycStatusModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog signup" role="document">
+        <div class="modal-content">
+            <form [formGroup]="kycform" (submit)="kycForm()">
+                <div class="modal-body">
+                    <span class="close" data-dismiss="modal" (click)="stmodalClose()">&times;</span>
+                    <div class="add-edit-event-box">
+                        <div class="add-edit-event-content">
+                            <h5 class="add-event-title modal-title">Status</h5>
+
+                            <div class="form-row mt-3">
+                                <div class="col-md-12">
+                                    <div class="event-badge">
+                                        <!-- <label for="start-date" class="">Transaction Mode:</label> -->
+                                        <div class="d-sm-flex d-block">
+                                            <div class="n-chk">
+                                                <label class="new-control new-radio radio-primary newlabel">
+                                                    <input type="radio" formControlName="status" class="new-control-input" name="status" value="1">
+                                                    <span class="new-control-indicator"></span>Approve
+                                                </label>
+                                            </div>
+                                            <div class="n-chk">
+                                                <label class="new-control new-radio radio-primary newlabel">
+                                                    <input type="radio" formControlName="status" class="new-control-input" name="status" value="2">
+                                                    <span class="new-control-indicator"></span>Rejected
+                                                </label>
+                                            </div>
+                                            <div *ngIf="f.status.touched && f.status.invalid" class="alert-error">
+                                                <div *ngIf="f.status.errors.required"><small><b>Status is required.</b></small></div>
+                                            </div>
+
+                                            <div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row mt-3" *ngIf="rejectedDoc" >
+                                <div class="col-md-12">
+                                    <div class="event-badge">
+                                        <!-- <label for="start-date" class="">Transaction Mode:</label> -->
+                                        <div class="d-sm-flex d-block">
+                                            <div class="n-chk">
+                                                <label class="new-control new-radio radio-primary newlabel">
+                                                    <input type="radio" formControlName="rejectDoctype" class="new-control-input" name="rejectDoctype" value="0">
+                                                    <span class="new-control-indicator"></span>Pan
+                                                </label>
+                                            </div>
+                                            <div class="n-chk">
+                                                <label class="new-control new-radio radio-primary newlabel">
+                                                    <input type="radio" formControlName="rejectDoctype" class="new-control-input" name="rejectDoctype" value="1">
+                                                    <span class="new-control-indicator"></span>Aadhaar
+                                                </label>
+                                            </div>
+                                            <div class="n-chk">
+                                                <label class="new-control new-radio radio-primary newlabel">
+                                                    <input type="radio" formControlName="rejectDoctype" class="new-control-input" name="rejectDoctype" value="2">
+                                                    <span class="new-control-indicator"></span>Pan / Aadhaar
+                                                </label>
+                                            </div>
+                                            <div *ngIf="f.rejectDoctype.touched && f.rejectDoctype.invalid" class="alert-error">
+                                                <div *ngIf="f.rejectDoctype.errors.required"><small><b>Document  is required.</b></small></div>
+                                            </div>
+
+                                            <div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    </div>
+
+                            <div class="form-row mt-3">
+                                <div class="col-md-12">
+                                    <label for="start-date" class="">Remarks:</label>
+                                    <div class="event-title">
+                                        <textarea id="write-e" [ngClass]="{ 'is-invalid': (f.remarks.touched || f.remarks.dirty) && f.remarks.invalid }" formControlName="remarks" placeholder="Enter remarks" class="form-control" name="remarks"></textarea>
+                                        <div *ngIf="(f.remarks.touched || f.remarks.dirty) && f.remarks.invalid" class="alert-error">
+                                            <div *ngIf="f.remarks.errors.required"><small><b>Remarks is required.</b></small></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="scroll">
+                               {{remarks}}
+                              </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="discard" class="btn" (click)="stmodalClose()" data-dismiss="modal">Close</button>
+                    <button id="edit-event" class="btn btn-primary" [disabled]="!kycform.valid">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"> Upper Network Details</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body1 ml-3 pb-3" *ngFor="let item of details  | keyvalue:originalOrder">
+            <!-- <h4>{{change(item.key)}}:<span>{{item.value}} </span></h4>  -->
+            <h4>{{item.key}}:  <span>{{item.value}} </span></h4> 
+            
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

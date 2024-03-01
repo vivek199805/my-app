@@ -1,0 +1,625 @@
+<!-- <div id="content" class="main-content"></div> -->
+<div class="layout-px-spacing">
+    <div class="row layout-top-spacing">
+        <div class="col-12 p-0 ">
+            <div _ngcontent-ffl-c117="" class="page-title d-flex align-items-center"><img _ngcontent-ffl-c117=""
+                    src="../../../../assets/img/dmt-icon.svg" alt="">
+                <h6 _ngcontent-ffl-c117="" class="ml-1 mb-0">Add Beneficiary</h6>
+            </div>
+        </div>
+
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 p-0">
+            <div class="widget p-0">
+                <div class="form-form top-gray">
+                    <div class="form-form-wrap">
+                        <div class="form-container form-row">
+                            <div class="col-12 col-lg-4">
+                                <p><strong>Name</strong> <span class="ml-3">{{dmtInfo.fname}} {{dmtInfo.lname}}</span>
+                                </p>
+                            </div>
+                            <div class="col-12 col-lg-4">
+                                <p><strong>Mobile No.</strong> <span class="ml-3">{{dmtInfo.mobile}}</span></p>
+                            </div>
+                            <div class="col-12 col-lg-4">
+                                <p><strong>Month Limit</strong> <span class="ml-3">{{dmtInfo.limit |
+                                        currency:'INR'}}</span></p>
+                            </div>
+                            <!-- <div class="col-12 col-lg-3">
+                                <img src="../../../../assets/img/out.png" alt="" class="float-right">
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+                <!-- --form-- -->
+                <div class="form-form-wrap form-benficiary">
+
+                    <form [formGroup]="form" autocomplete="off" class="custom-form">
+                        <div class="row">
+                            <div class="form-group input-field d-flex flex-wrap w-100">
+                                <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+                                <div class="input-group  mr-sm-2">
+                                    <i class="fa fa-university" aria-hidden="true"></i>
+
+
+                                    <select class="form-control basic select-space"
+                                        [ngClass]="{ 'is-invalid':  f.banktype.touched && f.banktype.invalid }"
+                                        formControlName="banktype" placeholder="Bank Type" (change)="setBankListing()">
+                                        <option value="">Select Bank Type</option>
+                                        <option value="neft/imps">NEFT / IMPS BANK</option>
+                                        <option value="gramin">Gramin BANK</option>
+                                    </select>
+                                    <div *ngIf="f.banktype.touched && f.banktype.invalid" class="alert-error">
+                                        <div *ngIf="f.banktype.errors.required"><small><b>Beneficiary Name is
+                                                    required.</b></small></div>
+                                        <div *ngIf="f.banktype.errors.pattern"><small><b>Only alphabets
+                                                    allowed.</b></small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+                                <div class="input-group  mr-sm-2">
+                                    <i class="fa fa-university" aria-hidden="true"></i>
+
+                                    <ng-select2 [ngClass]="{ 'is-invalid':  f.bankname.touched && f.bankname.invalid }"
+                                        [options]="options" formControlName="bankname" [(ngModel)]="bank"
+                                        [data]="bankLisitng" [placeholder]="'Please select a beneficiary bank...'"
+                                        class="w-100">
+                                    </ng-select2>
+                                    <div *ngIf="f.bankname.touched && f.bankname.invalid" class="alert-error">
+                                        <div *ngIf="f.bankname.errors.required"><small><b>Beneficiary Bank is
+                                                    required.</b></small></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+                                <div class="input-group">
+
+                                    <i class="fa fa-university" aria-hidden="true"></i>
+                                    <input type="text" class="form-control" id="inputAddress"
+                                        [ngClass]="{ 'is-invalid':  f.benename.touched && f.benename.invalid }"
+                                        formControlName="benename" autocomplete="off">
+
+                                    <label for="inputAddress">Beneficiary name</label>
+                                    <div *ngIf="f.benename.touched && f.benename.invalid" class="alert-error">
+                                        <div *ngIf="f.benename.errors.required"><small><b>Beneficiary Name is
+                                                    required.</b></small></div>
+                                        <div *ngIf="f.benename.errors.pattern"><small><b>Only alphabets
+                                                    allowed.</b></small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+                                <div class="input-group ">
+
+                                    <i class="fa fa-university" aria-hidden="true"></i>
+
+                                    <input type="text" class="form-control" id="inputAddress"
+                                        [ngClass]="{ 'is-invalid':  f.ifsccode.touched && f.ifsccode.invalid }"
+                                        formControlName="ifsccode" autocomplete="off">
+                                    <label for="inputAddress">IFSC code :</label>
+                                    <div *ngIf="f.ifsccode.touched && f.ifsccode.invalid" class="alert-error">
+                                        <div *ngIf="f.ifsccode.errors.required"><small><b>IFSC code is
+                                                    required.</b></small></div>
+                                        <div *ngIf="f.ifsccode.errors.pattern"><small><b>IFSC code is not valid.
+                                                    IFSC code is Like SBIN0000600 .</b></small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+                                <div class="input-group ">
+
+                                    <i class="fa fa-university" aria-hidden="true"></i>
+
+
+                                    <input type="text" class="form-control" id="inputAddress" OnlyNumber
+                                        [ngClass]="{ 'is-invalid':  f.accno.touched && f.accno.invalid }"
+                                        formControlName="accno" value="">
+                                    <label for="inputAddress">Beneficiary Account no</label>
+                                    <div *ngIf="f.accno.touched && f.accno.invalid" class="alert-error">
+                                        <div *ngIf="f.accno.errors.required"><small><b>Beneficiary Account no is
+                                                    required.</b></small></div>
+                                        <div *ngIf="f.accno.errors.pattern"><small><b>Only Number
+                                                    allowed. minimum length must be 9 and maximum lenght must be
+                                                    18</b></small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+                                <div class="input-group ">
+
+                                    <i class="fa fa-university" aria-hidden="true"></i>
+                                    <input type="text" autocomplete="off" OnlyNumber (keyup)="calcualteProgress()"
+                                        value=""
+                                        [ngClass]="{ 'is-invalid':  f.confirmaccno.touched && f.confirmaccno.invalid }"
+                                        class="form-control" formControlName="confirmaccno">
+                                    <label for="inputAddress">Confirm Beneficiary Account no</label>
+                                    <div *ngIf="f.confirmaccno.touched && f.confirmaccno.invalid" class="alert-error">
+                                        <div *ngIf="f.confirmaccno.errors.required"><small><b>Confirm Beneficiary
+                                                    Account no is
+                                                    required.</b></small></div>
+                                        <div *ngIf="f.confirmaccno.errors.pattern"><small><b>Only Number
+                                                    allowed. minimum length must be 9 and maximum lenght must be
+                                                    18</b></small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <span class="progressbar mt-3" [style.width]="profressWidth"
+                                    [ngClass]="(profressClass == false?'bg-danger':'bg-success')"></span> -->
+
+                            </div>
+                        </div>
+                        </div>
+                        <!-- <div class="row">
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group mb-0">
+                                            <label><input type="radio" [ngModel]="isVerified" name="verified"
+                                                    formControlName="verified" value="1"> Register and Pay? </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" autocomplete="off" value="0"
+                                                [ngClass]="{ 'is-invalid':  f.amount.touched && f.amount.invalid }"
+                                                class="form-control" formControlName="amount" placeholder="Amount">
+                                            <div *ngIf="f.amount.touched && f.amount.invalid" class="alert-error">
+                                                <div *ngIf="f.amount.errors.required"><small><b>Amount is
+                                                            required</b></small></div>
+                                                <div *ngIf="f.amount.errors.pattern"><small><b>Only Number
+                                                            allowed.</b></small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group">
+                                            <label><input type="radio" [ngModel]="isVerified" name="verified"
+                                                    formControlName="verified" value="0"> Only Register?
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div> -->
+                        <div class="d-sm-flex justify-content-center w-100">
+                            <div class="field-wrapper text-center">
+                                <button type="submit" class="btn btn-primary mt-2 mr-2" (click)="accountAdd()"
+                                    [disabled]="!form.valid">Register Beneficiary</button>
+                                <button type="submit" class="btn btn-primary mt-2" (click)="accountVerify()"
+                                    [disabled]="!form.valid" *ngIf="impsbtn && verifybtn">Verify Account [Fee Rs.
+                                    4]</button>
+                            </div>
+                        </div>
+
+                    </form>
+
+
+
+
+
+
+
+
+                </div>
+
+
+                <!-- --form end-- -->
+
+            </div>
+
+        </div>
+
+
+        <!-- <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+            <div class="widget">
+                <h5>Remitter Details</h5>
+              
+                <table class="table table-bordered mb-0">
+                    <tbody>
+                        <tr>
+                            <th>Name</th>
+                            <td>{{dmtInfo.fname}} {{dmtInfo.lname}}</td>
+                        </tr>
+                        <tr>
+                            <th>Mobile</th>
+                            <td>{{dmtInfo.mobile}}</td>
+                        </tr>
+                        <tr>
+                            <th>Month Limit</th>
+                            <td>{{dmtInfo.limit | currency:'INR'}}</td>
+                        </tr>
+                        <tr>
+                            <th colspan="2" class="text-center" *ngIf="isLoggedin"><a routerLink="/dmt"
+                                    class="headings-top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out">
+                                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                        <polyline points="16 17 21 12 16 7"></polyline>
+                                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                                    </svg> Logout</a></th>
+                        </tr>
+                    </tbody>
+                </table>
+            
+            </div>
+
+            <div class="widget" *ngIf="isLoggedin">
+            
+                <h5 class="m-0">Change Pin <span class="click float-right" (click)="togglePinBox()"><i
+                            class="fas fa-chevron-down myRotate"></i></span></h5>
+                <div id="togglePinBox" class="">
+                    <blockquote class="blockquote mt-4">
+                        <h4 class="headings-top">Old MPIN</h4>
+
+                        <form autocomplete="off" novalidate>
+                            <div class="otpsix otp otp-box">
+                                <div class="userInput">
+                                    <input type="text" appOtpVerification maxlength="1" name="oldpin[]"
+                                        [(ngModel)]="oldpin.input1" (keyup)="changePin()">
+                                    <input type="text" appOtpVerification maxlength="1" name="oldpin[]"
+                                        [(ngModel)]="oldpin.input2" (keyup)="changePin()">
+                                    <input type="text" appOtpVerification maxlength="1" name="oldpin[]"
+                                        [(ngModel)]="oldpin.input3" (keyup)="changePin()">
+                                    <input type="text" appOtpVerification maxlength="1" name="oldpin[]"
+                                        [(ngModel)]="oldpin.input4" (keyup)="changePin()">
+                                </div>
+                            </div>
+                            <h4 class="headings-top">New MPIN</h4>
+                            <div class="otpsix otp otp-box">
+                                <div class="userInput">
+                                    <input type="text" appOtpVerification name="newpin[]" maxlength="1"
+                                        [(ngModel)]="newpin.input1" (keyup)="changePin()">
+                                    <input type="text" appOtpVerification name="newpin[]" maxlength="1"
+                                        [(ngModel)]="newpin.input2" (keyup)="changePin()">
+                                    <input type="text" appOtpVerification name="newpin[]" maxlength="1"
+                                        [(ngModel)]="newpin.input3" (keyup)="changePin()">
+                                    <input type="text" appOtpVerification name="newpin[]" maxlength="1"
+                                        [(ngModel)]="newpin.input4" (keyup)="changePin()">
+                                </div>
+                                <p class="forgot"><a href="#" class="text-danger" (click)="forgotMpin()">Forgot MPIN
+                                        ?</a></p>
+                            </div>
+                        </form>
+                    </blockquote>
+                </div>
+            </div>
+
+        </div> -->
+
+        <!-- -div tabs- -->
+
+
+
+
+
+        <!-- <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing p-0 p-md-2 mt-4" *ngIf="!isLoggedin">
+
+            <ul class="nav nav-tabs mt-3 tabber" id="border-tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="border-home-tab" data-toggle="tab" href="#border-home" role="tab"
+                        aria-controls="border-home" aria-selected="true">Login with MPIN</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="border-profile-tab" data-toggle="tab" href="#border-profile" role="tab"
+                        aria-controls="border-profile" aria-selected="false" (click)="sendOTP()">Login with OTP</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="border-contact-tab" data-toggle="tab" href="#border-contact" role="tab"
+                        aria-controls="border-contact" aria-selected="false">Change MPIN</a>
+                </li>
+            </ul>
+            <div class="tab-content mb-4" id="border-tabsContent">
+                <div class="tab-pane fade show active" id="border-home" role="tabpanel"
+                    aria-labelledby="border-home-tab">
+                    <blockquote class="blockquote">
+
+                        <div class="otpsix otp">
+                            <form autocomplete="off" novalidate>
+                                <div class="userInput">
+                                    <input type="text" name="mpin[]" appOtpVerification maxlength="1"
+                                        [(ngModel)]="mpin.input1" name="input1" (keyup)="loginWithPin()" tabindex="1" />
+                                    <input type="text" name="mpin[]" appOtpVerification maxlength="1"
+                                        [(ngModel)]="mpin.input2" name="input2" (keyup)="loginWithPin()" />
+                                    <input type="text" name="mpin[]" appOtpVerification maxlength="1"
+                                        [(ngModel)]="mpin.input3" name="input3" (keyup)="loginWithPin()" />
+                                    <input type="text" name="mpin[]" appOtpVerification maxlength="1"
+                                        [(ngModel)]="mpin.input4" name="input4" (keyup)="loginWithPin()" />
+                                </div>
+                                <p class="forgot"><a href="javascript:void(0)" (click)="forgotMpin()">Forgot MPIN ?</a>
+                                </p>
+                            </form>
+                        </div>
+                        <h4 class="headings-top">Login to {{dmtInfo.mobile}}</h4>
+                    </blockquote>
+                </div>
+
+                <div class="tab-pane fade" id="border-profile" role="tabpanel" aria-labelledby="border-profile-tab">
+                    <blockquote class="blockquote">
+
+                        <div class="otpsix otp">
+                            <form autocomplete="off" novalidate>
+                                <div class="userInput">
+                                    <input type="text" name="otp[]" appOtpVerification maxlength="1"
+                                        [(ngModel)]="otp.input1" name="input1" (keyup)="loginWithOtp()" tabindex="1" />
+                                    <input type="text" name="otp[]" appOtpVerification maxlength="1"
+                                        [(ngModel)]="otp.input2" name="input2" (keyup)="loginWithOtp()" />
+                                    <input type="text" name="otp[]" appOtpVerification maxlength="1"
+                                        [(ngModel)]="otp.input3" name="input3" (keyup)="loginWithOtp()" />
+                                    <input type="text" name="otp[]" appOtpVerification maxlength="1"
+                                        [(ngModel)]="otp.input4" name="input4" (keyup)="loginWithOtp()" />
+                                    <input type="text" name="otp[]" appOtpVerification maxlength="1"
+                                        [(ngModel)]="otp.input5" name="input5" (keyup)="loginWithOtp()" />
+                                    <input type="text" name="otp[]" appOtpVerification maxlength="1"
+                                        [(ngModel)]="otp.input6" name="input6" (keyup)="loginWithOtp()" />
+                                </div>
+                                <p class="forgot mt-3">Didn't get the OTP ?<a href="javascript:void(0)"
+                                        (click)="resend_otp()" style="color:red">Resend</a></p>
+                            </form>
+                        </div>
+                        <h4 class="headings-top">Login to {{dmtInfo.mobile}}</h4>
+                    </blockquote>
+                </div>
+
+                <div class="tab-pane fade" id="border-contact" role="tabpanel" aria-labelledby="border-contact-tab">
+
+                    <form autocomplete="off" novalidate>
+                        <blockquote class="blockquote">
+
+                            <div class="otpsix otp">
+                                <div class="userInput">
+                                    <input type="text" name="oldpin[]" id="ist" appOtpVerification maxlength="1"
+                                        [(ngModel)]="oldpin.input1" name="input1" (keyup)="changePin()" tabindex="1" />
+                                    <input type="text" name="oldpin[]" id="sec" appOtpVerification maxlength="1"
+                                        [(ngModel)]="oldpin.input2" name="input2" (keyup)="changePin()" />
+                                    <input type="text" name="oldpin[]" id="third" appOtpVerification maxlength="1"
+                                        [(ngModel)]="oldpin.input3" name="input3" (keyup)="changePin()" />
+                                    <input type="text" name="oldpin[]" id="fourth" appOtpVerification maxlength="1"
+                                        [(ngModel)]="oldpin.input4" name="input4" (keyup)="changePin()" />
+                                </div>
+                            </div>
+                            <h4 class="headings-top">Old MPIN</h4>
+
+                            <div class="otpsix otp">
+                                <div class="userInput">
+                                    <input type="text" name="newpin[]" id="ist" appOtpVerification maxlength="1"
+                                        [(ngModel)]="newpin.input1" name="input1" (keyup)="changePin()" tabindex="1" />
+                                    <input type="text" name="newpin[]" id="sec" appOtpVerification maxlength="1"
+                                        [(ngModel)]="newpin.input2" name="input2" (keyup)="changePin()" />
+                                    <input type="text" name="newpin[]" id="third" appOtpVerification maxlength="1"
+                                        [(ngModel)]="newpin.input3" name="input3" (keyup)="changePin()" />
+                                    <input type="text" name="newpin[]" id="fourth" appOtpVerification maxlength="1"
+                                        [(ngModel)]="newpin.input4" name="input4" (keyup)="changePin()" />
+                                </div>
+                            </div>
+                            <h4 class="headings-top">NEW MPIN</h4>
+                        </blockquote>
+                    </form>
+                </div>
+            </div>
+
+        </div> -->
+
+
+        <!-- --form div start-- -->
+        <!-- <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing" *ngIf="isLoggedin">
+            <div class="widget">
+                <h5>Register Beneficiary</h5>
+                <form [formGroup]="form" autocomplete="off">
+                    <div class="form-row mb-4">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Bank Type : <span class="alert-error">*</span></label>
+                            <select class="form-control basic"
+                                [ngClass]="{ 'is-invalid':  f.banktype.touched && f.banktype.invalid }"
+                                formControlName="banktype" placeholder="Bank Type" (change)="setBankListing()">
+                     
+                                <option value="neft/imps">NEFT / IMPS BANK</option>
+                                <option value="gramin">Gramin BANK</option>
+                            </select>
+                            <div *ngIf="f.banktype.touched && f.banktype.invalid" class="alert-error">
+                                <div *ngIf="f.banktype.errors.required"><small><b>Beneficiary Name is
+                                            required.</b></small></div>
+                                <div *ngIf="f.banktype.errors.pattern"><small><b>Only alphabets
+                                            allowed.</b></small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Beneficiary Bank : <span class="alert-error">*</span></label>
+                            <ng-select2 [ngClass]="{ 'is-invalid':  f.bankname.touched && f.bankname.invalid }"
+                                [options]="options" formControlName="bankname" [(ngModel)]="bank" [data]="bankLisitng"
+                                [placeholder]="'Select a beneficiary bank...'">
+                            </ng-select2>
+                            <div *ngIf="f.bankname.touched && f.bankname.invalid" class="alert-error">
+                                <div *ngIf="f.bankname.errors.required"><small><b>Beneficiary Bank is
+                                            required.</b></small></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row mb-4">
+                        <div class="form-group col-md-6">
+                            <label for="inputAddress">Beneficiary name : <span class="alert-error">*</span></label>
+                            <input type="text" class="form-control" id="inputAddress"
+                                [ngClass]="{ 'is-invalid':  f.benename.touched && f.benename.invalid }"
+                                formControlName="benename" autocomplete="off" placeholder="Beneficiary name">
+                            <div *ngIf="f.benename.touched && f.benename.invalid" class="alert-error">
+                                <div *ngIf="f.benename.errors.required"><small><b>Beneficiary Name is
+                                            required.</b></small></div>
+                                <div *ngIf="f.benename.errors.pattern"><small><b>Only alphabets
+                                            allowed.</b></small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputAddress">IFSC code : <span class="alert-error">*</span></label>
+                            <input type="text" class="form-control" id="inputAddress"
+                                [ngClass]="{ 'is-invalid':  f.ifsccode.touched && f.ifsccode.invalid }"
+                                formControlName="ifsccode" autocomplete="off" placeholder="IFSC code">
+                            <div *ngIf="f.ifsccode.touched && f.ifsccode.invalid" class="alert-error">
+                                <div *ngIf="f.ifsccode.errors.required"><small><b>IFSC code is
+                                            required.</b></small></div>
+                                <div *ngIf="f.ifsccode.errors.pattern"><small><b>IFSC code is not valid.
+                                            IFSC code is Like SBIN0000600 .</b></small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row mb-0">
+                        <div class="form-group col-md-6">
+                            <label for="inputAddress">Beneficiary Account no : <span
+                                    class="alert-error">*</span></label>
+                            <input type="text" class="form-control" id="inputAddress" OnlyNumber
+                                [ngClass]="{ 'is-invalid':  f.accno.touched && f.accno.invalid }"
+                                formControlName="accno" value="" [placeholder]="'Beneficiary Account no'">
+                            <div *ngIf="f.accno.touched && f.accno.invalid" class="alert-error">
+                                <div *ngIf="f.accno.errors.required"><small><b>Beneficiary Account no is
+                                            required.</b></small></div>
+                                <div *ngIf="f.accno.errors.pattern"><small><b>Only Number
+                                            allowed. minimum length must be 9 and maximum lenght must be
+                                            18</b></small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputAddress">Confirm Beneficiary Account no : <span
+                                    class="alert-error">*</span></label>
+                            <input type="text" autocomplete="off" OnlyNumber (keyup)="calcualteProgress()" value=""
+                                [ngClass]="{ 'is-invalid':  f.confirmaccno.touched && f.confirmaccno.invalid }"
+                                class="form-control" formControlName="confirmaccno"
+                                placeholder="Confirm Beneficiary Account no">
+                            <div *ngIf="f.confirmaccno.touched && f.confirmaccno.invalid" class="alert-error">
+                                <div *ngIf="f.confirmaccno.errors.required"><small><b>Confirm Beneficiary
+                                            Account no is
+                                            required.</b></small></div>
+                                <div *ngIf="f.confirmaccno.errors.pattern"><small><b>Only Number
+                                            allowed. minimum length must be 9 and maximum lenght must be
+                                            18</b></small>
+                                </div>
+                            </div>
+                            <span class="progressbar mt-3" [style.width]="profressWidth"
+                                [ngClass]="(profressClass == false?'bg-danger':'bg-success')"></span>
+
+                        </div>
+                    </div> -->
+        <!-- <div class="row">
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group mb-0">
+                                        <label><input type="radio" [ngModel]="isVerified" name="verified"
+                                                formControlName="verified" value="1"> Register and Pay? </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" autocomplete="off" value="0"
+                                            [ngClass]="{ 'is-invalid':  f.amount.touched && f.amount.invalid }"
+                                            class="form-control" formControlName="amount" placeholder="Amount">
+                                        <div *ngIf="f.amount.touched && f.amount.invalid" class="alert-error">
+                                            <div *ngIf="f.amount.errors.required"><small><b>Amount is
+                                                        required</b></small></div>
+                                            <div *ngIf="f.amount.errors.pattern"><small><b>Only Number
+                                                        allowed.</b></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label><input type="radio" [ngModel]="isVerified" name="verified"
+                                                formControlName="verified" value="0"> Only Register?
+                                        </label>
+                                    </div>
+                                </div>
+                            </div> -->
+
+        <!-- <button type="submit" class="btn btn-primary mt-2 mr-2" (click)="accountAdd()"
+                        [disabled]="!form.valid">Register Beneficiary</button>
+                    <button type="submit" class="btn btn-primary mt-2" (click)="accountVerify()"
+                        [disabled]="!form.valid" *ngIf="impsbtn && verifybtn">Verify Account [Fee Rs. 4]</button>
+                </form>
+            </div>
+        </div> -->
+        <!-- form div end -->
+
+        <!-- table div -->
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing p-0 p-md-2 mt-4" *ngIf="isLoggedin">
+            <div class="widget">
+                <div class="table-responsive">
+                    <table class="table table-bordered mb-4">
+                        <thead>
+                            <tr>
+                                <th>Bene name</th>
+                                <th>Bank</th>
+                                <th>A/C Number</th>
+                                <th>IFSC</th>
+                                <th>Delete</th>
+                                <th>Verify</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="result_obj?.length != 0">
+                            <tr *ngFor="let obj of result_obj">
+                                <td>{{ obj.name }}</td>
+                                <td>{{ obj.bankname }}</td>
+                                <td>{{ obj.accno }}</td>
+                                <td>{{ obj.ifsc }}</td>
+                                <td> <svg (click)="deleteBene(obj)" xmlns="http://www.w3.org/2000/svg" width="24"
+                                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                        class="feather feather-trash-2">
+                                        <polyline points="3 6 5 6 21 6"></polyline>
+                                        <path
+                                            d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                        </path>
+                                        <line x1="10" y1="11" x2="10" y2="17"></line>
+                                        <line x1="14" y1="11" x2="14" y2="17"></line>
+                                    </svg>
+                                </td>
+                                <td>
+                                    <span *ngIf="obj.verified == 1">
+                                        <svg width="20" height="20" aria-hidden="true" focusable="false"
+                                            data-prefix="fas" data-icon="check-square"
+                                            class="svg-inline--fa fa-check-square fa-w-14" role="img"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                            <path fill="var(--green)"
+                                                d="M400 480H48c-26.51 0-48-21.49-48-48V80c0-26.51 21.49-48 48-48h352c26.51 0 48 21.49 48 48v352c0 26.51-21.49 48-48 48zm-204.686-98.059l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.248-16.379-6.249-22.628 0L184 302.745l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.25 16.379 6.25 22.628.001z">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                    <span *ngIf="obj.verified == 0">
+                                        <button class="btn btn-warning btn-sm"
+                                            (click)="verifyNow(obj.id,obj.referenceid)">Verify</button>
+                                    </span>
+                                </td>
+                                <td width="200">
+                                    <form (ngSubmit)="payNow(obj,amount)">
+                                        <div class="bene_pro">
+                                            <div class="reg_bene_input">
+                                                <input type="text" data-number="true" name="process"
+                                                    class="form-control" minlength="1" maxlength="5" required
+                                                    placeholder="Amount" autocomplete="off" #amount />
+                                                <button class="p-0 submit-btn" type="submit"><svg
+                                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                        class="feather feather-chevron-right">
+                                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                                    </svg></button>
+                                            </div>
+                                            <span class="error"></span>
+                                        </div>
+                                    </form>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                        <tbody *ngIf="result_obj?.length==0 ">
+                            <tr>
+                                <td colspan="3 " class="no-data-available ">No data!</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-custom-model [length]="6" [resend]="false" (onFocusNext)="deleteBeneConfirm()"></app-custom-model>

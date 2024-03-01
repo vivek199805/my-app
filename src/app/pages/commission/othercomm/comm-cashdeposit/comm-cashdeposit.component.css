@@ -1,0 +1,14 @@
+
+.ng-autocomplete {
+    min-width: 200px !important;
+    max-width: 600px !important;
+    width    : auto !important;
+}
+.form-control{
+    height: 30px;
+}
+
+.form-control[type="checkbox"]{
+    width: 20px;
+    height: 20px;
+}

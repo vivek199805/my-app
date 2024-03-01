@@ -1,0 +1,187 @@
+<div class="layout-px-spacing">
+    <div class="row layout-top-spacing">
+        <div class="col-12 mb-3">
+            <div _ngcontent-ffl-c117="" class="page-title d-flex align-items-center"><img _ngcontent-ffl-c117=""
+                    src="../../../../assets/img/dmt-icon.svg" alt="">
+                <h6 _ngcontent-ffl-c117="" class="ml-1 mb-0">Register</h6>
+            </div>
+        </div>
+
+
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing p-0 p-md-2">
+            <div class="widget">
+                <p class="text-center mb-3">Register DMT for mobile no <b>{{mobile}}</b></p>
+                <div class="form_blk form-form-wrap">
+                    <form [formGroup]="form" (submit)="onSubmit()" class="custom-form">
+                        <div class="row">
+                            <div class="form-group input-field d-flex flex-wrap">
+                                <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+
+                                    <div class="input-group">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+
+                                        <input type="text"
+                                            [ngClass]="{ 'is-invalid':  (f.firstname.touched || f.firstname.dirty) && f.firstname.invalid }"
+                                            class="form-control" formControlName="firstname" AutocompleteOff>
+                                        <label>First name</label>
+                                        <div *ngIf="(f.firstname.touched || f.firstname.dirty) && f.firstname.invalid"
+                                            class="alert-error">
+                                            <div *ngIf="f.firstname.errors.required"><small><b>Name is
+                                                        required.</b></small>
+                                            </div>
+                                            <div *ngIf="f.firstname.errors.pattern"><small><b>Only alphabets
+                                                        allowed.</b></small>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+
+                                    <div class="input-group">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+
+                                        <input type="text"
+                                            [ngClass]="{ 'is-invalid': (f.lastname.touched || f.lastname.dirty) && f.lastname.invalid }"
+                                            class="form-control" formControlName="lastname" AutocompleteOff>
+                                        <label>Last name</label>
+                                        <div *ngIf="(f.lastname.touched || f.lastname.dirty) && f.lastname.invalid"
+                                            class="alert-error">
+                                            <div *ngIf="f.lastname.errors.required"><small><b>Name is
+                                                        required.</b></small>
+                                            </div>
+                                            <div *ngIf="f.lastname.errors.pattern"><small><b>Only alphabets
+                                                        allowed.</b></small>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+
+                                    <div class="input-group">
+                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                        <label>Date of Birth : <span class="alert-error">*</span></label>
+                                        <input onkeydown="return false" class="form-control" AutocompleteOff
+                                            [ngClass]="{ 'is-invalid': (f.dob.touched || f.dob.dirty) && f.dob.invalid }"
+                                            name="dob" id="dob" formControlName="dob" placeholder="yyyy-mm-dd"
+                                            [minDate]="minDate" [maxDate]="maxDate" #dp="bsDatepicker" bsDatepicker
+                                            [(ngModel)]="dob">
+                                        <div *ngIf="(f.dob.touched || f.dob.dirty) && f.dob.invalid"
+                                            class="alert-error">
+                                            <div *ngIf="f.dob.errors.required"><small><b>Date of Birth is
+                                                        required.</b></small>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+
+                                    <div class="input-group">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                        <input type="text" AutocompleteOff formControlName="address"
+                                            [ngClass]="{ 'is-invalid': (f.address.touched || f.address.dirty) && f.address.invalid }"
+                                            name="address" class="form-control">
+                                        <label for="inputAddress">Address</label>
+                                        <div *ngIf="(f.address.touched || f.address.dirty) && f.address.invalid"
+                                            class="alert-error">
+                                            <div *ngIf="f.address.errors.required"><small><b>Address is
+                                                        required.</b></small></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+                                    <div class="input-group">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                        <div class="form-group w-100">
+                                            <label for="inputAddress">GST State : <span
+                                                    class="alert-error">*</span></label>
+                                            <ng-select2
+                                                [ngClass]="{ 'is-invalid': f.gst_state.touched && f.gst_state.invalid }"
+                                                formControlName="gst_state" AutocompleteOff [data]="gstStateList"
+                                                [placeholder]="'Please select a gst state...'">
+                                            </ng-select2>
+                                            <div *ngIf="f.gst_state.touched && f.gst_state.invalid" class="alert-error">
+                                                <div *ngIf="f.gst_state.errors.required"><small><b>GST State is
+                                                            required.</b></small></div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+                                    <div class="input-group">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+
+                                        <input
+                                            [ngClass]="{ 'is-invalid': (f.pincode.touched || f.pincode.dirty) && f.pincode.invalid }"
+                                            OnlyNumber maxlength="6" class="form-control" formControlName="pincode"
+                                            AutocompleteOff />
+                                        <label>Pincode</label>
+                                        <div *ngIf="(f.pincode.touched || f.pincode.dirty) && f.pincode.invalid"
+                                            class="alert-error">
+                                            <div *ngIf="f.pincode.errors.required"><small><b>Pincode is
+                                                        required.</b></small></div>
+                                            <div *ngIf="f.pincode.errors.pattern"><small><b>Please enter a valid
+                                                        pincode</b></small></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+
+
+                                    <div class="input-group mb-2 mr-sm-2">
+                                        <i class="fa fa-mobile" aria-hidden="true"></i>
+                                        <input type="text" [ngClass]="{ 'is-invalid':  f.otp.touched && f.otp.invalid }"
+                                            class="form-control" OnlyNumber maxlength="6" formControlName="otp"
+                                            AutocompleteOff>
+                                        <label>OTP</label>
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-primary" (click)="resendOtp()"><svg
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="feather feather-repeat submit-icon">
+                                                    <polyline points="17 1 21 5 17 9"></polyline>
+                                                    <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+                                                    <polyline points="7 23 3 19 7 15"></polyline>
+                                                    <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+                                                </svg></button>
+                                        </div>
+                                    </div>
+
+                                    <div *ngIf="f.otp.touched && f.otp.invalid" class="alert-error">
+                                        <div *ngIf="f.otp.errors.required"><small><b>OTP is required.</b></small></div>
+                                        <div *ngIf="f.otp.errors.pattern"><small><b>Only number allowed.</b></small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-12">
+                                <div class="d-sm-flex justify-content-center">
+                                    <div class="field-wrapper text-center"><button type="submit" class="btn btn-primary"
+                                            [disabled]="!form.valid">Submit</button></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

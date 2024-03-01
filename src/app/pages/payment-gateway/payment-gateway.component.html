@@ -1,0 +1,124 @@
+<!--  BEGIN CONTENT AREA  -->
+<div class="layout-px-spacing">
+  <div class="row layout-top-spacing">
+    <div class="col-12 mb-3">
+      <div class="page-title d-flex align-items-center">
+        <img src="../../../../assets/wallet-page.svg" alt="">
+        <h6 class="ml-1 mb-0 font-weight-bold">PAYMENT GATEWAY</h6>
+      </div>
+      <!-- /.page-title -->
+    </div>
+    <!-- /.col-12 -->
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing p-0 p-md-2">
+      <div class="form-form">
+        <div class="form-form-wrap">
+          <div class="form-container">
+            <nav class="nav flex-column flex-sm-row bg-white w-100 mb-3">
+              <a class="flex-sm-fill text-sm-center nav-link" (click)="modeChange('DC')"
+                [ngClass]="{'active-item':mode=='DC'}">Debit Card</a>
+              <a class="flex-sm-fill text-sm-center nav-link" (click)="modeChange('CC')"
+                [ngClass]="{'active-item':mode=='CC'}">Credit Card</a>
+              <a class="flex-sm-fill text-sm-center nav-link" (click)="modeChange('NB')"
+                [ngClass]="{'active-item':mode=='NB'}">Net Banking</a>
+            </nav>
+            <div class="form-content">
+
+
+              <form class="custom-form" [formGroup]="form" (submit)="onSubmit()">
+
+                <div class="form-group input-field d-flex flex-wrap">
+
+                  <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+                    <div class="input-group">
+                      <i class="fa fa-inr" aria-hidden="true"></i>
+                      <input type="text" formControlName="amount"
+                        [ngClass]="{ 'is-invalid': (f.amount.touched || f.amount.dirty) && f.amount.invalid }"
+                        name="amount" class="form-control">
+                      <label for="inputAddress">Amount</label>
+                      <div *ngIf="(f.amount.touched || f.amount.dirty) && f.amount.invalid" class="alert-error">
+                        <div *ngIf="f.amount.errors.required"><small><b>Amount no is required.</b></small></div>
+                        <div *ngIf="f.amount.errors.pattern"><small><b>Please enter a valid amount.</b></small></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+                    <div class="input-group">
+                      <i class="fa fa-mobile" aria-hidden="true"></i>
+                      <input type="text" formControlName="mobile"  pattern="[0-9]*" maxlength="10"
+                        [ngClass]="{ 'is-invalid': (f.mobile.touched || f.mobile.dirty) && f.mobile.invalid }"
+                        name="mobile" class="form-control">
+                      <label for="inputAddress">Mobile no</label>
+
+                      <div *ngIf="(f.mobile.touched || f.mobile.dirty) && f.mobile.invalid" class="alert-error">
+                        <div *ngIf="f.mobile.errors.required"><small><b>Mobile no is required.</b></small></div>
+                        <div *ngIf="f.mobile.errors.pattern"><small><b>Please enter a valid mobile no.</b></small></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+                    <div class="input-group">
+                      <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                      <input type="text" formControlName="email"
+                        [ngClass]="{ 'is-invalid': (f.email.touched || f.email.dirty) && f.email.invalid }" name="email"
+                        class="form-control">
+                      <label for="inputAddress">Email</label>
+
+                      <div *ngIf="(f.email.touched || f.email.dirty) && f.email.invalid" class="alert-error">
+                        <div *ngIf="f.email.errors.required"><small><b>Email is required.</b></small></div>
+                        <div *ngIf="f.email.errors.email"><small><b>Please enter a valid email.</b></small></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+                    <div class="input-group">
+                      <div *ngIf="fillCardDetails" class="w-100">
+
+                        <input type="text" formControlName="card"  pattern="[0-9]*" maxlength="4"
+                          [ngClass]="{ 'is-invalid': (f.card.touched || f.card.dirty) && f.card.invalid }" name="card"
+                          class="form-control">
+                        <label for="inputAddress">Enter Last 4-Digit of Card</label>
+
+                        <div *ngIf="(f.card.touched || f.card.dirty) && f.card.invalid" class="alert-error">
+                          <div *ngIf="f.card.errors.required"><small><b>Please Enter Last 4-Digit of Card</b></small>
+                          </div>
+                          <div *ngIf="f.card.errors.pattern"><small><b>Please enter a valid Last 4-Digit of Card
+                                no.</b></small></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+                    <div class="input-group">
+
+                      <div *ngIf="fillCardDetails" class="w-100">
+
+                        <input type="text" formControlName="name"
+                          [ngClass]="{ 'is-invalid': (f.name.touched || f.name.dirty) && f.name.invalid }" name="name"
+                          class="form-control">
+                        <label for="inputAddress">Card holder name</label>
+
+                        <div *ngIf="(f.name.touched || f.name.dirty) && f.name.invalid" class="alert-error">
+                          <div *ngIf="f.name.errors.required"><small><b>Card holder name is required.</b></small></div>
+                          <div *ngIf="f.name.errors.pattern"><small><b>Only alphabets allowed.</b></small></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="d-sm-flex justify-content-center">
+                  <div class="field-wrapper text-center">
+                    <button type="submit" [disabled]="!form.valid" class="btn btn-primary" value="">Submit</button>
+                  </div>
+                </div>
+              </form> -
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

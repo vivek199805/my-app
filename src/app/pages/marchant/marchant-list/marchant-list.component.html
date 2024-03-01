@@ -1,0 +1,88 @@
+<div class="layout-px-spacing">
+    <div class="row layout-top-spacing">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing p-0 p-md-2">
+            <div class="widget">
+                <h5>Merchant List</h5>
+                <form (submit)="filter()">
+                    <div class="row">
+                        <div class="col-md-3 mt-1">
+                            <div class="form-group">
+                                <label>Start Date: <span class="alert-error">*</span></label>
+                                <input onkeydown="return false" class="form-control" name="startdate" id="startdate" placeholder="yyyy-mm-dd" #dp="bsDatepicker" bsDatepicker [(ngModel)]="search.startdate" autocomplete="off">
+
+                            </div>
+                        </div>
+                        <div class="col-md-3 mt-1">
+                            <div class="form-group">
+                                <label>End Date : <span class="alert-error">*</span></label>
+                                <input onkeydown="return false" class="form-control" name="enddate" id="enddate" placeholder="yyyy-mm-dd" #dp="bsDatepicker" bsDatepicker [maxDate]="maxDate" [(ngModel)]="search.enddate" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Status </label>
+                                    <select name="status" [(ngModel)]="search.status" class="form-control" >
+                                        <option value="0">Pending</option> 
+                                        <option value="1">Active</option>
+                                    </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mt-1">
+                            <div class="form-group">
+                                <button class="btn btn-primary mt-2 btn-lg" type="submit">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <app-data-table-tools [columns]="columns" (funObj)="funObj($event)" [url]="url"></app-data-table-tools>
+            </div>
+        </div>
+    </div>
+</div>
+
+<button type="button" #modal data-toggle='modal' style="display: none;" data-target='#transactionStatus' class='btn btn-primary statushide'></button>
+<div class="modal fade"  id="transactionStatus"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Merchant Details</h4><span class="close" data-dismiss="modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="print-section"> 
+                <table class="table table-bordered">
+                    <tr *ngFor="let txn of modelObj|keyvalue:originalOrder">
+                        <th>{{txn.key}}</th>
+                        <th>{{txn.value}}</th> 
+                    </tr>
+                </table> 
+                </div>
+            </div>
+            <div class="modal-footer">
+        
+                <button class="btn" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"> Upper Network Details</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body1 ml-3 pb-3" *ngFor="let item of details  | keyvalue:originalOrder">
+            <!-- <h4>{{change(item.key)}}:<span>{{item.value}} </span></h4>  -->
+            <h4>{{item.key}}:  <span>{{item.value}} </span></h4> 
+            
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

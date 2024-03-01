@@ -1,0 +1,37 @@
+
+<div class="layout-px-spacing">
+    <div class="row layout-top-spacing">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing p-0 p-md-2">
+              <div class="widget">
+                <!--  <p class="text-center">DMT Statement</p> -->
+                <div class="messaging">
+                <div class="inbox_msg">
+                  <div class="mesgs">
+                    <div class="msg_history">
+                    <div *ngFor="let chat of chatDetail">
+                      <div [ngClass]="{'incoming_msg_img': chat.requested_type == 0,'outgoing_msg': chat.requested_type == 1}">
+                        <img *ngIf="chat.requested_type == 1" src="https://ptetutorials.com/images/user-profile.png" alt="sunil"/>
+                      </div>
+                      <div div [ngClass]="{'received_msg': chat.requested_type == 0,'sent_msg': chat.requested_type == 1}">
+                        <div class="received_withd_msg">
+                          <p>{{ chat.message }}</p>
+                          <span class="time_date"> {{chat.time}} | {{chat.date}}</span> 
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                    <div class="type_msg">
+                      <div class="input_msg_write">
+                      <form [formGroup]="form" class="mt-3" (submit)="addchatMessage()">
+                        <input type="text" class="write_msg" formControlName="chatMessage" placeholder="Type a message" />
+                        <button class="msg_send_btn" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></button>
+                      </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>

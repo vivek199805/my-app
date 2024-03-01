@@ -1,0 +1,59 @@
+<div class="widget mt-3">
+
+    <div class="d-flex align-items-center">
+        <button (click)="goBack()" class="d-flex align-items-center btn btn-primary btn-sm mr-2 px-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mr-1 bi bi-arrow-return-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"/>
+          </svg> Back</button>
+        <img class="icon" src="{{bbpsInformation.icon}}" alt="">
+        <h5 class="ml-2 my-0">{{bbpsInformation.name}}</h5>
+
+    </div>
+    <form [formGroup]="form" autocomplete="off" class="mt-3">
+        <div class="row">
+            <div class=" col-md-6 mx-auto">
+                <div class="form-group">
+                    <label for="" class="font-weight-bolder">Email : </label>
+                    <input type="text" [ngClass]="{ 'is-invalid':  f.ad1.touched && f.ad1.invalid }" class="form-control" formControlName="ad1" autocomplete="off" placeholder="">
+                    <div *ngIf="f.ad1.touched && f.ad1.invalid" class="alert-error">
+                        <div *ngIf="f.ad1.errors.required"><small><b>Email is required.</b></small></div>
+                        <div *ngIf="f.ad1.errors.pattern"><small><b>Email is not valid.</b></small></div>`
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="font-weight-bolder">Loan ID : </label>
+                    <input type="text" [ngClass]="{ 'is-invalid':  f.canumber.touched && f.canumber.invalid }" class="form-control" formControlName="canumber" autocomplete="off" placeholder="">
+                    <div *ngIf="f.canumber.touched && f.canumber.invalid" class="alert-error">
+                        <div *ngIf="f.canumber.errors.required"><small><b>Loan ID is required.</b></small></div>
+                        <div *ngIf="f.canumber.errors.pattern"><small><b>Loan ID is not valid.</b></small></div>`
+                    </div>
+                </div>
+                <div class="text-center my-4">
+                    <h6>NOTE : YOUR SERVICE PROVIDER MAY TAKE UPTO TWO WORKING DAYS TO CONSIDER BILL PAID IN THEIR ACCOUNTS.
+                    </h6>
+                </div>
+                <table class="table table-bordered" *ngIf="fetchBill != null">
+                    <tr>
+                        <th>Name</th>
+                        <td>{{fetchBill.data.name}}</td>
+                    </tr>
+                    <tr>
+                        <th>Due Date</th>
+                        <td>{{fetchBill.data.duedate | date:"MMM d, y"}}</td>
+                    </tr>
+                    <tr>
+                        <th>Amount</th>
+                        <td>{{fetchBill.data.amount | currency:"INR"}}</td>
+                    </tr>
+                </table>
+                <div class="form-group text-center">
+                    <button [disabled]="!form.valid" type="button" class="btn btn-primary mr-2" *ngIf="(viewbill == true)" (click)="viewBill()"> View Bill</button>
+                    <button [disabled]="!form.valid" type="button" class="btn btn-success" *ngIf="viewbill == false" (click)="onSubmit()">Pay Now</button>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<ri-custom-mdl [id]="mdlId">
+    <app-slip-print [riCustomMdlId]="mdlId" [recepitListObj]="invoiceObj" (closeCallBack)="slipClose()"></app-slip-print>
+</ri-custom-mdl>

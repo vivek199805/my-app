@@ -1,0 +1,90 @@
+<div class="layout-px-spacing">
+  <div class="row layout-top-spacing">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing p-0 p-md-2">
+      <div class="widget">
+        <h5>Create package</h5>
+        <div class="container-fluid">
+          <div class="row layout-top-spacing">
+            <form style="width: 100%;" [formGroup]="productform">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputAddress">Package Name : <span class="alert-error">*</span></label>
+                  <input type="text" class="form-control" formControlName="product" autocomplete="off"
+                    placeholder="Package Name">
+                    <div *ngIf="(f.product.touched || f.product.dirty) && f.product.invalid" class="alert-error">
+                      <div *ngIf="f.product.errors.required"><small><b>Product name is required.</b></small></div> 
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputAddress">Package Price : <span class="alert-error">*</span></label>
+                  <input type="number" class="form-control" formControlName="price" autocomplete="off"
+                    placeholder="Package Price">
+                    <div *ngIf="(f.price.touched || f.price.dirty) && f.price.invalid" class="alert-error">
+                      <div *ngIf="f.price.errors.required"><small><b>Product price is required.</b></small></div> 
+                    </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="inputAddress">Package Description : <span class="alert-error">*</span></label>
+                    <textarea type="text" class="form-control" formControlName="description" autocomplete="off"
+                      placeholder="Description"></textarea>
+                      <div *ngIf="(f.description.touched || f.description.dirty) && f.product.invalid" class="alert-error">
+                        <div *ngIf="f.description.errors.required"><small><b>Product description is required.</b></small></div> 
+                      </div>
+                  </div>
+                  <div class="form-group upload col-md-6">
+                    <span for="">Upload Image</span>
+                    <label for='input-file'>
+                      <i class="fas fa-file-upload"></i>Drop file here or Click to upload
+                    </label>
+                    <input id='input-file' type='file' Accept="image/*" #fileUploder
+                      (change)="handleFileInput($event)" />
+
+                  </div>
+                </div>
+
+                <div class="form-row ">
+                  <div class="form-group col-md-6">
+                    <label *ngIf="imageUrl" for="inputAddress">Preview image</label>
+                    <div *ngIf="imageUrl"> <img src="{{imageUrl}}" alt="" style="width: 80px;"></div>
+                  </div>
+                </div>
+                <div class="form-row" style="min-width: 100%;">
+                  <div class="form-group col-md-6">
+                    <button type="submit" (click)="onclick()" class="btn btn-primary mt-3 mr-3"> Create Package</button>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 col-md-3" *ngFor="let item of details;index as i">
+                  <div class="card">
+                    <div class="img-wrapper">
+                      <img src={{item.image}}>
+                    </div>
+                    <div class="heading">
+                      <h5><strong>{{item.product}}</strong></h5>
+                      <p>{{item.description}}</p>
+                    </div>
+                    <div class="card-footer">
+                      <button class="btn btn-success" *ngIf=item.isSelected
+                        (click)="select('select',item)">select</button>
+                      <button class="btn btn-danger ml-2" *ngIf=!item.isSelected
+                        (click)="select('unselect',item)">Unselect</button>
+                    </div>
+                  </div>
+
+                </div>
+                <!-- /.col-12 col-md-3 -->
+
+              </div>
+
+              <!-- {{details | json}} -->
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

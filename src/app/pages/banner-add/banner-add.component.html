@@ -1,0 +1,44 @@
+<section>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row layout-top-spacing">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing p-0 p-md-2">
+              <div class="widget">
+                <h5>Add Banner</h5>
+                <form [formGroup]="BannerForm" (submit)="UploadImage()">
+                  <div class="form-group">
+                    <label for="exampleFormControlTextarea1"></label>
+                    <input class="form-control" type="file" accept="image/png,image/jpeg" formControlName='banner' (change)="setImage($event)" >
+                    <div *ngIf="submitted && e.password.errors" class="alert-error">
+                      <div *ngIf="submitted && e.password.errors"><small><b> Banner File is required</b></small></div>
+                    </div>
+                  </div>
+                  <button type="submit" [disabled]="!BannerForm.valid" name="submit" class="btn btn-primary">Upload
+                    Image</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row layout-top-spacing">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing p-0 p-md-2">
+              <div class="widget">
+                <h5>Add Marque</h5>
+                <ckeditor [editor]="editor" [data]="data" id="editor" (change)="onChange($event)" ></ckeditor>
+                <button type="submit"  name="submit"  class="btn btn-primary mt-2 text-white font-weight-bold" (click)="UploadText()" >Upload
+                  Text</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</section>

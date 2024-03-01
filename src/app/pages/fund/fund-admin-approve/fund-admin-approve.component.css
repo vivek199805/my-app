@@ -1,0 +1,15 @@
+.Approval{
+    margin-bottom: 0 !important;
+}
+.titleapp{
+    font-size: 15px;
+    color: #68686a;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+.table > tbody:before {
+    line-height: 0 !important;
+    content: "_";
+    color: white;
+    display: block;
+}

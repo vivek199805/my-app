@@ -1,0 +1,50 @@
+<div class="widget mt-4">
+    <a routerLink="/complaint/" class="btn btn-primary mt-2 btn-sm float-right"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg> Back</a>
+    <h5 class="aeps-title">Raise Complaint</h5>
+    <form [formGroup]="form" class="mt-3" (submit)="onSubmit()" enctype="multipart/form-data">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputAddress">Sender Name : <span class="alert-error">*</span></label>
+                <input type="text" [ngClass]="{ 'is-invalid':  (f.name.touched || f.name.dirty) && f.name.invalid }" class="form-control" formControlName="name" autocomplete="off" placeholder="Enter Name">
+                <div *ngIf="(f.name.touched || f.name.dirty) && f.name.invalid" class="alert-error">
+                    <div *ngIf="f.name.errors.required"><small><b>Name is required.</b></small></div>
+                    <div *ngIf="f.name.errors.pattern"><small><b>Only alphabets allowed.</b></small></div>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputAddress">Transaction Id : <span class="alert-error">*</span></label>
+                <input type="text" formControlName="transaction_id" [ngClass]="{ 'is-invalid': (f.transaction_id.touched || f.transaction_id.dirty) && f.transaction_id.invalid }" name="transaction_id" class="form-control" placeholder="Enter your Transaction ID">
+                <div *ngIf="(f.transaction_id.touched || f.transaction_id.dirty) && f.transaction_id.invalid" class="alert-error">
+                    <div *ngIf="f.transaction_id.errors.required"><small><b>Firm Name is required.</b></small></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="type">Type : <span class="alert-error">*</span></label>
+                <select name="type" formControlName="type" id="type" class="form-control" [ngClass]="{'is-valid':(f.type.touched || f.type.invalid)}">
+                    <option value="" selected="selected" disabled="disabled">-- Select Type --</option>
+                    <option value="aeps">AEPS</option>
+                    <option value="matm">MATM</option>
+                    <option value="dmt">DMT</option>
+                    <option value="recharge">Recharge</option>
+                    <option value="payout">Payout</option>
+                    <option value="bbps">Bill Pay</option>
+                    <option value="paytm-wallet">Paytm Wallet</option>
+                    <option value="pg">Payment gateway</option>
+                    <option value="credit-card-bill">Credit Card Bill</option>
+                    <option value="pancard">Pan Card</option>
+                    <option value="fund">Fund</option>
+                </select>
+                <div *ngIf="(f.type.touched || f.type.dirty) && f.type.invalid" class="alert-error">
+                    <div *ngIf="f.type.errors.required"><small><b>Type is required.</b></small></div>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label >File : <span class="alert-error">*</span></label>
+                <input type="file"  name="filename" class="form-control" placeholder="Please Choose a file" (change)="onFileSelect($event)">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3" [disabled]="!form.valid">Submit</button>
+    </form>
+</div>

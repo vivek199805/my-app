@@ -1,0 +1,14 @@
+{
+    "version": 3,
+    "mappings": "AGAA;;;;EAIE;ACJF;;;;EAIE;AJGF,AAAA,UAAU,CAAC,CAAC,CAAC;EACX,UAAU,EAAE,IAAI;CACjB;;AAED,AAAA,UAAU,CAAC;EACT,SAAS,EAAE,UAAU;EACrB,SAAS,EAAE,IAAI;CAChB",
+    "sources": [
+        "miscellaneous.scss",
+        "../../base/_base.scss",
+        "../../base/_color_variables.scss",
+        "../../base/_functions.scss",
+        "../../base/_mixins.scss",
+        "../../base/_utilities.scss"
+    ],
+    "names": [],
+    "file": "miscellaneous.css"
+}

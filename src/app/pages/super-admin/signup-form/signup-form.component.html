@@ -1,0 +1,167 @@
+<div class="form-container outer">
+    <div class="form-form">
+        <div class="form-form-wrap">
+            <div class="form-container">
+                <div class="form-content text-left">
+                    <h1 class="">Register</h1>
+                    <p class="">Keep your face always toward the sunshine - and shadows will fall behind you.</p>
+                    <form [formGroup]="signup" (submit)="onSubmit()">
+                        <div class="form">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputAddress">Name : <span class="alert-error">*</span></label>
+                                    <input type="text" [ngClass]="{ 'is-invalid':  (f.name.touched || f.name.dirty) && f.name.invalid }" class="form-control" formControlName="name" autocomplete="off" placeholder="Enter Name">
+                                    <div *ngIf="(f.name.touched || f.name.dirty) && f.name.invalid" class="alert-error">
+                                        <div *ngIf="f.name.errors.required"><small><b>Name is required.</b></small></div>
+                                        <div *ngIf="f.name.errors.pattern"><small><b>Only alphabets allowed.</b></small></div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputAddress">Email : <span class="alert-error">*</span></label>
+                                    <input type="text" formControlName="email" [ngClass]="{ 'is-invalid': (f.email.touched || f.email.dirty) && f.email.invalid }" name="email" class="form-control" placeholder="Enter your email">
+                                    <div *ngIf="(f.email.touched || f.email.dirty) && f.email.invalid" class="alert-error">
+                                        <div *ngIf="f.email.errors.required"><small><b>Email is required.</b></small></div>
+                                        <div *ngIf="f.email.errors.email"><small><b>Enter a valid email.</b></small></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputAddress">Phone no : <span class="alert-error">*</span></label>
+                                    <input type="text" formControlName="phone" [ngClass]="{ 'is-invalid': f.phone.touched && f.phone.invalid }" name="phone" class="form-control" placeholder="Enter your phone no">
+                                    <div *ngIf="f.phone.touched && f.phone.invalid" class="alert-error">
+                                        <div *ngIf="f.phone.errors.required"><small><b>Phone no is required.</b></small></div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputAddress">Address : <span class="alert-error">*</span></label>
+                                    <input type="text" formControlName="address" [ngClass]="{ 'is-invalid': f.address.touched && f.address.invalid }" name="address" class="form-control" placeholder="Enter address">
+                                    <div *ngIf="f.address.touched && f.address.invalid" class="alert-error">
+                                        <div *ngIf="f.address.errors.required"><small><b>Address is required.</b></small></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputAddress">State : <span class="alert-error">*</span></label>
+                                    <input type="text" formControlName="state" [ngClass]="{ 'is-invalid': f.state.touched && f.state.invalid }" name="state" class="form-control" placeholder="Enter state">
+                                    <div *ngIf="f.state.touched && f.state.invalid" class="alert-error">
+                                        <div *ngIf="f.state.errors.required"><small><b>State is required.</b></small></div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputAddress">Pincode : <span class="alert-error">*</span></label>
+                                    <input type="text" formControlName="pincode" [ngClass]="{ 'is-invalid': f.pincode.touched && f.pincode.invalid }" name="pincode" class="form-control" placeholder="Enter pincode">
+                                    <div *ngIf="f.pincode.touched && f.pincode.invalid" class="alert-error">
+                                        <div *ngIf="f.pincode.errors.required"><small><b>Pincode no is required.</b></small></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputAddress">DOB : <span class="alert-error">*</span></label>
+                                    <input  onkeydown="return false" class="form-control" name="dob" formControlName="dob" id="dob" placeholder="yyyy-mm-dd" #dp="bsDatepicker" bsDatepicker autocomplete="off">
+                                    <div *ngIf="(f.dob.touched || f.dob.dirty) && f.dob.invalid" class="alert-error">
+                                        <div *ngIf="f.dob.errors.required"><small><b>Date of birth is required.</b></small></div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputAddress">Pan Nnumber : <span class="alert-error">*</span></label>
+                                    <input type="text" formControlName="pannumber" [ngClass]="{ 'is-invalid': f.pannumber.touched && f.pannumber.invalid }" name="pannumber" class="form-control" placeholder="Enter pan number">
+                                    <div *ngIf="f.pannumber.touched && f.pannumber.invalid" class="alert-error">
+                                        <div *ngIf="f.pannumber.errors.required"><small><b>Pan number is required.</b></small></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputAddress">Firm Name : <span class="alert-error">*</span></label>
+                                    <input type="text" formControlName="firmname" [ngClass]="{ 'is-invalid': f.firmname.touched && f.firmname.invalid }" name="firmname" class="form-control" placeholder="Enter your firm name">
+                                    <div *ngIf="f.firmname.touched && f.firmname.invalid" class="alert-error">
+                                        <div *ngIf="f.firmname.errors.required"><small><b>Firm Name is required.</b></small></div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6 pt-3 pl-3">
+                                    <label for="inputAddress">Gender : <span class="alert-error">*</span></label><br>
+                                    <label class="new-control new-radio new-radio-text radio-success">
+                                        <input  formControlName="gender" type="radio" checked class="new-control-input" name="gender" value="1">
+                                        <span class="new-control-indicator"></span><span class="new-radio-content">Male</span>
+                                      </label>
+                                    <label class="new-control new-radio new-radio-text radio-danger">
+                                        <input formControlName="gender" type="radio" class="new-control-input" name="gender" value="0">
+                                        <span class="new-control-indicator"></span><span class="new-radio-content">Female                                                </span>
+                                      </label>
+                                      <div *ngIf="(f.gender.touched || f.gender.dirty) && f.gender.invalid" class="alert-error">
+                                        <div *ngIf="f.gender.errors.required"><small><b>Gender is required.</b></small></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputAddress">User Type : <span class="alert-error">*</span></label>
+                                    <select formControlName="usertype" [ngClass]="{ 'is-invalid': f.usertype.touched && f.usertype.invalid }" name="usertype" class="form-control" >
+                                        <option value="2">Partner</option>
+                                        <option value="3">SuperDistributor</option>
+                                        <option value="4">Distributor</option>
+                                        <option value="5">Retailer</option>
+                                        <option value="6">ASM</option> 
+                                    </select>
+                                    <div *ngIf="f.usertype.touched && f.usertype.invalid" class="alert-error">
+                                        <div *ngIf="f.usertype.errors.required"><small><b>User type is required.</b></small></div>
+                                    </div>
+                                </div>
+                            </div>    
+                            <span class="tc signup-link text-left mt-2">
+                                <input type="checkbox" formControlName="termcondition" class="isagreed" id="isagreed" value="1"> I Agree to the <a routerLink="/term-condition"> term and conditions </a>
+                                <div *ngIf="f.termcondition.touched && f.termcondition.invalid" class="alert-error">
+                                    <div *ngIf="f.termcondition.errors.required"><small><b>term and conditions to agree is required.</b></small></div>
+                                </div>
+                            </span>
+                            <div class="d-sm-flex justify-content-between mt-4">
+                                <div class="field-wrapper">
+                                    <button type="submit" class="btn btn-primary initCustom" [disabled]="!signup.valid">Signup</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!-- <p class="signup-link text-left">
+                                        <a routerLink="/forgot-password">Forgot Password ?</a>
+                                    </p> -->
+                                </div>
+                                <div class="col-md-6 text-right">
+                                    <p class="signup-link text-right">Already have an account?<a routerLink="/login"> Login</a></p>
+                                </div>
+                            </div>
+
+
+                            <!-- <div class="division">
+                                  <span>OR</span>
+                            </div>
+
+                            <div class="social">
+                                <a href="javascript:void(0);" class="btn social-fb">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg> 
+                                    <span class="brand-name">Facebook</span>
+                                </a>
+                               <a href="javascript:void(0);" class="btn social-github">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                                    <span class="brand-name">Github</span>
+                                </a>
+                            </div> -->
+                            
+                            <p class="signup-link text-right">
+                                <a routerLink="/about-us">About us</a> |
+                                <a routerLink="/refund-cancellation-policy">Refund & Cancellation Policy</a>
+                                
+                                <br>
+                                <a routerLink="/term-condition">T&C</a> |
+                                <a routerLink="/privacy-policy">Privacy Policy</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <img src="assets/img/login-bg.jpg" class="fixed-bg" />
+</div>

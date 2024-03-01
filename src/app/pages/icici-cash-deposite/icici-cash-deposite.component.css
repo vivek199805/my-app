@@ -1,0 +1,4 @@
+#otp-field .otp-wrap input{
+    max-width: 53px !important;
+    padding: 12px !important;
+}

@@ -1,0 +1,127 @@
+<div class="widget mt-4">
+    <a routerLink="/account/asm/list" class="btn btn-primary mt-2 btn-sm float-right"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg> Back</a>
+    <h5 class="aeps-title">{{(isEdit?"Update":"Create")}} ASM</h5>
+    <form [formGroup]="form" class="mt-3" (submit)="onSubmit()">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputAddress">Name : <span class="alert-error">*</span></label>
+                <input type="text" formControlName="name" [ngClass]="{ 'is-invalid': (f.name.touched || f.name.dirty) && f.name.invalid }" name="name" class="form-control" placeholder="Enter your name">
+                <div *ngIf="(f.name.touched || f.name.dirty) && f.name.invalid" class="alert-error">
+                    <div *ngIf="f.name.errors.required"><small><b>Name is required.</b></small></div>
+                    <div *ngIf="f.name.errors.pattern"><small><b>Only alphabets allowed.</b></small></div>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputAddress">Email : <span class="alert-error">*</span></label>
+                <input type="text" formControlName="email" [ngClass]="{ 'is-invalid': (f.email.touched || f.email.dirty) && f.email.invalid }" name="email" class="form-control" placeholder="Enter your email">
+                <div *ngIf="(f.email.touched || f.email.dirty) && f.email.invalid" class="alert-error">
+                    <div *ngIf="f.email.errors.required"><small><b>Email is required.</b></small></div>
+                    <div *ngIf="f.email.errors.email"><small><b>Enter a valid email.</b></small></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputAddress">Phone no : <span class="alert-error">*</span></label>
+                <input type="text" formControlName="phone" [ngClass]="{ 'is-invalid': (f.phone.touched || f.phone.dirty) && f.phone.invalid }" name="phone" class="form-control" maxlength="10" autocomplete="off" OnlyNumber placeholder="Enter your phone no">
+                <div *ngIf="(f.phone.touched || f.phone.dirty) && f.phone.invalid" class="alert-error">
+                    <div *ngIf="f.phone.errors.required"><small><b>Phone no is required.</b></small></div>
+                    <div *ngIf="f.phone.errors.pattern"><small><b>Enter a valid phone no.</b></small></div>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputAddress">DOB/COI : <span class="alert-error">*</span></label>
+                <input class="form-control"  name="dob" formControlName="dob" id="dob" placeholder="mm-dd-yyyy" [maxDate]="maxDate" #dp="bsDatepicker" bsDatepicker autocomplete="off">
+                <div *ngIf="(f.dob.touched || f.dob.dirty) && f.dob.invalid" class="alert-error">
+                    <div *ngIf="f.dob.errors.required"><small><b>Date of birth is required.</b></small></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputAddress">Pincode : <span class="alert-error">*</span></label>
+                <input type="text" formControlName="pincode" (change)="getdatathrowpincode()" [ngClass]="{ 'is-invalid': (f.pincode.touched || f.pincode.dirty) && f.pincode.invalid }" name="pincode" autocomplete="off" OnlyNumber class="form-control" maxlength="6" placeholder="Enter pincode">
+                <div *ngIf="(f.pincode.touched || f.pincode.dirty) && f.pincode.invalid" class="alert-error">
+                    <div *ngIf="f.pincode.errors.required"><small><b>Pincode is required.</b></small></div>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputAddress">State : <span class="alert-error">*</span></label>
+                <input type="text" formControlName="state" [ngClass]="{ 'is-invalid': (f.state.touched || f.state.dirty) && f.state.invalid }" autocomplete="off" name="state" class="form-control" placeholder="Enter state">
+                <div *ngIf="(f.state.touched || f.state.dirty) && f.state.invalid" class="alert-error">
+                    <div *ngIf="f.state.errors.required"><small><b>State is required.</b></small></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputAddress">City : <span class="alert-error">*</span></label>
+                <input type="text" formControlName="city" [ngClass]="{ 'is-invalid': (f.city.touched || f.city.dirty) && f.city.invalid }" name="city" autocomplete="off" class="form-control" placeholder="Enter city">
+                <div *ngIf="(f.city.touched || f.city.dirty) && f.city.invalid" class="alert-error">
+                    <div *ngIf="f.city.errors.required"><small><b>City is required.</b></small></div>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputAddress">Address : <span class="alert-error">*</span></label>
+                <input type="text" formControlName="address" [ngClass]="{ 'is-invalid': (f.address.touched || f.address.dirty) && f.address.invalid }" autocomplete="off" name="address" class="form-control" placeholder="Enter address">
+                <div *ngIf="(f.address.touched || f.address.dirty) && f.address.invalid" class="alert-error">
+                    <div *ngIf="f.address.errors.required"><small><b>Address is required.</b></small></div>
+                </div>
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputAddress">Pan Nnumber : <span class="alert-error">*</span></label>
+                <input type="text" formControlName="pannumber" [ngClass]="{ 'is-invalid': (f.pannumber.touched || f.pannumber.dirty) && f.pannumber.invalid }" autocomplete="off" name="pannumber" class="form-control" oninput="this.value=this.value.toUpperCase()" maxlength="10" placeholder="Enter pan number">
+                <div *ngIf="(f.pannumber.touched || f.pannumber.dirty) && f.pannumber.invalid" class="alert-error">
+                    <div *ngIf="f.pannumber.errors.required"><small><b>Pan number is required.</b></small></div>
+                    <div *ngIf="f.pannumber.errors.pattern"><small><b>Please enter a valid pan number</b></small></div>
+                </div>
+            </div>
+            <div class="form-group col-md-6 pt-3 pl-3">
+                <label for="inputAddress">Gender : <span class="alert-error">*</span></label><br>
+                <label class="new-control new-radio new-radio-text radio-success">
+                    <input  formControlName="gender" type="radio" checked class="new-control-input" name="gender" value="male">
+                    <span class="new-control-indicator"></span><span class="new-radio-content">Male</span>
+                  </label>
+                <label class="new-control new-radio new-radio-text radio-danger">
+                    <input formControlName="gender" type="radio" class="new-control-input" name="gender" value="female">
+                    <span class="new-control-indicator"></span><span class="new-radio-content">Female</span>
+                  </label>
+                  <div *ngIf="(f.gender.touched || f.gender.dirty) && f.gender.invalid" class="alert-error">
+                    <div *ngIf="f.gender.errors.required"><small><b>Gender is required.</b></small></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6 pt-3 pl-3">
+                <label for="inputAddress">Status : <span class="alert-error">*</span></label><br>
+                <label class="new-control new-radio new-radio-text radio-success">
+                    <input  formControlName="status" type="radio" checked class="new-control-input" name="status" value="1">
+                    <span class="new-control-indicator"></span><span class="new-radio-content">Activate</span>
+                  </label>
+                <label class="new-control new-radio new-radio-text radio-danger">
+                    <input formControlName="status" type="radio" class="new-control-input" name="status" value="0">
+                    <span class="new-control-indicator"></span><span class="new-radio-content">Deactivate</span>
+                  </label>
+                  <div *ngIf="(f.status.touched || f.status.dirty) && f.status.invalid" class="alert-error">
+                    <div *ngIf="f.status.errors.required"><small><b>Status is required.</b></small></div>
+                </div>
+            </div>
+            <div class="form-group col-md-6" *ngIf="isEdit">
+                <label for="inputAddress">Remarks : <span class="alert-error">*</span></label>
+                <textarea formControlName="remarks" name="remarks" class="form-control" placeholder="Enter remarks"></textarea>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3" [disabled]="!form.valid">{{(isEdit?"Update":"Submit")}}</button>
+    </form>
+
+    <div class="form-group col-md-12" *ngIf="isEdit">
+        <label for="inputAddress">All Remarks : </label>
+        <textarea type="text"  [(ngModel)]="showRemark" name="phone" autocomplete="off" class="form-control" placeholder="Enter your Remarks" readonly></textarea>
+    </div>
+</div>

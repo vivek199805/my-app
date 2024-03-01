@@ -1,0 +1,36 @@
+<div class="layout-px-spacing">
+    <div class="row layout-spacing">
+        <div class="col-xl-12 layout-top-spacing">
+            <div class="widget-content widget-content-area">
+                <div class="table-responsive mb-4 mt-4">
+                    <table class="multi-table table table-bordered   non-hover" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>txnid</th>
+                                <th>Name</th>
+                                <th>Mobile</th>
+                                <th>Comm</th>
+                                <th>Amount</th>
+                                <th>comm</th> 
+                                <th>status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td> {{queryList?.txnid }} </td>
+                                <th> {{queryList?.name }}</th>
+                                <td> {{queryList?.mobile }} </td>
+                                <td> {{queryList?.comm }} </td>
+                                <td> {{queryList?.amount }} </td>
+                                <td> {{queryList?.comm }} </td>  
+                                <td> {{queryList?.status }} </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <textarea readonly [(ngModel)]="myTextarea" cols="30" rows="10"></textarea>
+            </div>
+        </div>
+    </div>
+</div>

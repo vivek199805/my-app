@@ -1,0 +1,9 @@
+.border52{
+    border: 2px solid red; 
+ }
+
+
+ .list-group-item {
+    width: 100%;
+    max-width: 140px;
+}

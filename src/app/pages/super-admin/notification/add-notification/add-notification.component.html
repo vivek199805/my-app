@@ -1,0 +1,16 @@
+<div class="widget mt-4">
+    <a routerLink="/notification" class="btn btn-primary mt-2 btn-sm float-right"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg> Back</a>
+    <h5 class="aeps-title">{{(isEdit?"Update":"Create")}} Notification</h5>
+    <form [formGroup]="form" class="mt-3" (submit)="onSubmit()">
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label for="inputAddress">Notification Content : </label>
+                <textarea type="text" rows="7" formControlName="content" [ngClass]="{ 'is-invalid': (f.content.touched || f.content.dirty) && f.content.invalid }" name="content" class="form-control" placeholder="Enter your notification content"></textarea>
+                <div *ngIf="(f.content.touched || f.content.dirty) && f.content.invalid" class="alert-error">
+                    <div *ngIf="f.content.errors.required"><small><b>Notification Content is required.</b></small></div>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3" [disabled]="!form.valid">Submit</button>
+    </form>
+</div>

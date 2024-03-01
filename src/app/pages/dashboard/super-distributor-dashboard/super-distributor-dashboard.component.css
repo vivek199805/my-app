@@ -1,0 +1,20 @@
+.customTable tr:first-child th {
+    background-color: var(--text-heading-color);
+    color: #fff;
+}
+
+.customTable tr th {
+    background-color: var(--text-heading-color);
+    color: #fff;
+}
+.w-detail {
+    position: relative !important;
+    color: #fff;
+}
+.dropmenu{
+    background-color: white;
+}
+.table td{
+
+    vertical-align: top !important;
+}

@@ -1,0 +1,101 @@
+<div class="layout-px-spacing">
+  <div class="row layout-top-spacing">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing p-0 p-md-2">
+      <div class="widget">
+        <div class="row">
+
+
+          <div class="col-md-4 mb-2" *ngFor="let list of productdata">
+            <div class="product-list-wrap border ">
+              <div class="img-wrap">
+                <img [src]="list.image" alt="">
+              </div>
+              <!-- /.img-wrap -->
+              <div class="content-wrap p-4">
+                <h4>{{list.product}}<i class="fa fa-info-circle float-right"></i></h4>
+                <p>{{list.description}}</p>
+
+                <div class="og-price d-flex justify-content-between align-item-end">
+                  <span>One Time Activation Free</span>
+                  <span class="uat" *ngIf="list.status == '0'" style="color:red;">De-Active</span>
+                  <span class="uat" *ngIf="list.status=='1'">Active</span>
+                </div>
+                <!-- /.og-price -->
+                <div class="gst-price d-flex justify-content-between align-item-end">
+                  <h5>{{list.price}} +GST</h5>
+                </div>
+                <!-- /.gst-price -->
+                <!-- <button type="button" class="btn lightgrey mr-3"><i class="fa fa-eye"></i> Know More</button> -->
+                <div class="row">
+                  <div class="col-lg-6">
+                  <button *ngIf="userType == 5 && list.status=='1'" type="button" (click)="purchase_req1(list)"
+                    class="btn btn-primary pulse">
+                    Buy</button>
+                  <button *ngIf="userType != 5 && list.status=='1' " type="button" #modal data-toggle='modal'
+                    data-target='#transactionStatus' (click)="purchase_req_other(list)" class="btn btn-primary pulse">
+                    Buy</button>
+                  </div>
+
+                  <div class="col-lg-6">
+                    <button *ngIf="list.is_package =='1'" type="button"
+                    class="btn btn-primary pulse"  data-toggle='modal' data-target='#uploadeDoc' (click)="OpenServices(list)" >
+                    Open Services </button>
+                  </div>
+                </div>
+                <!-- <button type="button" *ngIf="userType == 5" class="btn btn-warning pulse">
+                  Applied </button> -->
+                <!-- {{list.status}} -->
+              </div>
+              <!-- /.disc-price -->
+            </div>
+            <!-- /.content-wrap -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="transactionStatus" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-6">
+            <label>Quantity</label>
+            <input type="text" class="form-control" [(ngModel)]="Quantity">
+          </div>
+          <div class="col-lg-6" style="text-align: center;margin-top: 35px;">
+            <button type="button" class="bt btn-primary" (click)="purchase_req()">Submit</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" (click)="closeModal()" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="uploadeDoc" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog signup" role="document">
+      <div class="modal-content" >
+          <div class="modal-header d-block">
+              <!-- <button type="button" class="close" data-dismiss="modal">x</button> -->
+              <h4 class="modal-title" id="myModalLabel">Show service</h4>
+              <div class="modal-body" *ngFor="let item of finalModalArr">
+                  <h4>{{item.product}}</h4><br>
+                  <img src="{{item.image}}" id="imagepreview" style="width: 100%; height: 264px;">
+                 
+              </div>
+              <div class="modal-footer">
+                  <button id="discard" class="btn" data-dismiss="modal">Close</button>
+              </div>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+.input-group {
+    margin-bottom: 35px;
+}
+
+.form-group {
+    margin-bottom: 0;
+}
+
+.submit-icon {
+    position: inherit;
+    top: 0;
+    left: 0;
+}
+.position-absolute{left:0;right:0}
+.input-group i {
+    position: absolute;
+    left: 19px;
+    color: #787878;
+    top: 13px;
+    z-index: 9;
+    font-size: 20px;
+    width:15px;
+}

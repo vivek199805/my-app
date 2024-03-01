@@ -1,0 +1,134 @@
+<div class="widget mt-4">
+    <h5 class="aeps-title">Debit/Receiving</h5>
+        <div class="form-row">
+
+            <div class="col-md-6">
+                <label>Search User By</label><br>
+                <div class="ng-autocomplete userAutoComData w-100">
+                    <ng-autocomplete [data]="userAutoComData" [searchKeyword]="userKeyword" [debounceTime]="600" (selected)='selectEvent($event)' (inputCleared)="searchCleared()" (inputChanged)='getServerResponse($event)' [itemTemplate]="userItemTemplate" [notFoundTemplate]="userNotFoundTemplate"
+                        [minQueryLength]="5" placeholder="eg 'name', 'firm name', 'firm id'">
+                    </ng-autocomplete>
+
+                    <ng-template #userItemTemplate let-item>
+                        <a [innerHTML]="item.userdetail"></a>
+                    </ng-template>
+
+                    <ng-template #userNotFoundTemplate let-notFound>
+                        <div [innerHTML]="notFound"></div>
+                    </ng-template>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-row mt-5" *ngIf="showBalance">
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
+                    
+                <div class="widget widget-account-invoice-one">
+                    <!-- <div class="widget-heading">
+                        <h5 class="">Account Info</h5>
+                    </div> -->
+                    <div class="widget-content">
+                        <div class="invoice-box">
+                            <div class="acc-total-info">
+                                <h5>Available Balance</h5>
+                                <p class="acc-amount">{{cd_balance | currency:'INR'}}</p>
+                            </div>
+                            <div class="inv-detail"></div>
+                            <div class="inv-action">
+                                <button data-toggle='modal' data-target='#debit' class="btn btn-danger">Debit</button>
+                                <button data-toggle='modal' data-target='#receiving'  class="btn btn-danger">Put Receiving</button>
+                            </div>
+                        </div>
+                    </div>
+        
+                </div>
+            </div>
+        </div>
+</div>
+
+<div class="modal fade" id="debit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Debit</h4><span class="close"data-dismiss="modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="debitbalance" class="mt-3">
+                    <div class="form-row rowss">
+                        <div class="form-group col-md-6">
+                            <label for="inputAddress">Amount : <span class="alert-error">*</span></label>
+                            <input type="text" formControlName="amount" OnlyNumber [ngClass]="{ 'is-invalid': e.amount.touched && e.amount.invalid }" name="amount" class="form-control" placeholder="Enter amount">
+                            <div *ngIf="e.amount.touched && e.amount.invalid" class="alert-error">
+                                <div *ngIf="e.amount.errors.required"><small><b>Amount is required.</b></small></div>
+                                <div *ngIf="e.amount.errors.pattern"><small><b>Please fill a valid amount</b></small></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row rowss">
+                        <div class="form-group col-md-6">
+                            <label for="inputAddress">Remarks : <span class="alert-error">*</span></label>
+                            <textarea formControlName="remarks" name="remarks" class="form-control"></textarea>
+                            <div *ngIf="e.remarks.touched && e.remarks.invalid" class="alert-error">
+                                <div *ngIf="e.remarks.errors.required"><small><b>Remarks is required.</b></small></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row rowss">
+                        <button type="submit" class="btn btn-primary mt-3" [disabled]="!debitbalance.valid" (click)="debit()">Submit</button>
+                        <button class="btn closebtn" data-dismiss="modal">Close</button>
+                    </div>
+
+                </form>
+            </div>
+            <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-primary" [disabled]="!debitbalance.valid" (click)="debit()">Print</button>
+                <button type="button" class="btn" data-dismiss="modal">Close</button>
+            </div> -->
+        </div>
+    </div>
+</div>
+
+<div class="modal fade"  id="receiving" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Receiving</h4><span class="close"data-dismiss="modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="receivingbalance" class="mt-3">
+                    <div class="form-row rowss">
+                        <div class="form-group col-md-6">
+                            <label for="inputAddress">Amount : <span class="alert-error">*</span></label>
+                            <input type="text" formControlName="amount" OnlyNumber [ngClass]="{ 'is-invalid': d.amount.touched && d.amount.invalid }" name="amount" class="form-control" placeholder="Enter amount">
+                            <div *ngIf="d.amount.touched && d.amount.invalid" class="alert-error">
+                                <div *ngIf="d.amount.errors.required"><small><b>Amount is required.</b></small></div>
+                                <div *ngIf="d.amount.errors.pattern"><small><b>Please fill a valid amount</b></small></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row rowss">
+                        <div class="form-group col-md-6">
+                            <label for="inputAddress">Remarks : <span class="alert-error">*</span></label>
+                            <textarea formControlName="remarks" name="remarks" class="form-control"></textarea>
+                            <div *ngIf="d.remarks.touched && d.remarks.invalid" class="alert-error">
+                                <div *ngIf="d.remarks.errors.required"><small><b>Remarks is required.</b></small></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row rowss">
+                        <button type="submit" class="btn btn-primary mt-3" [disabled]="!receivingbalance.valid" (click)="receiving()">Submit</button>
+                        <button class="btn closebtn" data-dismiss="modal">Close</button>
+                    </div>
+
+                </form>
+            </div>
+            <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-primary" [disabled]="!debitbalance.valid" (click)="debit()">Print</button>
+                <button type="button" class="btn" data-dismiss="modal">Close</button>
+            </div> -->
+        </div>
+    </div>
+</div>

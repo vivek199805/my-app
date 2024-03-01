@@ -1,0 +1,125 @@
+<div class="container-fluid">
+  <div class="row layout-top-spacing">
+    <div id="basic" class="col-lg-12 layout-spacing p-0">
+      <div class="widget-content widget-content-area">
+        <div>
+
+          <input type="text" class="form-control mb-3 mx-auto w-75" placeholder="Enter Template Name"
+            [(ngModel)]="Template_name">
+          <div class="commBox container">
+            <div class="row mb-2 ">
+              <!-- <div class="col-md-2">
+                  <label>Operator name</label>
+                </div> -->
+              <!-- /.col-md-2 -->
+              <!-- <div class="col-md-1"></div> -->
+              <!-- /.col-md-2 -->
+              <!-- <div class="col-md-2">
+                  <label>Super Distributor commission</label>
+                </div>
+
+                <div class="col-md-2">
+                  <label>Partner commission</label>
+                </div> -->
+              <!-- /.col-md-2 -->
+              <!-- <div class="col-md-2">
+                  <label>Distributor commission</label>
+                </div> -->
+              <!-- /.col-md-2 -->
+
+              <!-- /.col-md-2 -->
+              <div class="col-md-6">
+                <label>Retailer Charges</label>
+              </div>
+              <div class="col-md-6">
+                <label>Charges Type</label>
+              </div>
+            </div>
+            <div *ngFor="let item of filterDt">
+              <div class="row mb-2 ">
+                <!-- <div class="col-md-2">
+                    {{item.name}}
+                  </div> -->
+                <!-- <div class="col-md-1"></div> -->
+                <!-- <div class="col-md-2">
+                    <input class="form-control-sm" type="text" (keypress)="numberOnly($event)"
+                      [(ngModel)]="item.comm_superdistributor">
+                  </div> -->
+                <!-- /.col-md-2 -->
+
+                <!-- /.col-md-2 -->
+                <!-- <div class="col-md-2">
+                    <input class="form-control-sm" type="text" (keypress)="numberOnly($event)"
+                      [(ngModel)]="item.comm_partner">
+                  </div> -->
+                <!-- /.col-md-2 -->
+                <!-- <div class="col-md-2">
+                    <input class="form-control-sm" type="text" (keypress)="numberOnly($event)"
+                      [(ngModel)]="item.comm_distributor">
+                  </div> -->
+                <!-- /.col-md-2 -->
+
+                <!-- /.col-md-2 -->
+                <div class="col-md-6">
+                  <input class="form-control-sm" type="text" (keypress)="numberOnly($event)"
+                    [(ngModel)]="item.charges_retailer">
+                </div>
+                <div class="col-md-6">
+
+                  <select class="form-control-sm" [(ngModel)]="item.charges_type">
+                    <option value="1">Fixed</option>
+                    <option value="0">Percentage</option>
+                  </select>
+
+                  <!-- <input class="form-control-sm" type="checkbox" 
+                      [(ngModel)]="item.charges_type"> -->
+                </div>
+                <!-- /.col-md-2 -->
+                <!-- 
+                  <div class="col-2 col-sm-6">
+                    {{item.name}} 
+                  </div>
+                  <div class="col-2 col-sm-6 text-right">
+                    <label>Super Distributor commission</label>
+                    <input class="form-control-sm" type="text" (keypress)="numberOnly($event)"
+                      [(ngModel)]="item.comm_superdistributor">
+                  </div>
+                  <div class="col-2 col-sm-6 text-right">
+                    <label>Distributor commission</label>
+                   
+                  </div>
+                  <div class="col-2 col-sm-6 text-right">
+                    <label>Partner commission</label>
+                    <input class="form-control-sm" type="text" (keypress)="numberOnly($event)"
+                      [(ngModel)]="item.comm_partner">
+                  </div>
+                  <div class="col-2 col-sm-6 text-right">
+                    <label>Retailer commission</label>
+                    <input class="form-control-sm" type="text" (keypress)="numberOnly($event)"
+                      [(ngModel)]="item.charges_retailer">
+                  </div> -->
+              </div>
+            </div>
+            <!-- <ng-template ngFor let-item [ngForOf]="data">
+                {{item | json}}
+                <ng-template>
+                  <div class="row mb-2 d-flex align-items-center">
+                    <div class="col-8 col-sm-6">
+                      {{item.name}}
+                    </div>
+                    <div class="col-4 col-sm-6 text-right">
+                      <input class="form-control-sm" type="text" (keypress)="numberOnly($event)" [(ngModel)]="item.value">
+                    </div>
+                  </div>
+                </ng-template>
+              </ng-template> -->
+
+          </div>
+          <div class="text-center mt-2">
+            <input class="btn btn-info" (click)="onSubmit()" type="button" value="Submit">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

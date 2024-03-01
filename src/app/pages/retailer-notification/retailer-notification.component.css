@@ -1,0 +1,17 @@
+.welcome h3 {
+    color: white;
+    margin: 0px;
+}
+
+.navigation-wrap {
+    /* position: relative;
+    overflow: hidden;
+    min-height: 200px; */
+    background-color: #1f67a7;
+}
+
+.bar {
+    padding: 25px 10px;
+    color: white;
+    font-size: 14px;
+}

@@ -1,0 +1,71 @@
+.customTable tr:first-child th {
+    background-color: var(--text-heading-color);
+    color: #fff;
+}
+
+.customTable tr th {
+    background-color: var(--text-heading-color);
+    color: #fff;
+}
+
+.w-detail {
+    position: relative !important;
+    color: #fff;
+}
+
+.dropmenu {
+    background-color: white;
+}
+
+.qLink {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.qLink a {
+    display: inline-flex;
+    align-items: center;
+    padding: 15px 20px;
+    border-radius: 4px;
+    flex-direction: column;
+    box-shadow: rgb(206 203 196) 0px 2px 5px;
+    margin: 0 30px 10px 0;
+    background-color: #fff;
+    text-align: center;
+    justify-content: flex-start;
+    width: 100px;
+}
+
+.qLink a:hover {
+    background-color: var(--nav-hover);
+    color: #fff;
+    fill: #fff;
+    stroke: #fff;
+}
+
+.qLink a span:first-child {
+    width: 30px;
+    height: 30px;
+}
+
+.qLink a svg {
+    width: 100%;
+    fill: inherit;
+    stroke: inherit;
+    height: 100%;
+}
+
+.qLink a:hover svg {
+    fill: inherit;
+    stroke: inherit;
+}
+
+.qLink a i {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.qLink a .title {
+    font-size: 0.8rem;
+    margin-top: 10px;
+}

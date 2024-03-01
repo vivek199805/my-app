@@ -1,0 +1,300 @@
+<section>
+  <div class="container-fluid">
+    <div class="row d-flex justify-content-center flex-column align-items-center login-wrap">
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+        <div class="inner-box card">
+        
+                
+          <div class="text-center"> 
+                <div class="logo p-md-4"><img src="assets/logo.png"></div>
+                <form [formGroup]="signup" [ngSwitch]="stages" class="form px-3 custom-form">
+  
+                  <!-- VERIFY USER BY NUMBER & MOBILE -->
+                  <div *ngSwitchCase="0" formGroupName="firstStep">
+                    <div class="form-row">
+                      <div class="form-group input-field col-md-12">
+                        <input type="text"
+                          [ngClass]="{ 'is-invalid':  (firstForm.get('mobile')?.touched || firstForm.get('mobile')?.dirty) && firstForm.get('mobile')?.invalid }"
+                          class="form-control" formControlName="mobile" autocomplete="off"
+                           maxlength="10">
+                          <label for="inputAddress">Mobile</label>
+                        <div
+                          *ngIf="(firstForm.get('mobile')?.touched || firstForm.get('mobile')?.dirty) && firstForm.get('mobile')?.invalid"
+                          class="alert-error">
+                          <div *ngIf="firstForm.get('mobile')?.errors?.required"><small><b>Required.</b></small></div>
+                          <div *ngIf="firstForm.get('mobile')?.errors?.pattern"><small><b>Enter valid mobile
+                                Number.</b></small></div>
+                          <div *ngIf="firstForm.get('mobile')?.hasError('mobileNoExist')">
+                            <small><b>{{firstForm.get('mobile')?.errors?.mobileNoExist}}</b></small></div>
+                        </div>
+                      </div>
+                      <div class="form-group input-field col-md-12">
+                        <input type="text"
+                          [ngClass]="{ 'is-invalid':  (firstForm.get('email')?.touched || firstForm.get('email')?.dirty) && firstForm.get('email')?.invalid }"
+                          class="form-control" formControlName="email" autocomplete="off" >
+                          <label for="inputAddress">Email</label>
+                        <div
+                          *ngIf="(firstForm.get('email')?.touched || firstForm.get('email')?.dirty) && firstForm.get('email')?.invalid"
+                          class="alert-error">
+                          <div *ngIf="firstForm.get('email')?.errors?.required"><small><b>Required.</b></small></div>
+                          <div *ngIf="firstForm.get('email')?.hasError('emailNotValid')"><small><b>Enter valid email
+                                id.</b></small></div>
+                          <div *ngIf="firstForm.get('email')?.hasError('emailexist')">
+                            <small><b>{{firstForm.get('email')?.errors?.emailexist}}</b></small></div>
+                        </div>
+                      </div>
+  
+                    </div>
+                    <div class="text-center ">
+                      <button type="button" class="btn btn-yellow p-2 font-weight-bold w-100 text-white" (click)="verifyNewUser()"
+                        [disabled]="!firstForm.valid">Signup</button>
+                    </div>
+  
+                  </div>
+  
+                  <!-- VERIFY OTP -->
+                  <div class="form " *ngSwitchCase="1">   
+                    <div class="form-row">
+                      <div class="form-group col-md-12">
+                        <p></p>
+                        <app-custom-otp [otpBox]="4" [submitBtnName]="'Verify OTP'" (sendOtp)="sendOtp($event)"
+                          [isResendOTP]="true" (resendOtp)="resendOtp()"
+                          [showMesgOtpSendToMobile]="'A code was sent to <b>'+sendToMobile+'</b>. Please enter the code here once it arrives.'">
+                        </app-custom-otp>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <!-- USER DETAILS FORM -->
+                  <div class="form " *ngSwitchCase="2" formGroupName="secondStep">
+                    <div class="form-row">
+                      <div class="form-group input-field col-md-6">
+                        <input type="text"
+                          [ngClass]="{ 'is-invalid':  (secondForm.get('name')?.touched || secondForm.get('name')?.dirty) && secondForm.get('name')?.invalid }"
+                          class="form-control" formControlName="name" autocomplete="off" >
+                          <label for="inputAddress">Name</label>
+                        <div
+                          *ngIf="(secondForm.get('name')?.touched || secondForm.get('name')?.dirty) && secondForm.get('name')?.invalid"
+                          class="alert-error">
+                          <div *ngIf="secondForm.get('name')?.errors?.required"><small><b>Required.</b></small></div>
+                        </div>
+  
+                      </div>
+                      <div class="form-group input-field col-md-6">
+                        <input type="text"
+                          [ngClass]="{ 'is-invalid':  (secondForm.get('address')?.touched || secondForm.get('address')?.dirty) && secondForm.get('address')?.invalid }"
+                          class="form-control" formControlName="address" autocomplete="off">
+                          <label for="inputAddress">Address</label>
+  
+                        <div
+                          *ngIf="(secondForm.get('address')?.touched || secondForm.get('address')?.dirty) && secondForm.get('address')?.invalid"
+                          class="alert-error">
+                          <div *ngIf="secondForm.get('address')?.errors?.required"><small><b>Required.</b></small></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group input-field col-md-6">
+                        <input type="text"
+                          [ngClass]="{ 'is-invalid':  (secondForm.get('state')?.touched || secondForm.get('state')?.dirty) && secondForm.get('state')?.invalid }"
+                          class="form-control" formControlName="state" autocomplete="off">
+                          <label for="inputAddress">State</label>
+                        <div
+                          *ngIf="(secondForm.get('state')?.touched || secondForm.get('state')?.dirty) && secondForm.get('state')?.invalid"
+                          class="alert-error">
+                          <div *ngIf="secondForm.get('state')?.errors?.required"><small><b>Required.</b></small></div>
+                        </div>
+  
+                      </div>
+                      <div class="form-group input-field col-md-6">
+                        <input type="text"
+                          [ngClass]="{ 'is-invalid':  (secondForm.get('pincode')?.touched || secondForm.get('pincode')?.dirty) && secondForm.get('pincode')?.invalid }"
+                          class="form-control" formControlName="pincode" maxlength="6" autocomplete="off"
+                          >
+                          <label for="inputAddress">Pin code</label>
+                        <div
+                          *ngIf="(secondForm.get('pincode')?.touched || secondForm.get('pincode')?.dirty) && secondForm.get('pincode')?.invalid"
+                          class="alert-error">
+                          <div *ngIf="secondForm.get('pincode')?.errors?.required"><small><b>Required.</b></small></div>
+                          <div *ngIf="secondForm.get('pincode')?.errors?.pattern"><small><b>Enter valid pin
+                                code.</b></small></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group input-field col-md-6">
+                        <input onkeydown="return false" class="form-control" name="dob" formControlName="dob" id="dob" [maxDate]="maxDate"
+                             #dp="bsDatepicker" bsDatepicker autocomplete="off">
+                          <label for="inputAddress">DOB</label>
+                        <div
+                          *ngIf="(secondForm.get('dob')?.touched || secondForm.get('dob')?.dirty) && secondForm.get('dob')?.invalid"
+                          class="alert-error">
+                          <div *ngIf="secondForm.get('dob')?.errors?.required"><small><b>Required.</b></small></div>
+                        </div>
+  
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="inputAddress">Gender</label><br>
+                        <label class="new-control new-radio new-radio-text ">
+                          <input formControlName="gender" type="radio" checked class="new-control-input" name="gender"
+                            value="1">
+                          <span class="new-control-indicator"></span><span class="new-radio-content">Male</span>
+                        </label>
+                        <label class="new-control new-radio new-radio-text ">
+                          <input formControlName="gender" type="radio" class="new-control-input" name="gender" value="0">
+                          <span class="new-control-indicator"></span><span class="new-radio-content">Female </span>
+                        </label>
+                        <div
+                          *ngIf="(secondForm.get('gender')?.touched || secondForm.get('gender')?.dirty) && secondForm.get('gender')?.invalid"
+                          class="alert-error">
+                          <div *ngIf="secondForm.get('gender')?.errors.required"><small><b>Required.</b></small></div>
+                        </div>
+                      </div>
+  
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group input-field col-md-6">
+                        <input type="text"
+                          [ngClass]="{ 'is-invalid':  (secondForm.get('pannumber')?.touched || secondForm.get('pannumber')?.dirty) && secondForm.get('pannumber')?.invalid }" maxlength="10"
+                          (keyup)="secondForm.get('pannumber')?.setValue(secondForm.get('pannumber')?.value.toUpperCase())"
+                          class="form-control" formControlName="pannumber" autocomplete="off"
+                          >
+                          <label for="inputAddress">PAN No.</label>
+                        <div
+                          *ngIf="(secondForm.get('pannumber')?.touched || secondForm.get('pannumber')?.dirty) && secondForm.get('pannumber')?.invalid"
+                          class="alert-error">
+                          <div *ngIf="secondForm.get('pannumber')?.errors?.required"><small><b>Required.</b></small></div>
+                          <div *ngIf="secondForm.get('pannumber')?.errors?.pattern"><small><b>Enter valid PAN
+                                No.</b></small></div>
+                        </div>
+                      </div>
+                      <!-- <div class="form-group input-field col-md-6">
+                        <input type="text"
+                          [ngClass]="{ 'is-invalid':  (secondForm.get('gstin')?.touched || secondForm.get('gstin')?.dirty) && secondForm.get('gstin')?.invalid }"
+                          (keyup)="secondForm.get('gstin')?.setValue(secondForm.get('gstin')?.value.toUpperCase())"
+                          class="form-control" formControlName="gstin" autocomplete="off"
+                          >
+                          <label for="inputAddress">GSTIN No. :</label>
+  
+                        <div
+                          *ngIf="(secondForm.get('gstin')?.touched || secondForm.get('gstin')?.dirty) && secondForm.get('gstin')?.invalid"
+                          class="alert-error">
+                          <div *ngIf="secondForm.get('gstin')?.errors?.pattern"><small><b>Enter valid GSTIN
+                                No.</b></small></div>
+                        </div>
+                      </div> -->
+  
+                      <div class="form-group input-field col-md-6">
+                        <input type="text"
+                          [ngClass]="{ 'is-invalid':  (secondForm.get('gstin')?.touched || secondForm.get('gstin')?.dirty) && secondForm.get('gstin')?.invalid }" maxlength="12"
+                          (keyup)="secondForm.get('gstin')?.setValue(secondForm.get('gstin')?.value.toUpperCase())"
+                          class="form-control" formControlName="gstin" autocomplete="off"
+                          >
+                          <label for="inputAddress">Aadhaar No. :</label>
+  
+                        <div
+                          *ngIf="(secondForm.get('gstin')?.touched || secondForm.get('gstin')?.dirty) && secondForm.get('gstin')?.invalid"
+                          class="alert-error">
+                          <div *ngIf="secondForm.get('gstin')?.errors?.pattern"><small><b>Enter valid Aadhaar
+                                No.</b></small></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group input-field col-md-6">
+                        <input type="text"
+                          [ngClass]="{ 'is-invalid':  (secondForm.get('firmname')?.touched || secondForm.get('firmname')?.dirty) && secondForm.get('firmname')?.invalid }"
+                          class="form-control" formControlName="firmname" autocomplete="off" >
+                          <label for="inputAddress">Firm Name</label>
+                        <div
+                          *ngIf="(secondForm.get('firmname')?.touched || secondForm.get('firmname')?.dirty) && secondForm.get('firmname')?.invalid"
+                          class="alert-error">
+                          <div *ngIf="secondForm.get('firmname')?.errors?.required"><small><b>Required.</b></small></div>
+                        </div>
+  
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-md-12 ">
+                        <label for="inputAddress">Please Select user type</label><br>
+                        <label class="new-control new-radio new-radio-text ">
+                          <input formControlName="usertype" type="radio" class="new-control-input" name="usertype"
+                            value="2">
+                          <span class="new-control-indicator"></span><span class="new-radio-content">SuperDistributor
+                          </span>
+                        </label>
+                        <label class="new-control new-radio new-radio-text ">
+                          <input formControlName="usertype" type="radio" checked class="new-control-input" name="usertype"
+                            value="3">
+                          <span class="new-control-indicator"></span><span class="new-radio-content">Partner</span>
+                        </label>
+                        <label class="new-control new-radio new-radio-text ">
+                          <input formControlName="usertype" type="radio" class="new-control-input" name="usertype"
+                            value="4">
+                          <span class="new-control-indicator"></span><span class="new-radio-content">Distributor </span>
+                        </label>
+                        <label class="new-control new-radio new-radio-text ">
+                          <input formControlName="usertype" type="radio" class="new-control-input" name="usertype"
+                            value="5">
+                          <span class="new-control-indicator"></span><span class="new-radio-content">Retailer </span>
+                        </label>
+                        <div
+                          *ngIf="(secondForm.get('usertype')?.touched || secondForm.get('usertype')?.dirty) && secondForm.get('usertype')?.invalid"
+                          class="alert-error">
+                          <div *ngIf="secondForm.get('usertype')?.errors.required"><small><b>Required.</b></small></div>
+                        </div>
+                      </div>
+                    </div>
+                    <span class="tc signup-link text-left mt-2">
+                      <input type="checkbox" formControlName="termcondition" class="isagreed" id="isagreed" value="1"> I
+                      Agree to the <a routerLink="/term-condition"> term and conditions </a>
+                    </span>
+                    <div class="form-group input-field col-md-12 text-center m-0 mt-1">
+                      <button type="button" class="btn btn-primary initCustom" (click)="submitNewUsetDtl()"
+                        [disabled]="!(secondForm.valid && secondForm.get('termcondition')?.value)">Create Account</button>
+                    </div>
+                  </div>
+  
+                  <!-- USER ID AND PASSWORD ALREADY GENERATED -->
+                  <div class="form my-3" *ngSwitchCase="3">
+                    <div class="form-row justify-content-center">
+  
+                      <div class="alert alert-primary" role="alert">
+                        User id and password is already generated with these credentials.
+                      </div>
+                      <div class="form-group input-field col-md-12 text-center m-0 mt-1">
+                        <span class="tc signup-link text-left mt-2">
+                          <input type="checkbox" (change)="''" #sendPassAndIdAgain class="isagreed"> Send user id and
+                          password again.
+                        </span>
+                      </div>
+                      <div class="form-group input-field col-md-12 text-center m-0 mt-1">
+                        <button type="button" class="btn btn-primary initCustom" (click)="sendSms()"
+                          [disabled]="!sendPassAndIdAgain.checked">Send</button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mt-3">
+                   
+                    <div class="col-md-12 text-center">
+                      <p class="signup-link">Already have an account?<a routerLink="/login"> Login</a></p>
+                      <!-- <p class="signup-link">
+                          <a routerLink="/about-us">About us</a> |
+                          <a routerLink="/refund-cancellation-policy">Refund & Cancellation Policy</a>
+        
+                          <br>
+                          <a routerLink="/term-condition">T&C</a> |
+                          <a routerLink="/privacy-policy">Privacy Policy</a>
+                        </p> -->
+                    </div>
+                  </div>
+                </form>
+              </div>
+          
+          </div>
+        </div>
+      </div>
+      <img src="assets/img/login-bg.jpg" class="fixed-bg" />
+    </div>
+  </section>
+  

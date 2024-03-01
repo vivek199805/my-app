@@ -1,0 +1,11 @@
+input[type="number"] {
+    max-width: 100px
+}
+
+
+
+.ng-autocomplete {
+    min-width: 200px !important;
+    max-width: 600px !important;
+    width    : auto !important;
+}

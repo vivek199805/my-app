@@ -1,0 +1,14 @@
+{
+    "version": 3,
+    "mappings": "AGAA;;;;EAIE;ACJF;;;;EAIE;AJEF,AAAA,2BAA2B,CAAC;EAC1B,UAAU,EAAE,IAAI;CACjB",
+    "sources": [
+        "custom_dt_multiple_tables.scss",
+        "../../../base/_base.scss",
+        "../../../base/_color_variables.scss",
+        "../../../base/_functions.scss",
+        "../../../base/_mixins.scss",
+        "../../../base/_utilities.scss"
+    ],
+    "names": [],
+    "file": "custom_dt_multiple_tables.css"
+}

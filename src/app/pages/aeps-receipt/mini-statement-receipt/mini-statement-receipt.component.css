@@ -1,0 +1,21 @@
+.feather-icon .icon-container svg {
+    color: #4cdc28 !important;
+    margin-right: 6px;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    fill: rgba(0, 23, 55, 0.08);
+}
+.succes{
+    display: flex !important;
+}
+.succe{
+    padding-right: 10px;
+    font-weight: 700;
+}
+.table > tbody:before {
+    line-height: 0 !important;
+    content: "_";
+    color: white;
+    display: block;
+}

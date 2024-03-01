@@ -1,0 +1,89 @@
+<div id="toggleAccordion" class="row">
+    <div class="col-12">
+      <a class="btn btn-primary mt-2 btn-sm float-right" routerLink="/commission/create-template/create-aadharpay">Add New
+        Template</a>
+    </div>
+    <div class="col-12" *ngFor="let item of data;index as i">
+      <div class="card-header" id="...">
+        <section class="mb-0 mt-0">
+          <div role="menu">
+            <div class="row align-items-center">
+              <div class="col-sm-1">
+                <div>ID : {{item.id}}</div>
+              </div>
+              <div class="col-sm-3">
+                <strong>Template Name : {{item.name}}</strong>
+              </div>
+              <div class="col-sm-2">Type : {{item.type}}</div>
+              <div class="col-sm-3 font-weight-bold text-success">Status : {{item.status}}</div>
+              <div class="col-sm-1 text-primary" routerLink="/commission/Edit-template/aadharpay-edit/{{item.id}}"> <i
+                  class="fas fa-user-edit"></i></div>
+              <div class=" col-sm-1 text-center collapsed" data-toggle="collapse" data-target="#defaultAccordionOne"
+                aria-expanded="true" aria-controls="defaultAccordionOne" [attr.aria-controls]="'docsget_'+ i"
+                [attr.data-target]="'#docsget_'+ i" (click)="getData(item.id)"><i class="fas fa-chevron-down"></i>
+              </div>
+              <div class="col-sm-1 text-white"><i class="fa fa-trash" (click)="remove(item.id)"></i></div>
+
+            </div>
+          </div>
+        </section>
+      </div>
+  
+      <div id="docsget_{{i}}" class="collapse" aria-labelledby="..." data-parent="#toggleAccordion">
+        <div *ngIf="subData">
+          <div class="card-body p-0">
+            <table class="table table-bordered table-responsive" style="width: 100%;text-align: center;">
+              <thead>
+                <tr>
+                  <!-- <th>
+                    Operator Name
+                  </th> -->
+                  <th>
+                    Commission SuperDistributor
+                  </th>
+                  <th>
+                    Commission Partner
+                  </th>
+                  <th>
+                    Commission Distributor
+                  </th>
+                
+                  <th>
+                    Charges Retailer
+                  </th>
+                  <th>
+                    Charges Type
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of subData">
+                  <!-- <td>
+                    {{item.operatorName}}
+                  </td> -->
+                  <td>
+                    {{item.comm_superdistributor}}
+                  </td>
+                  <td>
+                    {{item.comm_partner}}
+                  </td>
+                  <td>
+                    {{item.comm_distributor}}
+                  </td>
+                  
+                  <td>
+                    {{item.charges_retailer}}
+                  </td>
+                  <td>
+                    <span *ngIf="item.charges_type == '0'">Percentage</span>
+                    <span *ngIf="item.charges_type == '1'">Fixed</span>
+                  </td>
+  
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

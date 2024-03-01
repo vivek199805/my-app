@@ -1,0 +1,50 @@
+<div class="modal justify-content-center align-items-center" id="myModal" [style.display]="showModal==false?'none'  : 'flex'">
+    <div class="modal-dialog">
+        <div class="modal-content model-center">
+            <div class="modal-header">
+                <span class="close" (click)="closeModal()" data-dismiss="modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="otp">
+                    <h3>Please enter the {{length}}-digit verification code we sent via SMS:</h3>
+                    <div id="form">
+                        <ng-otp-input  (onInputChange)="moveNext($event)" [config]="{length:length,allowNumbersOnly: true}"></ng-otp-input>
+                    </div>
+                    <div class="text-center" *ngIf="resend">
+                        Didn't receive the code?<br />
+                        <a href="javascript:void(0)" (click)="resendOTP()">Send code again</a><br />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="model-overlay"></div>
+</div>
+
+
+
+
+<!-- <div class="modal justify-content-center align-items-center" id="myModal" [style.display]="showModal==false?'none'  : 'flex'">
+    <div class="modal-dialog">
+        <div class="modal-content model-center">
+            <div class="modal-body">
+                <div class="otp">
+                    <h3>Please enter the {{length}}-digit verification code we sent via SMS:</h3>
+                    <div id="form">
+                        <input type="text" tabindex="1" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" appOtpVerification maxlength="1" [(ngModel)]="otp.input1" (keyup)="moveNext()" />
+                        <input type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" appOtpVerification maxlength="1" [(ngModel)]="otp.input2" (keyup)="moveNext()" />
+                        <input type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" appOtpVerification maxlength="1" [(ngModel)]="otp.input3" (keyup)="moveNext()" />
+                        <input type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" appOtpVerification maxlength="1" [(ngModel)]="otp.input4" (keyup)="moveNext()" />
+                        <input *ngIf="length >= 5" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" appOtpVerification maxlength="1" [(ngModel)]="otp.input5" (keyup)="moveNext()" />
+                        <input *ngIf="length >= 6" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" appOtpVerification maxlength="1" [(ngModel)]="otp.input6" (keyup)="moveNext()" />
+                    </div>
+                    <div class="text-center" *ngIf="resend">
+                        Didn't receive the code?<br />
+                        <a href="javascript:void(0)" (click)="resendOTP()">Send code again</a><br />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="model-overlay"></div>
+</div> -->

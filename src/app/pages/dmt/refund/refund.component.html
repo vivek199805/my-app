@@ -1,0 +1,66 @@
+<div class="layout-px-spacing">
+    <div class="row layout-top-spacing">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing p-0 p-md-2">
+            <div class="widget">
+                <h5>Transaction Details</h5>
+                <div class="table-responsive">
+                    <table class="table table-bordered mb-0">
+                        <tbody>
+                            <tr>
+                                <th>Account No.</th>
+                                <td>{{account}}</td>
+                            </tr>
+                            <tr>
+                                <th>Ack No.</th>
+                                <td>{{ackno}}</td>
+                            </tr>
+                            <tr>
+                                <th>Amount</th>
+                                <td>{{amount | currency:"INR"}}</td>
+                            </tr>
+                            <tr>
+                                <th>Customer Charge</th>
+                                <td>{{customercharge}}</td>
+                            </tr>
+                            <tr>
+                                <th>Date Time</th>
+                                <td>{{daterefunded}}</td>
+                            </tr>
+                            <!-- <tr>
+                                <th>Discount</th>
+                                <td>{{discount}}</td>
+                            </tr>
+                            <tr>
+                                <th>GST</th>
+                                <td>{{gst}}</td>
+                            </tr>
+                            <tr>
+                                <th>Net Commission</th>
+                                <td>{{netcommission}}</td>
+                            </tr>
+                            <tr>
+                                <th>TDS</th>
+                                <td>{{tds}}</td>
+                            </tr> -->
+                            <tr>
+                                <th>UTR</th>
+                                <td>{{utr}}</td>
+                            </tr>
+                            <tr>
+                                <th>Status</th>
+                                <td>{{message}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+</div>
+
+<!-- <app-custom-model [length]="6" [resend]="false" (onFocusNext)="deleteBeneConfirm()"></app-custom-model> -->

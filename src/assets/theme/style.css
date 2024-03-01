@@ -1,0 +1,228 @@
+.otp {
+    margin: 10px auto;
+    padding: 15px;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.otp h3 {
+    margin: 0 0 10px;
+    padding: 0;
+    line-height: 1.25;
+    font-size: 20px;
+    text-align: center;
+}
+
+.otp #form {
+    max-width: 450px;
+    margin: 25px auto 25px;
+    text-align: center;
+}
+
+.otp input {
+    margin: 0 5px;
+    text-align: center;
+    line-height: 80px;
+    font-size: 30px;
+    border: solid 1px #ccc;
+    box-shadow: 0 0 5px #ccc inset;
+    outline: none;
+    /* width: 12%; */
+    transition: all .2s ease-in-out;
+    border-radius: 3px;
+}
+
+.otp input:focus {
+    border-color: purple;
+    box-shadow: 0 0 5px purple inset;
+}
+
+.otp input::selection {
+    background: transparent;
+}
+
+.otp button {
+    margin: 30px 0 50px;
+    width: 100%;
+    padding: 6px;
+    background-color: #B85FC6;
+    border: none;
+    text-transform: uppercase;
+}
+
+.fixed-bg {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    z-index: -1;
+    height: 100%;
+}
+
+.model-overlay {
+    background: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+.no-sidebar {
+    margin-left: 0 !important;
+}
+
+.no-sidebar .layout-px-spacing {
+    padding: 0 !important;
+}
+
+
+/* ------------------------------------------------- */
+
+.setRightsBtnSec {
+    max-height: 300px;
+    overflow: auto;
+}
+
+.setRightsBtnSec>div>label {
+    text-transform: capitalize;
+}
+
+.setRightsBtnSec>div {
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    justify-content: space-between;
+}
+
+.setRightsBtnSec>div:nth-child(2n+1) {
+    border-right: 1px solid hsl(0, 2.7%, 56.1%);
+}
+
+.input_wrapper {
+    width: 50px;
+    height: 27px;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.input_wrapper input[type="checkbox"] {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: #fefefe;
+    border-radius: 22px;
+    position: relative;
+    outline: 0;
+    -webkit-transition: all .2s;
+    transition: all .2s;
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.2), inset 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+.input_wrapper input[type="checkbox"]:after {
+    position: absolute;
+    content: "";
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    left: 4px;
+    width: 21px;
+    height: 21px;
+    background: #fff;
+    z-index: 2;
+    border-radius: 50%;
+    -webkit-transition: all .35s;
+    transition: all .35s;
+    box-shadow: 3px 0px 3px #e6dbd8;
+}
+
+.input_wrapper svg {
+    position: absolute;
+    top: 30%;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    -webkit-transition: all .35s;
+    transition: all .35s;
+    z-index: 9;
+}
+
+.input_wrapper .is_checked {
+    width: 9px;
+    right: 32px;
+    -webkit-transform: translateX(450%) translateY(0%) scale(0);
+    transform: translateX(450%) translateY(0%) scale(0);
+}
+
+.input_wrapper .is_unchecked {
+    width: 9px;
+    right: 77%;
+    -webkit-transform: translateX(7px) translateY(15%) scale(1);
+    transform: translateX(7px) translateY(15%) scale(1);
+}
+
+
+/* Checked State */
+
+.input_wrapper input[type="checkbox"]:checked {
+    background: #23ec28;
+}
+
+.input_wrapper input[type="checkbox"]:checked:after {
+    left: calc(100% - 25px);
+    box-shadow: unset;
+}
+
+.input_wrapper input[type="checkbox"]:checked+.is_checked {
+    -webkit-transform: translateX(22px) translateY(10%) scale(1);
+    transform: translateX(22px) translateY(10%) scale(1);
+}
+
+.input_wrapper input[type="checkbox"]:checked~.is_unchecked {
+    -webkit-transform: translateX(-190%) translateY(-30%) scale(0);
+    transform: translateX(-190%) translateY(-30%) scale(0);
+}
+
+.input_wrapper svg.is_checked {
+    fill: #23ec28
+}
+
+.input_wrapper svg.is_unchecked {
+    fill: #dadada
+}
+
+div[formGroupName="firstForm"]>.row>.col-12 {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+div[formGroupName="firstForm"]>.row>.col-12 .ps_icon {
+    position: absolute;
+    top: 30px !important;
+    left: 30px !important;
+    right: inherit !important;
+}
+
+div[formGroupName="firstForm"]>.row>.col-12 .verifyDiv .ps_icon {
+    position: absolute;
+    top: 10px !important;
+    left: 15px !important;
+    right: inherit !important;
+}
+
+div[formGroupName="firstForm"]>.row>.col-12 .alert-error {
+    position: absolute;
+    bottom: -20px;
+}
+
+
+/* ------------------------------------------------- */

@@ -1,0 +1,36 @@
+<div class="layout-px-spacing">
+    <div class="row layout-spacing">
+        <div class="col-xl-12 layout-top-spacing">
+            <div class="widget-content widget-content-area">
+                <div class="table-responsive mb-4 mt-4">
+                    <table class="multi-table table table-bordered   non-hover" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>CA No</th>
+                                <th>Amount</th>
+                                <th>Operator Name</th>
+                                <th>Operator Id</th>
+                                <th>status</th>
+                                <th>txnid</th>
+                                <th>Date Added</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th> {{queryList?.canumber }}</th>
+                                <td> {{queryList?.amount }} </td>
+                                <td> {{queryList?.operatorname }} </td>
+                                <td> {{queryList?.operatorid }} </td>
+                                <td> {{queryList?.status }} </td>
+                                <td> {{queryList?.txnid }} </td>
+                                <td> {{queryList?.dateadded }} </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <textarea readonly [(ngModel)]="myTextarea" cols="30" rows="10"></textarea>
+            </div>
+        </div>
+    </div>
+</div>

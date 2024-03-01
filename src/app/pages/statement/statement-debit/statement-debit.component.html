@@ -1,0 +1,141 @@
+<div class="layout-px-spacing">
+    <div class="row layout-top-spacing">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing p-0 p-md-2">
+            <div class="widget">
+                <h5>Debit</h5>
+                <!--  <p class="text-center">DMT Statement</p> -->
+                <form (submit)="filter()" [formGroup]="form">
+                    <div class="row">
+                        <!-- [ngClass]="{'col-md-6':usertype == 0,'col-md-4':usertype != 0}" -->
+                        <div class="col-md-4" >
+                            <label for="">Select Date</label>
+                            <input type="text" placeholder="Select Date" class="form-control" bsDaterangepicker [maxDate]="maxDate" formControlName="selectdate" [bsConfig]="bsCustConfg" #rangePicker="bsDaterangepicker" (onShown)="onDateRangePickerShow()">
+                          
+                        </div>
+                        <div class="col-md-6" >
+                        <div class="form-group btns-top">
+                          <input type="submit" class="btn btn-danger" [disabled]="!form.valid" value="Submit"> &nbsp;&nbsp;
+                          <input type="reset" class="btn btn-warning" (click)="searchCleared()" value="Reset">
+                      </div>
+                    </div>
+                        <!-- *ngIf="usertype==0" -->
+                        <!-- <div class="col-md-6" >
+                            <label>Search By User</label><br>
+                            <div class="ng-autocomplete userAutoComData w-100">
+                                <ng-autocomplete [data]="userAutoComData" [searchKeyword]="userKeyword" [debounceTime]="600" (selected)='selectEvent($event)' (inputCleared)="searchCleared()" (inputChanged)='getServerResponse($event)' [itemTemplate]="userItemTemplate" [notFoundTemplate]="userNotFoundTemplate"
+                                    [minQueryLength]="5" placeholder="Search User. eg 'name', 'firm name', 'firm id'">
+                                </ng-autocomplete>
+    
+                                <ng-template #userItemTemplate let-item>
+                                    <a [innerHTML]="item.name"></a>
+                                </ng-template>
+    
+                                <ng-template #userNotFoundTemplate let-notFound>
+                                    <div [innerHTML]="notFound"></div>
+                                </ng-template>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div *ngIf="userType != '5'">
+                      <div class="row mt-2" *ngIf="morefilter">
+                        <div class="col-md-3" *ngIf="userType != '3' && userType != '4' && userType != '2'">
+                          <label>Super Distributor</label><br>
+                          <div class="ng-autocomplete SuperDistributorData">
+                            <ng-autocomplete [data]="SuperDistributorData" [searchKeyword]="userKeyword" [debounceTime]="600"
+                              (selected)='selectSuperDistributor($event)' (inputCleared)="searchCleared()"
+                              (inputChanged)='forSuperDistributorData($event)' [itemTemplate]="userItemTemplate"
+                              [notFoundTemplate]="userNotFoundTemplate" [minQueryLength]="5"
+                              placeholder="Search User. eg 'name', 'firm name', 'firm id'">
+                            </ng-autocomplete>
+          
+                            <ng-template #userItemTemplate let-item>
+                              <a [innerHTML]="item.userdetails"></a>
+                            </ng-template>
+          
+                            <ng-template #userNotFoundTemplate let-notFound>
+                              <div [innerHTML]="notFound"></div>
+                            </ng-template>
+                          </div>
+                        </div>
+                        <div class="col-md-3" *ngIf="userType != '3'  && userType != '4'"  >
+                          <label>Partner</label><br>
+                          <div class="ng-autocomplete partnerData">
+                            <ng-autocomplete [data]="partnerData" [searchKeyword]="userKeyword" [debounceTime]="600"
+                              (selected)='selectPartner($event)' (inputCleared)="searchCleared()"
+                              (inputChanged)='forPartnerData($event)' [itemTemplate]="userItemTemplate1"
+                              [notFoundTemplate]="userNotFoundTemplate1" [minQueryLength]="5"
+                              placeholder="Search User. eg 'name', 'firm name', 'firm id'">
+                            </ng-autocomplete>
+          
+                            <ng-template #userItemTemplate1 let-item>
+                              <a [innerHTML]="item.userdetails"></a>
+                            </ng-template>
+          
+                            <ng-template #userNotFoundTemplate1 let-notFound>
+                              <div [innerHTML]="notFound"></div>
+                            </ng-template>
+                          </div>
+                        </div>
+                        <div class="col-md-3" *ngIf="userType != '4'">
+                          <label>Distributor</label><br>
+                          <div class="ng-autocomplete distributorData">
+                            <ng-autocomplete [data]="distributorData" [searchKeyword]="userKeyword" [debounceTime]="600"
+                              (selected)='selectDistributor($event)' (inputCleared)="searchCleared()"
+                              (inputChanged)='forDistributorData($event)' [itemTemplate]="userItemTemplate2"
+                              [notFoundTemplate]="userNotFoundTemplate2" [minQueryLength]="5"
+                              placeholder="Search User. eg 'name', 'firm name', 'firm id'">
+                            </ng-autocomplete>
+          
+                            <ng-template #userItemTemplate2 let-item>
+                              <a [innerHTML]="item.userdetails"></a>
+                            </ng-template>
+          
+                            <ng-template #userNotFoundTemplate2 let-notFound>
+                              <div [innerHTML]="notFound"></div>
+                            </ng-template>
+                          </div>
+                        </div>
+          
+                        <div class="col-md-3">
+                          <label>Retailer</label><br>
+                          <div class="ng-autocomplete retailerData">
+                            <ng-autocomplete [data]="retailerData" [searchKeyword]="userKeyword" [debounceTime]="600"
+                              (selected)='selectRetailer($event)' (inputCleared)="searchCleared()"
+                              (inputChanged)='forRetailerData($event)' [itemTemplate]="userItemTemplate3"
+                              [notFoundTemplate]="userNotFoundTemplate3" [minQueryLength]="5"
+                              placeholder="Search User. eg 'name', 'firm name', 'firm id'">
+                            </ng-autocomplete>
+          
+                            <ng-template #userItemTemplate3 let-item>
+                              <a [innerHTML]="item.userdetails"></a>
+                            </ng-template>
+          
+                            <ng-template #userNotFoundTemplate3 let-notFound>
+                              <div [innerHTML]="notFound"></div>
+                            </ng-template>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row my-2">
+                        <div class="col-md-4">
+                          <a href="javascript:void(0);" style="color: red;" (click)="morefilter = !morefilter">
+                            {{!morefilter? 'More Filter':'Show Less'}}</a>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="row my-2">
+                        <div class="col-md-4">
+                            <a href="javascript:void(0);" style="color: red;" (click)="morefilter = !morefilter"> {{!morefilter? 'More Filter':'Show Less'}}</a>
+                        </div>
+                    </div> -->
+                    
+                </form>
+                <div>
+                    <button (click)="download($event)" *ngIf="downloadexl" class="btn btn-danger mb-2 mr-2" style="float: right;">Export</button>
+                </div>
+                <app-data-table-tools [columns]="columns" [listtype]="listtype"  [objectforSatement]="objectIDs" [url]="url" (btnexl)="GetChildData($event)">
+                </app-data-table-tools>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,384 @@
+<div class="layout-px-spacing">
+  <div class="row layout-top-spacing" id="cancel-row">
+    <div class="d-block text-right w-100 mr-3">
+      <a routerLink="/payout/create" class="btn btn-primary mt-2 btn-sm addacc"> Add Account</a>
+      <a data-toggle="modal" data-target="#internalTransfer" class="btn btn-primary mt-2 ml-2 btn-sm addacc"> Internal
+        Transfer</a>
+    </div>
+    <div class="col-12 mb-3">
+      <div class="page-title d-flex align-items-center">
+        <i class="fa fa-university" style="color: #0c78d8;"></i>
+        <h6 class="ml-1 mb-0 font-weight-bold">Settlement</h6>
+      </div>
+      <!-- /.page-title -->
+    </div>
+
+    <!-- <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing p-0 p-md-2">
+            <div class="widget widget-width pt-5">
+                <form [formGroup]="addform" (submit)="onSubmit()" class="custom-form">
+                    <div class="form-group input-field d-flex flex-wrap">
+                        <div class="form-group col-md-4">
+                             <div class="input-group mx-1">
+                                <i class="fa fa-university" aria-hidden="true"></i>
+                               <select formControlName="accounttype" [ngClass]="{ 'is-invalid': a.accounttype.touched && a.accounttype.invalid }" name="accounttype"
+                                class="form-control">
+                                <option value="">Select Bank Type...</option>
+                                <option value="PRIMARY">PRIMARY</option>
+                                <option value="RELATIVE">RELATIVE</option>
+                            </select>
+
+                            <div *ngIf="a.accounttype.touched && a.accounttype.invalid" class="alert-error">
+                                <div *ngIf="a.accounttype.errors.required"><small><b>Bank type is required.</b></small></div>
+                            </div>
+                        </div>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            <div class="input-group mx-1">
+                               <i class="fa fa-university" aria-hidden="true"></i>
+                         
+                           <ng-select2 [ngClass]="{ 'is-invalid': a.bankName.touched && a.bankName.invalid }"
+                               formControlName="bankName" [data]="bankLisitng" class="w-100" placeholder="Select Bank">
+                           </ng-select2>
+
+                           <div *ngIf="a.bankName.touched && a.bankName.invalid" class="alert-error">
+                               <div *ngIf="a.bankName.errors.required"><small><b>select bank is required.</b></small></div>
+                           </div>
+                       </div>
+                       </div>
+
+                       <div class="form-group col-md-4">
+                        <div class="input-group mx-1">
+                            <i class="fa fa-university" aria-hidden="true"></i>
+                      
+                        <input type="text" formControlName="name" [ngClass]="{ 'is-invalid': a.name.touched && a.name.invalid }"
+                            name="name" class="form-control">
+                            <label for="inputAddress">Beneficiary Name</label>
+                        <div *ngIf="a.name.touched && a.name.invalid" class="alert-error">
+                            <div *ngIf="a.name.errors.required"><small><b>Beneficiary Name is required.</b></small></div>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <div class="input-group mx-1">
+                            <i class="fa fa-university" aria-hidden="true"></i>
+                       
+                        <input type="text" formControlName="accno"
+                            [ngClass]="{ 'is-invalid': a.accno.touched && a.accno.invalid }" name="accno" class="form-control"
+                           >
+                           <label for="inputAddress">Account Number</label>
+                        <div *ngIf="a.accno.touched && a.accno.invalid" class="alert-error">
+                            <div *ngIf="a.accno.errors.required"><small><b>Account Number is required.</b></small></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <div class="input-group mx-1">
+                        <i class="fa fa-university" aria-hidden="true"></i>
+                   
+                    <input type="text" formControlName="accno"
+                        [ngClass]="{ 'is-invalid': a.accno.touched && a.accno.invalid }" name="accno" class="form-control"
+                       >
+                       <label for="inputAddress">Confirm Account Number</label>
+                    <div *ngIf="a.accno.touched && a.accno.invalid" class="alert-error">
+                        <div *ngIf="a.accno.errors.required"><small><b>Account Number is required.</b></small></div>
+                    </div>
+                </div>
+            </div>
+            
+                        <div class="form-group col-md-4">
+                            <div class="input-group mx-1">
+                                <i class="fa fa-university" aria-hidden="true"></i>
+                           
+                            <input type="text" formControlName="ifsc" [ngClass]="{ 'is-invalid': a.ifsc.touched && a.ifsc.invalid }"
+                                name="ifsc" class="form-control">
+                                <label for="inputAddress">IFSC Code</label>
+                            <div *ngIf="a.ifsc.touched && a.ifsc.invalid" class="alert-error">
+                                <div *ngIf="a.ifsc.errors.required"><small><b>IFSC Code is required.</b></small></div>
+                            </div>
+                        </div>
+                  
+                    </div>
+            
+                    <div class="col-sm-12 text-center">
+                         <button type="submit" class="btn btn-grey mr-2" [disabled]="!addform.valid">Verify Account</button> 
+                    <button type="submit" class="btn btn-primary mr-2" [disabled]="!addform.valid">Add Bank</button>
+                    <button type="submit" class="btn btn-danger mr-2" >Cancel</button>
+                </div>
+                    </div>
+                    
+            
+              
+                  
+                </form>
+            </div>
+      
+         </div> -->
+
+
+    <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+      <div class="widget-content widget-content-area br-6">
+        <div class="table-responsive mb-4 mt-4">
+          <table id="html5-extension" class="table table-hover non-hover" style="width:100%">
+            <thead>
+              <tr>
+                <th>Bank Name</th>
+                <th>Account No.</th>
+                <th>IFSC Code</th>
+                <th>Name</th>
+                <th>Account Type</th>
+                <th>Date</th>
+                <th>Action</th>
+                <!-- <th>Delete</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let list of acclist">
+                <td>{{list.bankname}}</td>
+                <td>{{list.account}}</td>
+                <td>{{list.ifsc}}</td>
+                <td>{{list.name}}</td>
+                <td>{{list.account_type}}</td>
+                <td>{{list.dateadded | date:"medium"}}</td>
+                <td class="centers">
+                  <button type="button" *ngIf="(list.payout_account_status == '2')"
+                    class="btn btn-danger btn-sm actionBtn mb-2" data-toggle="modal" (click)="getbeneidud(list)"
+                    data-target="#uploaddocument">Upload Document</button><br>
+                  <button type="button" *ngIf="(list.payout_account_status == '1')"
+                    class="btn btn-info btn-sm actionBtn" data-toggle="modal" (click)="getbeneidud(list)"
+                    data-target="#dotransaction">Do Transaction</button>
+                  <span class="closebtn" *ngIf="(list.payout_account_status == '0')"><i class="fa fa-times-circle-o"
+                      aria-hidden="true"></i></span>
+
+
+                </td>
+                <!-- <td> <button type="button" class="bt btn-danger actionBtn btn-sm" (click)="settlementbankDelete(list)">Delete</button></td> -->
+              </tr>
+            </tbody>
+            <tbody *ngIf="acclist?.length == 0">
+              <tr>
+                <td colspan="7" class="no-data-available text-center">No data!</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="uploaddocument" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="width: 110%;">
+      <form [formGroup]="form" (submit)="onSubmit()">
+        <div class="modal-body">
+          <span class="close" data-dismiss="modal">&times;</span>
+          <div class="add-edit-event-box">
+            <div class="add-edit-event-content">
+              <h5 class="add-event-title modal-title">Upload Document</h5>
+              <div class="row">
+                <div class="col-md-12">
+                  <label for="start-date" class="">Document Type:</label>
+                  <div class="d-flex event-title">
+                    <select formControlName="doctype"
+                      [ngClass]="{ 'is-invalid':  (f.doctype.touched || f.doctype.dirty) && f.doctype.invalid }"
+                      name="doctype" id="write-e" class="form-control" (click)="checktype($event)">
+                      <option value="">Type Select....</option>
+                      <option value="PAN">Pan Card</option>
+                      <option value="AADHAAR">Aadhaar Card</option>
+                      <option value="DL">Driving Licence</option>
+                    </select>
+                    <div *ngIf="(f.doctype.touched || f.doctype.dirty) && f.doctype.invalid" class="alert-error">
+                      <div *ngIf="f.doctype.errors.required"><small><b>Document Type is required.</b></small></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row" *ngIf="pancard">
+                <div class="col-md-12">
+                  <label for="start-date" class="">Pan Card:</label>
+                  <div class="d-flex">
+                    <input type="file" (change)="handleFileInput1($event)" formControlName="pancard"
+                      class="form-control-file" id="mail_File_attachment">
+                  </div>
+                </div>
+              </div>
+              <div class="row" *ngIf="drivinglicence">
+                <div class="col-md-6">
+                  <label for="start-date" class="">Driving Licence Front:</label>
+                  <div class="d-flex">
+                    <input type="file" (change)="handleFiledlf($event)" formControlName="drivinglicef"
+                      class="form-control-file" id="mail_File_attachment">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="start-date" class="">Driving Licence back:</label>
+                  <div class="d-flex">
+                    <input type="file" (change)="handleFiledlb($event)" formControlName="drivingliceb"
+                      class="form-control-file" id="mail_File_attachment">
+                  </div>
+                </div>
+              </div>
+              <div class="row" *ngIf="aadharcard">
+                <div class="col-md-6">
+                  <label for="start-date" class="">Aadhaar Card Front:</label>
+                  <div class="d-flex">
+                    <input type="file" (change)="handleFileaadharf($event)" formControlName="aadharfront"
+                      class="form-control-file" id="mail_File_attachment">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="start-date" class="">Aadhaar Card Back:</label>
+                  <div class="d-flex">
+                    <input type="file" (change)="handleFileaadharb($event)" formControlName="aadharback"
+                      class="form-control-file" id="mail_File_attachment">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <label for="start-date" class="">Passbook:</label>
+                  <div class="d-flex">
+                    <input type="file" (change)="handleFiledpass($event)" formControlName="passbook"
+                      class="form-control-file" id="mail_File_attachment">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="discard" class="btn" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="dotransaction" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form [formGroup]="dotransaction" (submit)="doTransaction()">
+        <div class="modal-body">
+          <span class="close" data-dismiss="modal">&times;</span>
+          <div class="add-edit-event-box">
+            <div class="add-edit-event-content">
+              <h5 class="add-event-title modal-title">Do Transaction</h5>
+              <div class="row">
+                <div class="col-md-12">
+                  <table class="table table-bordered" *ngIf="beneInfoModel != null">
+                    <tr>
+                      <th>Account Type</th>
+                      <td>{{beneInfoModel.account_type}}</td>
+                    </tr>
+                    <tr>
+                      <th>Bene Name</th>
+                      <td>{{beneInfoModel.name}}</td>
+                    </tr>
+                    <tr>
+                      <th>Bank Name</th>
+                      <td>{{beneInfoModel.bankname}}</td>
+                    </tr>
+                    <tr>
+                      <th>A/C no</th>
+                      <td>{{beneInfoModel.account}}</td>
+                    </tr>
+                    <tr>
+                      <th>IFSC code</th>
+                      <td>{{beneInfoModel.ifsc}}</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="event-badge">
+                    <p class="">Transaction Mode:</p>
+
+                    <div class="d-sm-flex d-block">
+                      <div class="n-chk">
+                        <label class="new-control new-radio radio-primary newlabel">
+                          <input type="radio" formControlName="mode" class="new-control-input" name="mode" value="IMPS">
+                          <span class="new-control-indicator"></span>IMPS
+                        </label>
+                      </div>
+                      <div class="n-chk">
+                        <label class="new-control new-radio radio-primary newlabel">
+                          <input type="radio" formControlName="mode" class="new-control-input" name="mode" value="NEFT">
+                          <span class="new-control-indicator"></span>NEFT
+                        </label>
+                      </div>
+                      <div *ngIf="g.mode.touched && g.mode.invalid" class="alert-error">
+                        <div *ngIf="g.mode.errors.required"><small><b>Transaction Mode is required.</b></small></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <label for="start-date" class="">Amount:</label>
+                  <div class="event-title">
+                    <input type="text" id="write-e"
+                      [ngClass]="{ 'is-invalid': (g.amount.touched || g.amount.dirty) && g.amount.invalid }"
+                      formControlName="amount" placeholder="Enter Amount" class="form-control" name="amount">
+                    <div *ngIf="(g.amount.touched || g.amount.dirty) && g.amount.invalid" class="alert-error">
+                      <div *ngIf="g.amount.errors.required"><small><b>Amount is required.</b></small></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="discard" class="btn" data-dismiss="modal">Close</button>
+          <button id="edit-event" class="btn btn-primary" [disabled]="!dotransaction.valid">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="internalTransfer" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form [formGroup]="internalTransaction" (submit)="doInternalTransaction()">
+        <div class="modal-body">
+          <span class="close" data-dismiss="modal">&times;</span>
+          <div class="add-edit-event-box">
+            <div class="add-edit-event-content">
+              <h5 class="add-event-title modal-title">Internal Transaction</h5>
+              <p class="text-muted">Here you can transfer your cash wallet amount into main wallet.</p>
+              <div class="row">
+                <div class="col-md-12">
+                  <label for="start-date" class="">Amount:</label>
+                  <div class="event-title">
+                    <input type="text" id="write-e"
+                      [ngClass]="{ 'is-invalid': (i.amount.touched || i.amount.dirty) && i.amount.invalid }"
+                      formControlName="amount" placeholder="Enter Amount" class="form-control" name="amount">
+                    <div *ngIf="(i.amount.touched || i.amount.dirty) && i.amount.invalid" class="alert-error">
+                      <div *ngIf="i.amount.errors.required"><small><b>Amount is required.</b></small></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="discard" class="btn" (click)="closemodal()">Close</button>
+          <button id="edit-event" class="btn btn-primary" [disabled]="internalTransaction.invalid">Transfer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

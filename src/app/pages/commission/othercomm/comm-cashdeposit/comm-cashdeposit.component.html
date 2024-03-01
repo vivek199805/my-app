@@ -1,0 +1,127 @@
+<div class="container">
+    <div class="">
+        <!-- <h1>Aadhaar Pay</h1> -->
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <div class="form-group">
+                    <label>Select User</label>
+                    <ng-select2 [options]="options" [data]="userDetailsList" [placeholder]="'Please select a details...'">
+                    </ng-select2>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="mainStart.controls.length > 0">
+            <div class="" [formGroup]="aepsData">
+                <div formArrayName="mainGroup">
+                    <!-- {{mainStart?.valid}} -->
+                    <div *ngFor="let arr of mainStart.controls; index as i" class="mainSection mt-5">
+                        <h2>{{arr.get('id')?.value | uppercase}}</h2>
+                        <div [formArrayName]="i">
+                            <p *ngIf="getArr(arr,i).controls.length === 0">No Record Found</p>
+                            <div *ngFor="let form of getArr(arr,i).controls; index as j; first as isFirst; last as isLast"
+                                formArrayName="arr" class="mt-sm-5">
+                                <div [formGroupName]="j">
+                                    <div class="row">
+                                        <div class="col-md-3 col-ms-12">
+                                            <label class="font-weight-bold">Min Slab</label>
+                                            <input type="number"
+                                                [ngClass]="{ 'is-invalid':  form.get('slab_min')?.touched && form.get('slab_min')?.invalid }"
+                                                name="min" formControlName="slab_min" class="form-control">
+                                            <!-- <div *ngIf="form.get('slab_min')?.touched && form.get('slab_min')?.invalid" -->
+                                            <div *ngIf=" form.get('slab_min')?.invalid" class="alert-error">
+                                                <div *ngIf="form.get('slab_min').errors?.required">
+                                                    <small><b>required.</b></small>
+                                                </div>
+                                            </div>
+                                            <div class="alert-error"
+                                                *ngIf="form.get('slab_min').errors?.firstMinAmountRange && isFirst">
+                                                <small><b>First Amount is Fixed 100 Rs</b></small>
+                                            </div>
+                                            <div class="alert-error"
+                                                *ngIf="form.get('slab_min').errors?.minToMaxRange && form.get('slab_min').dirty">
+                                                <small><b>Minimum Amount Should Be less then Max Amount</b></small>
+                                            </div>
+                                            <div class="alert-error"
+                                                *ngIf="form.get('slab_min').errors?.minRange && form.get('slab_min').dirty">
+                                                <small><b>Minimum Amount Should Be less then Max Amount</b></small>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-ms-12">
+                                            <label class="font-weight-bold">Max Slab</label>
+                                            <input type="number" name="max" formControlName="slab_max"
+                                                class="form-control">
+                                            <!-- <div *ngIf="form.get('slab_max')?.touched && form.get('slab_max')?.invalid" -->
+                                            <div *ngIf="form.get('slab_max')?.invalid" class="alert-error">
+                                                <div *ngIf="form.get('slab_max').errors['required']">
+                                                    <small><b>required.</b></small>
+                                                </div>
+                                            </div>
+                                            <div class="alert-error"
+                                                *ngIf="arr.get('validCheck')?.errors?.lastMaxAmount && isLast">
+                                                <small><b>Max Amount Fixed 10000 Rs</b></small>
+                                            </div>
+
+                                            <div class="alert-error"
+                                                *ngIf="form.get('slab_min').errors?.minRange && form.get('slab_min').dirty">
+                                                <small><b>Minimum Amount Should Be less then Max Amount</b></small>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-ms-12">
+                                            <label class="font-weight-bold">Amount</label>
+                                            <input type="number" name="amount" formControlName="value"
+                                                class="form-control">
+                                            <!-- <div *ngIf="form.get('value')?.touched && form.get('value')?.invalid" -->
+                                            <div *ngIf="form.get('value')?.invalid" class="alert-error">
+                                                <div *ngIf="form.get('value').errors['required']">
+                                                    <small><b>required.</b></small>
+                                                </div>
+                                                <div *ngIf="form.get('value').errors['min']">
+                                                    <small><b>Amount should minimum 0 Rs.</b></small>
+                                                </div>
+                                            </div>
+                                            <div *ngIf="form.get('is_fixed')?.errors?.trueError" class="alert-error">
+                                                <small><b>Amount should be less then 1 Rs.</b></small>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-ms-12">
+                                            <label class="font-weight-bold">Is Fixed</label>
+                                            <div class="row">
+                                                <div class="col-md-6 col-ms-12 ">
+                                                    <input type="checkbox" name="isFixed" formControlName="is_fixed"
+                                                        class="form-control text-left">
+                                                </div>
+                                                <div class="col-md-6 col-ms-12 text-sm-left">
+                                                    <i class="fa fa-trash" (click)="remove(arr,i,j)"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div *ngIf="form?.errors?.minMaxError" class="alert-error mt-3" role="alert">
+                                        <strong>Minimum</strong> amount should be less then <strong>Maximum</strong>
+                                        amount.
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <input type="button" [disabled]="!getArr(arr,i).valid"
+                                    *ngIf="isAddBtnDisabled(arr,i) !== true"
+                                    class="btn btn-outline-secondary font-weight-bold mt-3" value="Add New Record"
+                                    (click)="add(arr,i)">
+
+                                <div *ngIf="arr.get('arr')?.errors?.MinLengthArray" class="alert-error mt-3"
+                                    role="alert">
+                                    <strong>Amount Slab</strong> is Not Valid.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-5 text-center">
+                        <button type="button" [disabled]="!formArr.valid" class="btn btn-success"
+                            (click)="onSubmit()">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

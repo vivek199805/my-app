@@ -1,0 +1,10 @@
+@import url(../../../assets/login/style.css);
+@import url(../../../assets/login/responsive.css);
+
+.download-app .contact-details{
+    list-style: none;
+    padding: 0px;
+}
+.login-main{
+    height: 100vh;
+}

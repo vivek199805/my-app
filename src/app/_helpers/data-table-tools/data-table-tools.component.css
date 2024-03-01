@@ -1,0 +1,7 @@
+.btn-sm {
+    font-size: 0.6875rem !important;
+}
+
+.table-bordered td, .table-bordered th {
+    border: 1px dotted #d3d3d3;
+}

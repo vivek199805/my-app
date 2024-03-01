@@ -1,0 +1,118 @@
+:root {
+    --theme-color: #1b55e2;
+}
+
+:root {
+    --text-heading-color: #69c90f;
+}
+.widget h5 {
+    margin-bottom: 25px;
+    color: var(--text-heading-color);
+    padding: 0;
+}
+
+.tabber li a {
+    padding: 10px 32px;
+    font-size: 14px;
+    color: #000;
+    font-weight: 600;
+}
+
+.headings-top {
+    text-align: center;
+    font-size: 18px;
+    color: var(--text-heading-color);
+    font-weight: 500;
+}
+
+
+
+.otp input {
+    margin: 10px;
+    height: 50px;
+    width: 50px;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1.2rem;
+    background: #eef2f3;
+}
+
+.forgot {
+    font-size: 16px;
+    color:#989898;
+    font-weight:600;
+}
+
+.widget blockquote.blockquote {
+    box-shadow: none;
+}
+
+.otp.otp-box {
+    width: 100%
+}
+
+.otp.otp-box input {
+    margin: 2px;
+}
+
+.select2-container.mb-4 {
+    margin-bottom: 0!important
+}
+
+.bene_pro {
+    position: relative;
+}
+
+.reg_bene_input input[type='text'] {
+    padding: 5px 10px;
+    height: 28px;
+}
+
+.bene_pro button {
+    position: absolute;
+    right: 0;
+    top: 0px;
+    font-size: 15px;
+    color: #ffffff;
+    width: 28px;
+    height: 28px;
+    border-radius: 0 6px 6px 0;
+    background: #0076ac;
+    text-align: center;
+    line-height: 28px;
+    cursor: pointer;
+    border: 0;
+}
+
+.widget-table-one .transactions-list {
+    margin-bottom: 20px
+}
+
+.widget-table-one .transactions-list .t-item .t-icon img {
+    height: 33px;
+}
+
+.navbar-item {
+    position: absolute;
+    right: 5px;
+}
+
+.widget {
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.otpsix {
+    width: 100% !important;
+    text-align: center !important;
+    display: block !important;
+}
+.card2{
+    border: 2px solid #e0e6ed;
+    border-radius: 6px;
+    margin-bottom: 4px;
+}
+.sett-btn{
+    margin: 5px;
+}

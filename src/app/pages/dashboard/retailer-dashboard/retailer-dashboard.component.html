@@ -1,0 +1,84 @@
+<!-- <div *ngIf="content" class="alert alert-gradient mb-4 mt-4" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" data-dismiss="alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x close"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button> {{content}}</div>
+<div class="row layout-top-spacing">
+    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 layout-spacing">
+        <div class="widget widget-table-three">
+
+            <div class="widget-heading">
+                <h5 class="">Current Transaction</h5>
+            </div>
+
+            <div class="widget-content">
+                <div class="table-responsive">
+                    <table class="table table-bordered customTable">
+                        <tr>
+                            <th></th>
+                            <th *ngFor="let heading of headings">{{heading | titlecase}}</th>
+                        </tr>
+                        <tr *ngFor="let txn of values;">
+                            <th>{{txn.heading | titlecase}}</th>
+                            <td *ngFor="let child of txn.children;">
+                                <div *ngIf="child == '-'" class="td-content product-name">{{child}}</div>
+                                <div *ngIf="child !== '-'" class="td-content product-name">{{child | currency:"INR"}}</div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 layout-spacing">
+        <div class="widget widget-account-invoice-one">
+            <div class="widget-content">
+                <div class="invoice-box">
+
+                    <div class="acc-total-info">
+                        <h5>Wallet Balance</h5>
+                    </div>
+
+                    <div class="inv-detail">
+                        <div class="info-detail-1">
+                            <p>Main Balance</p>
+                            <p>{{mainBalance | currency:"INR"}}</p>
+                        </div>
+                        <div class="info-detail-2">
+                            <p>Cash Balance</p>
+                            <p>{{cashBalance | currency:"INR"}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="buttonsBlock" class="col-lg-12 layout-spacing">
+        <div class="statbox widget box box-shadow">
+            <div class="widget-header">
+                <div class="row">
+                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                        <h4> Quick Links </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6 col-md-6 col-sm-6 col-6">
+                    <div class="widget-content widget-content-area text-center">
+                        <a routerLink="/dmt" class="btn btn-warning btn-block mb-4 mr-2">DMT</a>
+                        <a routerLink="/recharge" class="btn btn-success  btn-block mb-4 mr-2">RECHARGE</a>
+                        <a routerLink="/bbps" class="btn btn-info  btn-block mb-4 mr-2">BBPS</a>
+                        <a routerLink="/paytm-wallet" class="btn btn-primary  btn-block mb-4 mr-2">PAYTM WALLET</a>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-md-6 col-sm-6 col-6">
+                    <div class="widget-content widget-content-area text-center">
+                        <a routerLink="/aeps/cash-withdrawal" class="btn btn-secondary  btn-block mb-4 mr-2">AEPS CASH WITHDRAWAL</a>
+                        <a routerLink="/aeps/balance-enquiry" class="btn btn-primary btn-block mb-4 mr-2">AEPS BALANCE ENQUIRY</a>
+                        <a routerLink="/aeps/aadhar-pay" class="btn btn-info btn-block mb-4 mr-2">AEPS AADHAARPAY</a>
+                        <a routerLink="/aeps/mini-statement" class="btn btn-success btn-block mb-4 mr-2">AEPS MINI STATEMENT</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

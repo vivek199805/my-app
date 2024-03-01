@@ -1,0 +1,241 @@
+<div class="layout-px-spacing">
+    <div class="row layout-top-spacing">
+        <div class="col-12 mb-3">
+            <div class="page-title d-flex align-items-center">
+                <svg _ngcontent-bjb-c303="" width="23" height="15" viewBox="0 0 23 15" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path _ngcontent-bjb-c303=""
+                        d="M23 2.50294C23 1.12292 21.9041 0 20.5572 0H2.4428C1.09594 0 0 1.12292 0 2.50294V12.4971C0 13.8771 1.09594 15 2.4428 15H20.5572C21.9041 15 23 13.8771 23 12.4971V2.50294ZM22.0229 12.4971C22.0229 13.3252 21.3654 13.9988 20.5572 13.9988H2.4428C1.63457 13.9988 0.977118 13.3252 0.977118 12.4971V2.50294C0.977118 1.67482 1.63457 1.00117 2.4428 1.00117H20.5572C21.3654 1.00117 22.0229 1.67482 22.0229 2.50294V12.4971Z"
+                        fill="#0C78D8"></path>
+                    <path _ngcontent-bjb-c303=""
+                        d="M7.8109 2.17885C7.34628 2.17885 6.90696 2.28768 6.51138 2.47695C6.10573 2.28423 5.66363 2.1779 5.21396 2.1779C3.51451 2.1779 2.13232 3.59752 2.13232 5.34227C2.13232 7.08356 3.51451 8.49977 5.21396 8.49977C5.66329 8.49977 6.10436 8.39395 6.50898 8.20197C6.90516 8.39194 7.3453 8.50122 7.8109 8.50122C9.51177 8.50122 10.8959 7.08306 10.8959 5.34031C10.8959 3.59702 9.51177 2.17885 7.8109 2.17885ZM3.10944 5.34227C3.10944 4.14942 4.05363 3.17908 5.21396 3.17908C5.32491 3.17908 5.43327 3.19019 5.54032 3.20706C5.03608 3.77007 4.7254 4.51775 4.7254 5.34031C4.7254 6.16158 5.03539 6.90835 5.53851 7.47101C5.4321 7.48768 5.32428 7.4986 5.21396 7.4986C4.05363 7.4986 3.10944 6.53116 3.10944 5.34227ZM7.8109 7.50005C6.64817 7.50005 5.70252 6.53116 5.70252 5.34031C5.70252 4.14896 6.64817 3.18003 7.8109 3.18003C8.97313 3.18003 9.91874 4.14896 9.91874 5.34031C9.91874 6.53116 8.97313 7.50005 7.8109 7.50005ZM10.4073 10.8497H2.85945C2.58942 10.8497 2.37089 11.0736 2.37089 11.3503C2.37089 11.6269 2.58942 11.8509 2.85945 11.8509H10.4073C10.6773 11.8509 10.8959 11.6269 10.8959 11.3503C10.8959 11.0736 10.6773 10.8497 10.4073 10.8497ZM19.3889 8.38829H14.5849C14.3148 8.38829 14.0963 8.6122 14.0963 8.88888C14.0963 9.1656 14.3148 9.38946 14.5849 9.38946H19.3889C19.6589 9.38946 19.8774 9.1656 19.8774 8.88888C19.8774 8.6122 19.6589 8.38829 19.3889 8.38829ZM19.3889 10.8497H14.5849C14.3148 10.8497 14.0963 11.0736 14.0963 11.3503C14.0963 11.6269 14.3148 11.8509 14.5849 11.8509H19.3889C19.6589 11.8509 19.8774 11.6269 19.8774 11.3503C19.8774 11.0736 19.6589 10.8497 19.3889 10.8497Z"
+                        fill="#0C78D8"></path>
+                </svg>
+                <h6 class="ml-1 mb-0 font-weight-bold">Credit Card Bill</h6>
+            </div>
+        </div>
+
+
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing p-0 p-md-2">
+            <div class="widget widget-width pt-5" *ngIf="firstPage">
+          
+                <form [formGroup]="form" class="custom-form" (submit)="onSubmit()">
+                    <div class="form-group input-field flex-wrap">
+                    <div class="form-row">
+                        <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <div class="input-group mx-1">
+                                    <i class="fa fa-id-card-o" aria-hidden="true"></i>
+                            <input type="text" formControlName="CreditCardNo"
+                                [ngClass]="{ 'is-invalid': f.CreditCardNo.touched && f.CreditCardNo.invalid }"
+                                name="txnid" class="form-control" minlength="16"
+                                maxlength="16">
+                                <label for="inputAddress">Credit card Number</label>
+                            <div *ngIf="f.CreditCardNo.dirty && f.CreditCardNo.invalid" class="alert-error">
+                                <div *ngIf="f.CreditCardNo.errors?.required"><small><b>Credit Card is
+                                            required.</b></small></div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                    <div class="form-row" *ngIf="getData">
+                        <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <div class="input-group mx-1">
+                                    <i class="fa fa-id-card-o" aria-hidden="true"></i>
+                            <input type="text" formControlName="Creditcardtype" readonly
+                                [ngClass]="{ 'is-invalid': f.Creditcardtype.touched && f.Creditcardtype.invalid }"
+                                name="txnid" class="form-control">
+                                <label for="inputEmail4">Card Type</label>
+                            <div *ngIf="f.Creditcardtype.touched && f.Creditcardtype.invalid" class="alert-error">
+                                <div *ngIf="f.Creditcardtype.errors?.required"><small><b>Credit Card Type is
+                                            required.</b></small></div>
+                            </div>
+                        </div>
+                        </div>
+                        </div>
+                        <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <div class="input-group mx-1">
+                                    <i class="fa fa-id-card-o" aria-hidden="true"></i>
+                            <input type="text" formControlName="cmfCreditCardNo"
+                                [ngClass]="{ 'is-invalid': f.cmfCreditCardNo.touched && f.cmfCreditCardNo.invalid }"
+                                name="txnid" class="form-control" minlength="16"
+                                maxlength="16" (keyupdowm)="confirmCreditnumber()" (keyup)="confirmCreditnumber()">
+                                <label for="inputAddress">Credit Card Number</label>
+                            <div *ngIf="f.cmfCreditCardNo.touched && f.cmfCreditCardNo.invalid" class="alert-error">
+                                <div *ngIf="f.cmfCreditCardNo.errors?.required"><small><b>Credit Card Number is
+                                            required.</b></small>
+                                </div>
+                                {{ConfirmationFailed}}
+                                <div *ngIf="ConfirmationFailed" class="alert-errror">Credit Card Number did not match
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                    <div class="form-row " *ngIf="getData">
+
+                        <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <div class="input-group mx-1">
+                                    <i class="fa fa-id-card-o" aria-hidden="true"></i>
+                            <input type="text" formControlName="cardholdeName"
+                                [ngClass]="{ 'is-invalid': f.cardholdeName.touched && f.cardholdeName.invalid }"
+                                name="txnid" class="form-control">
+                                <label for="inputAddress">Card Holder Name</label>
+                            <div *ngIf="f.cardholdeName.touched && f.cardholdeName.invalid" class="alert-error">
+                                <div *ngIf="f.cardholdeName.errors?.required"><small><b>Card Holder Name is
+                                            required.</b></small></div>
+                            </div>
+                        </div>
+                        </div>
+                        </div>
+                        <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <div class="input-group mx-1">
+                                    <i class="fa fa-mobile" aria-hidden="true"></i>
+                            <input type="text" formControlName="mobileNumber"
+                                [ngClass]="{ 'is-invalid': f.mobileNumber.touched && f.mobileNumber.invalid }"
+                                name="depositedbranch" class="form-control"
+                                minlength="10" maxlength="10">
+                                <label for="inputAddress">Mobile Number</label>
+                            <div *ngIf="f.mobileNumber.touched && f.mobileNumber.invalid" class="alert-error">
+                                <div *ngIf="f.mobileNumber.errors?.required"><small><b>Transaction ID is
+                                            required.</b></small></div>
+                            </div>
+                        </div>
+                        </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="form-row" *ngIf="getData">
+
+
+                        <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+                            <div class="form-group">
+                                <div class="input-group mx-1">
+                                    <i class="fa fa-inr" aria-hidden="true"></i>
+                          
+                            <input type="text" formControlName="amount"
+                                [ngClass]="{ 'is-invalid': f.amount.touched && f.amount.invalid }" name="amount"
+                                class="form-control">
+                                <label for="inputAddress">Amount</label>
+                            <div *ngIf="f.amount.touched && f.amount.invalid" class="alert-error">
+                                <div *ngIf="f.amount.errors?.required"><small><b>Amount is required.</b></small></div>
+                                <div *ngIf="f.amount.errors?.pattern"><small><b>Please fill a valid amount</b></small>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-12 col-lg-12 col-sm-12 col-md-12 text-center">
+                    <button *ngIf="getData" type="submit" class="btn btn-primary mt-3" [disabled]="!form.valid">Generate
+                        OTP</button></div>
+                        </div>
+                </form>
+            </div>
+            <div class="widget" *ngIf="secondPage">
+                <h5>Submit OTP</h5>
+                <div class="form-row ">
+                    <div class="form-group col-md-6">
+                        CREDIT CARD NUMBER
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{form.controls.CreditCardNo.value}}
+                    </div>
+                </div>
+                <div class="form-row ">
+                    <div class="form-group col-md-6">
+                        CARD HOLDER NAME
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{form.controls.cardholdeName.value}}
+                    </div>
+                </div>
+                <div class="form-row ">
+                    <div class="form-group col-md-6">
+                        MOBILE NUMBER
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{form.controls.mobileNumber.value}}
+                    </div>
+                </div>
+                <div class="form-row ">
+                    <div class="form-group col-md-6">
+                        AMOUNT
+                    </div>
+                    <div class="form-group col-md-6">
+                        {{form.controls.amount.value}}
+                    </div>
+                </div>
+                <div class="form-row ">
+                    <div class="form-group col-md-6">
+                        OTP
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="text" placeholder="OTP" minlength="6" maxlength="6" [(ngModel)]="OTPnumber">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3" (click)="paybill()">Submit</button>
+            </div>
+            <div *ngIf="thirdPage">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">TXN DATE TIME</th>
+                            <th scope="col">CSP SHOP NAME</th>
+                            <th scope="col">CUSTOMER MOBILE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{Paydata.dateadded}}</td>
+                            <td>{{data.firmname}}</td>
+                            <td>{{Paydata.mobile}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">TXNID</th>
+                            <th scope="col">NAME</th>
+                            <th scope="col">MOBILE</th>
+                            <th scope="col">NETWORK</th>
+                            <th scope="col">CARD NUMBER</th>
+                            <th scope="col">AMOUNT</th>
+                            <th scope="col">STATUS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>{{Paydata.txnid}}</th>
+                            <td>{{Paydata.name}}</td>
+                            <td>{{Paydata.mobile}}</td>
+                            <td>{{Paydata.network}}</td>
+                            <td>{{Paydata.card_number}}</td>
+                            <td>{{Paydata.amount}}</td>
+                            <td>{{Paydata.status}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <button type="submit" class="btn btn-primary mt-3" (click)="printInvoice()">Print Receipt</button>
+
+            </div>
+        </div>
+    </div>
+
+    <ri-custom-mdl [id]="mdlId">
+        <app-slip-print [riCustomMdlId]="mdlId" [recepitListObj]="Paydata" (closeCallBack)="slipClose()">
+        </app-slip-print>
+    </ri-custom-mdl>

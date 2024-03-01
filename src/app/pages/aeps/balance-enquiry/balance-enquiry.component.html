@@ -1,0 +1,117 @@
+<div class="tab-pane fade active show">
+<!-- 
+        <form [formGroup]="balanceEnquiry">
+            <div class="form-row mb-4">
+                <div class="form-group col-md-6">
+                   
+                </div>
+                <div class="form-group col-md-6">
+                   
+                </div>
+            </div>
+            <div class="form-row mb-4">
+                <div class="form-group col-md-6">
+                    
+                </div>
+                <div class="form-group col-md-6">
+                   
+                </div>
+            </div>
+
+            <div class="form-row mb-4">
+                <div class="form-group col-md-6">
+                    
+                </div>
+            </div> -->
+            <!-- <div class="form-row mb-4">
+                <div class="form-group col-md-12">
+                    <label class="new-control new-checkbox">
+                        <input type="checkbox" class="new-control-input" formControlName="checkbox" checked>
+                        <span class="new-control-indicator"></span> I, the undersigned, the holder of the AADHAAR Number hereby give my consent to {{site_name}} to obtain my Aaadhaar Number and biometrics for authentication with Unique Identification Authority of India (UIDAI). {{site_name}} has informed me that my identity information will be used only for AEPS (Aadhaar Enabled Payment System) Balance Enquiry purpose and that my biometrics will not be stored/shared by {{site_name}} and will be submitted to Central Identity Data Repository (CIDR) only for purpose of authenticating my identity.
+                    </label>
+                </div>
+            </div> -->
+
+            <!-- <button type="submit" class="btn btn-primary mt-3" [disabled]="!balanceEnquiry.valid" (click)="getDevice()">Check Device</button>&nbsp;&nbsp; -->
+        <!-- </form> -->
+
+
+
+        <form class="custom-form " [formGroup]="balanceEnquiry">
+            <div class="form-group input-field d-flex flex-wrap">
+              <div class="input-group mx-1">
+                <i class="fa fa-mobile" aria-hidden="true"></i>
+                <input type="text" maxlength="10" autocomplete="off" OnlyNumber formControlName="mobileNumber" [ngClass]="{ 'is-invalid': (e.mobileNumber.touched || e.mobileNumber.dirty) && e.mobileNumber.invalid }" name="mobileno" class="form-control">
+                <label for="inputAddress">Mobile Number :</label>
+                <div *ngIf="(e.mobileNumber.touched || e.mobileNumber.dirty) && e.mobileNumber.invalid" class="alert-error">
+                    <div *ngIf="e.mobileNumber.errors.required"><small><b>Mobile no is required.</b></small></div>
+                    <div *ngIf="e.mobileNumber.errors.pattern"><small><b>Please enter a valid mobile no.</b></small></div>
+                </div>
+              </div>
+
+              <div class="input-group mx-1">
+                <i class="fa fa-mobile" aria-hidden="true"></i>
+                <input type="text" OnlyNumber autocomplete="off" (change)="validateAadhar()" maxlength="12" formControlName="aadharNumber" [ngClass]="{ 'is-invalid': (e.aadharNumber.touched || e.aadharNumber.dirty) && e.aadharNumber.invalid }" name="aadharno" class="form-control"
+                    >
+                    <label for="inputAddress">Aadhaar Number :</label>
+                <div *ngIf="(e.aadharNumber.touched || e.aadharNumber.dirty) && e.aadharNumber.invalid" class="alert-error">
+                    <div *ngIf="e.aadharNumber.errors.required"><small><b>Aadhaar number is required.</b></small></div>
+                    <div *ngIf="e.aadharNumber.errors.pattern"><small><b>Please enter a valid Aadhaar number</b></small></div>
+                </div>
+                <div *ngIf="!aadharError" class="alert-error">
+                    <small><b>Please enter a valid Aadhaar number!</b></small>
+                </div>
+              </div>
+              
+              <div class="input-group mx-1">
+                <i class="fa fa-university" aria-hidden="true"></i>
+                    <ng-select2 class="w-100" [ngClass]="{ 'is-invalid': e.bankName.touched && e.bankName.invalid }" formControlName="bankName" [data]="bankLisitng" [placeholder]="'Please select a bank...'">
+                    </ng-select2>
+                    <div *ngIf="e.bankName.touched && e.bankName.invalid" class="alert-error">
+                        <div *ngIf="e.bankName.errors.required"><small><b>Bank Name is required.</b></small></div>
+                    </div>
+              </div>
+        
+              <div class="input-group mx-1">
+                <i class="fa fa-mobile" aria-hidden="true"></i>
+                <label for="inputEmail4">Select Device : <span class="alert-error">*</span></label>
+                <select class="form-control basic" [ngClass]="{ 'is-invalid': (e.deviceid.touched || e.deviceid.dirty) && e.deviceid.invalid }" (change)="getDevice($event)" #deviceName formControlName="deviceid" name="device">
+                    <option value="">Please select a device...</option>
+                    <option *ngFor="let item of device_name_list" [value]="item.name">{{ item.name }}</option>
+                </select>
+                <div *ngIf="(e.deviceid.touched || e.deviceid.dirty) && e.deviceid.invalid" class="alert-error">
+                    <div *ngIf="e.deviceid.errors.required"><small><b>device is required.</b></small></div>
+                </div>
+              </div>
+        
+              <div class="input-group mx-1">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                <input type="text" class="form-control" formControlName="requestremarks" name="remarks">
+                <label for="inputAddress">Remark</label>
+                <div *ngIf="(e.requestremarks.touched || e.requestremarks.dirty) && e.requestremarks.invalid"
+                  class="alert-error">
+                  <div *ngIf="e.requestremarks.errors.required"><small><b>Remark is required</b></small></div>
+                </div>
+              </div>
+        
+             
+              <label class="new-control new-checkbox">
+                <input type="checkbox" class="new-control-input" formControlName="checkbox" checked>
+                <span class="new-control-indicator"></span> I, the undersigned, the holder of the AADHAAR Number hereby give
+                my consent to {{site_name}} to obtain my Aaadhaar Number and biometrics for authentication with Unique
+                Identification Authority of India (UIDAI). {{site_name}} has informed me that my identity information will be used
+                only for AEPS (Aadhaar Enabled Payment System) Mini Statement purpose and that my biometrics will not be
+                stored/shared by {{site_name}} and will be submitted to Central Identity Data Repository (CIDR) only for purpose
+                of authenticating my identity.
+              </label>
+        
+            </div>
+            <div class="d-sm-flex justify-content-center">
+              <div class="field-wrapper text-center">
+                <button type="submit" class="btn btn-primary mt-3"   [disabled]="!balanceEnquiry.valid" (click)="getScannerData()">Scan Finger</button>
+              </div>
+            </div>
+          </form>
+        
+
+</div>

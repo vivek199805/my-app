@@ -1,0 +1,32 @@
+.ng-autocomplete{
+    width: 100%;
+}
+
+.statbox .section .card{
+    border: 2px solid #0C78D8;
+}
+
+
+.statbox .section .card .card-heading{
+    color: #0C78D8;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.package-type{
+    position: absolute;
+    background: #1cc946;
+    top: -10px;
+    color: #fff;
+    padding: 2px 4px;
+    left: 0;
+    right: 0;
+    max-width: 70px;
+    margin: 0 auto;
+    text-align: center;
+
+}
+
+.cssClass{
+    border: 1px solid red;
+}

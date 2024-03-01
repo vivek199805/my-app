@@ -1,0 +1,71 @@
+<!-- <div class="widget mt-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <form [formGroup]="form" autocomplete="off" (submit)="onSubmit()">
+                    <div class="card">
+                        <div class="card-header bg-primary">
+                            <h6 class="card-title m-0 text-center text-white">Paytm Wallet load</h6>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-bordered m-0">
+                                <tr>
+                                    <th class="font-weight-bolder">MOBILE :</th>
+                                    <td>{{mobile}}</td>
+                                </tr>
+                                <tr>
+                                    <th class="font-weight-bolder">AMOUNT :</th>
+                                    <td>{{amount | currency:"INR"}}</td>
+                                </tr>
+                                <tr>
+                                    <th class="font-weight-bolder">BENE NAME :</th>
+                                    <td><input type="text" formControlName="benename"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="text-center">
+                                        <button type="submit" class="btn btn-success mr-2">Load Wallet</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<div class="layout-px-spacing">
+    <div class="row layout-top-spacing ">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing p-0 p-md-2">
+            
+            <div class="widget">
+                <h5>Paytm Wallet load</h5>
+                <form [formGroup]="form" autocomplete="off" (submit)="onSubmit()">
+                    <table class="table table-bordered m-0">
+                        <tr>
+                            <th class="font-weight-bolder">MOBILE :</th>
+                            <td>{{mobile}}</td>
+                        </tr>
+                        <tr>
+                            <th class="font-weight-bolder">AMOUNT :</th>
+                            <td>{{amount | currency:"INR"}}</td>
+                        </tr>
+                        <tr>
+                            <th class="font-weight-bolder">BENE NAME :</th>
+                            <td><input class="form-control " type="text" formControlName="benename"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="text-center">
+                                <button type="submit" class="btn btn-success mr-2">Load Wallet</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+    <ri-custom-mdl [id]="mdlId">
+        <app-slip-print [riCustomMdlId]="mdlId" [recepitListObj]="invoiceObj" (closeCallBack)="slipClose()"></app-slip-print>
+    </ri-custom-mdl>

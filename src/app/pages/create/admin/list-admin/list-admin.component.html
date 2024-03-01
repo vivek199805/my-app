@@ -1,0 +1,16 @@
+<div class="layout-px-spacing">
+    <div class="row layout-top-spacing">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing p-0 p-md-2">
+            <div class="widget">
+                <h5>Admin</h5>
+                <!--  <p class="text-center">DMT Statement</p> -->
+                <div class="row">
+                    <div class="col-12">
+                        <a class="btn btn-primary mt-2 btn-sm float-right" routerLink="/account/admin/create">Add admin</a>
+                    </div>
+                </div>
+                <app-data-table-tools [columns]="columns" [url]="url"></app-data-table-tools>
+            </div>
+        </div>
+    </div>
+</div>

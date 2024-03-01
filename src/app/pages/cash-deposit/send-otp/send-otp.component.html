@@ -1,0 +1,86 @@
+<!--  BEGIN CONTENT AREA  -->
+<div class="layout-px-spacing">
+    <div class="row layout-top-spacing">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing p-0 p-md-2">
+            <div class="form-form">
+                <div class="form-form-wrap">
+                    <div class="form-container">
+                        <div class="form-content">
+                            <h1 class="">Cash Deposit</h1>
+                            <form class="text-left" [formGroup]="form" (submit)="onSubmit()">
+                                <div class="form">
+                                    <div id="username-field" class="field-wrapper input">
+                                        <label for="username">Enter Mobile No.</label>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="feather feather-phone">
+                                            <path
+                                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                            </path>
+                                        </svg>
+                                        <input type="text" (keypress)="numberOnly($event)" [ngClass]="{ 'is-invalid': f.mobile.touched && f.mobile.invalid }" formControlName="mobile" name="mobile" class="form-control" placeholder="91-xxxxxxxxx">
+                                        <div *ngIf="f.mobile.touched && f.mobile.invalid" class="alert-error">
+                                            <div *ngIf="f.mobile.errors.required"><small><b>Mobile no is required.</b></small></div>
+                                            <div *ngIf="f.mobile.errors.pattern"><small><b>Please enter a valid mobile no.</b></small></div>
+                                        </div>
+                                    </div>
+                                    <div id="username-field" class="field-wrapper input">
+                                        <label for="username">Enter Account No.</label>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                        <input type="text" (keypress)="numberOnly($event)" [ngClass]="{ 'is-invalid': f.accountnumber.touched && f.accountnumber.invalid }" formControlName="accountnumber" name="accountnumber" class="form-control" placeholder="Enter account number">
+                                        <div *ngIf="f.accountnumber.touched && f.accountnumber.invalid" class="alert-error">
+                                            <div *ngIf="f.accountnumber.errors.required"><small><b>Account no is required.</b></small></div>
+                                            <div *ngIf="f.accountnumber.errors.pattern"><small><b>Only Number allowed. minimum length must be 9 and maximum lenght must be 18</b></small></div>
+                                        </div>
+                                    </div>
+                                    <div id="username-field" class="field-wrapper input">
+                                        <label for="username">Enter Amount</label>
+                                        <svg _ngcontent-snm-c110="" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="rupee-sign" width="24" height="24" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="svg-inline--fa fa-rupee-sign fa-w-10" style="top: 52px;"><path _ngcontent-snm-c110="" fill="currentColor" d="M308 96c6.627 0 12-5.373 12-12V44c0-6.627-5.373-12-12-12H12C5.373 32 0 37.373 0 44v44.748c0 6.627 5.373 12 12 12h85.28c27.308 0 48.261 9.958 60.97 27.252H12c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h158.757c-6.217 36.086-32.961 58.632-74.757 58.632H12c-6.627 0-12 5.373-12 12v53.012c0 3.349 1.4 6.546 3.861 8.818l165.052 152.356a12.001 12.001 0 0 0 8.139 3.182h82.562c10.924 0 16.166-13.408 8.139-20.818L116.871 319.906c76.499-2.34 131.144-53.395 138.318-127.906H308c6.627 0 12-5.373 12-12v-40c0-6.627-5.373-12-12-12h-58.69c-3.486-11.541-8.28-22.246-14.252-32H308z"></path></svg>
+                                        <input type="text" (keypress)="numberOnly($event)" [ngClass]="{ 'is-invalid': f.amount.touched && f.amount.invalid }" formControlName="amount" name="amount" class="form-control" placeholder="Enter amount">
+                                        <div *ngIf="f.amount.touched && f.amount.invalid" class="alert-error">
+                                            <div *ngIf="f.amount.errors.required"><small><b>amount is required.</b></small></div>
+                                        </div>
+                                    </div>
+                                    <div class="d-sm-flex justify-content-between">
+                                        <div class="field-wrapper">
+                                            <button type="submit" class="btn btn-primary" value="">Submit</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--  END CONTENT AREA  -->
+
+<app-custom-model [length]="6" [resend]="false" (onFocusNext)="verifyOTP()"></app-custom-model>
+<!-- After Verify OTP-->
+<div class="modal justify-content-center align-items-center" id="myModal" [style.display]="showname==false?'none'  : 'flex'">
+    <div class="modal-dialog">
+        <div class="modal-content model-center">
+            <div class="modal-body mbody">
+                <div class="otp">
+                    <h3 class="benename">Beneficiary Name : <span>{{benename}}Razi</span></h3>
+                    <h3 class="benename">Reference Txn No. : <span>{{txnreferenceno}}</span></h3>
+                    <form class="text-left">
+                    <div class="text-center">
+                        <div class="d-sm-flex justify-content-between">
+                            <div class="field-wrapper">
+                                <button type="submit" class="btn btn-primary" value="" (click)="processed()">Processed </button>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="model-overlay"></div>
+</div> 

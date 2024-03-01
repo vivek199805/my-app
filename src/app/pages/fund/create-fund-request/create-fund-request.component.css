@@ -1,0 +1,25 @@
+.nav-link.active {
+    background-color: var(--menu-color)!important;
+    color: #656565!important;
+    font-weight: 400!important;
+    position: relative;
+    z-index: 999;
+    border-bottom: 3px solid #0C78D8;
+    box-shadow: 0px 4px 4px rgb(174 174 174 / 25%);
+    font-size: 16px;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+}
+.input-group i {
+    position: absolute;
+    left: 19px;
+    color: #787878;
+    top: 13px;
+    z-index: 9;
+    font-size: 20px;
+    width: 20px;
+}
+.nav-tabs .nav-link:hover {
+    border-color: transparent;
+}

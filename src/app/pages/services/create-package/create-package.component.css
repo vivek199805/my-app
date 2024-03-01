@@ -1,0 +1,33 @@
+.img-wrapper img {
+    width: 100%;
+    height: 250px;
+    object-fit: contain
+}
+
+input[type='file'] {
+    display: none;
+}
+
+.upload span{
+    margin-bottom: 10px;
+    display: block;
+}
+
+
+.upload label {
+    background: #0c78d824;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid var(--basecolor);
+    color: #000;
+    max-width: 320px;
+    margin: 0px 70px;
+    margin-right: auto;
+}
+
+.upload label i{
+    margin-right: 20px;
+    font-size: 25px;
+}

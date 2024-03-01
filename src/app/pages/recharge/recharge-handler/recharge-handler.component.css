@@ -1,0 +1,62 @@
+p .cir {
+    margin-top: 0;
+    margin-bottom: 0.625rem;
+    color: #3144ef !important;
+    font-weight: 600 !important;
+}
+
+.browse{
+    margin-top: 0;
+    margin-bottom: 0.625rem;
+    color: #3144ef !important;
+    font-weight: 600 !important;
+}
+.modal-dialog {
+    max-width: 650px !important;
+    margin: 1.75rem auto;
+}
+.modal-content .modal-body a:not(.btn) {
+    color: #60637b !important;
+    font-weight: 600;
+}
+.card .card-body p:not(:last-child) {
+    margin-bottom: 0;
+}
+.badge{
+    line-height: 2.4;
+    width: 90px;
+}
+.card{
+    cursor: pointer !important;
+}
+.statushide{
+    display: none;
+}
+.nav-link.active {
+    background-color: var(--menu-color)!important;
+    color: #656565!important;
+    font-weight: 400!important;
+    position: relative;
+    z-index: 999;
+    border-bottom: 3px solid #0C78D8;
+    box-shadow: 0px 4px 4px rgb(174 174 174 / 25%);
+    font-size: 16px;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+}
+.input-group i {
+    position: absolute;
+    left: 19px;
+    color: #787878;
+    top: 13px;
+    z-index: 9;
+    font-size: 20px;
+    width: 20px;
+}
+
+.btn-danger{
+    display: flex;
+    float: right;
+    margin-right: 40px;
+}

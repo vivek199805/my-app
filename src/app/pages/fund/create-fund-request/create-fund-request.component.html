@@ -1,0 +1,409 @@
+<div class="layout-spacing">
+    <div class="row layout-top-spacing">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing p-0 p-md-2">
+
+            <nav class="nav flex-column flex-sm-row bg-white w-100 mb-3">
+                <ul class="nav nav-tabs" id="border-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="cashdeposite-tab" data-toggle="tab" href="#cashdeposite"
+                            role="tab" aria-controls="cashdeposite" aria-selected="true"> Cash Deposit</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="online-tab" data-toggle="tab" href="#online" role="tab"
+                            aria-controls="online" aria-selected="true"> Online Transfer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="exceptional-tab" data-toggle="tab" href="#exceptional" role="tab"
+                            aria-controls="exceptional" aria-selected="false"> Exceptional Request</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="listing-tab" data-toggle="tab" routerLink="/fund/list" role="tab"
+                            aria-controls="listing" aria-selected="false"> All Fund Request</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="widget widget-width pt-5">
+                <div class="tab-content mb-4">
+                    <div class="tab-pane fade show active" id="cashdeposite" role="tabpanel"
+                        aria-labelledby="cashdeposite-tab">
+                        <form [formGroup]="cashDeposite" class="custom-form">
+                            <div class="form-group input-field flex-wrap">
+                                <div class="form-row">
+                                    <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group mb-2 mr-sm-2">
+                                                <i class="fa fa-inr" aria-hidden="true"></i>
+                                                <select class="form-control basic"
+                                                    [ngClass]="{ 'is-invalid': c.requesttype.dirty && c.requesttype.invalid }"
+                                                    formControlName="requesttype">
+                                                    <option value="">Select Type...</option>
+                                                    <option value="0">Cash Deposit </option>
+                                                    <option value="1">Cash/CDM Deposit </option>
+                                                </select>
+                                                <div *ngIf="c.requesttype.dirty && c.requesttype.invalid"
+                                                    class="alert-error">
+                                                    <div *ngIf="c.requesttype.errors.required"><small><b>Request Type is
+                                                                required.</b></small></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group mb-2 mr-sm-2">
+                                                <i class="fa fa-university" aria-hidden="true"></i>
+                                                <ng-select2
+                                                    [ngClass]="{ 'is-invalid': c.bankid.touched && c.bankid.invalid }"
+                                                    formControlName="bankid" [data]="bankLisitng" class="w-100" placeholder="Bank Name">
+                                                </ng-select2>
+                                                <div *ngIf="c.bankid.touched && c.bankid.invalid" class="alert-error">
+                                                    <div *ngIf="c.bankid.errors.required"><small><b>Bank Name is
+                                                                required.</b></small></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group mb-2 mr-sm-2">
+                                               <i class="fa fa-inr" aria-hidden="true"></i>
+
+                                                <input type="text" formControlName="txnid"
+                                                    [ngClass]="{ 'is-invalid': c.txnid.touched && c.txnid.invalid }"
+                                                    name="txnid" class="form-control">
+                                                <label for="inputAddress">Transaction ID </label>
+                                                <div *ngIf="c.txnid.touched && c.txnid.invalid" class="alert-error">
+                                                    <div *ngIf="c.txnid.errors.required"><small><b>Transaction ID is
+                                                                required.</b></small></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group mb-2 mr-sm-2">
+                                                <i class="fa fa-inr" aria-hidden="true"></i>
+                                                <label for="inputAddress">Amount</label>
+                                                <input type="text" formControlName="amount" OnlyNumber
+                                                    [ngClass]="{ 'is-invalid': c.amount.touched && c.amount.invalid }"
+                                                    name="amount" class="form-control">
+                                                <label for="inputAddress">Amount </label>
+                                                <div *ngIf="c.amount.touched && c.amount.invalid" class="alert-error">
+                                                    <div *ngIf="c.amount.errors.required"><small><b>Amount is
+                                                                required.</b></small></div>
+                                                    <div *ngIf="c.amount.errors.pattern"><small><b>Please fill a valid
+                                                                amount</b></small></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group mb-2 mr-sm-2">
+                                                <i class="fa fa-university" aria-hidden="true"></i>
+                                                <input type="text" formControlName="depositedbranch"
+                                                    [ngClass]="{ 'is-invalid': c.depositedbranch.touched && c.depositedbranch.invalid }"
+                                                    name="depositedbranch" class="form-control">
+                                                <label for="inputAddress">Deposit Branch name</label>
+                                                <div *ngIf="c.depositedbranch.touched && c.depositedbranch.invalid"
+                                                    class="alert-error">
+                                                    <div *ngIf="c.depositedbranch.errors.required"><small><b>Branch name
+                                                                 is
+                                                                required.</b></small></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group mb-2 mr-sm-2">
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+
+                                                <input onkeydown="return false" class="form-control"
+                                                    [ngClass]="{ 'is-invalid':  c.depositeddate.touched && c.depositeddate.invalid }"
+                                                    name="depositeddate" id="depositeddate"
+                                                    formControlName="depositeddate" [minDate]="minDate"
+                                                    [maxDate]="maxDate" #dp="bsDatepicker" bsDatepicker
+                                                    [(ngModel)]="depositeddate" autocomplete="off">
+                                                <label for="inputAddress">Deposit Date: mm-dd-yyyy</label>
+                                                <div *ngIf="c.depositeddate.touched && c.depositeddate.invalid"
+                                                    class="alert-error">
+                                                    <div *ngIf="c.depositeddate.errors.required"><small><b>Deposit Date
+                                                                is
+                                                                required.</b></small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group mb-2 mr-sm-2">
+                                                <!-- <label for="start-date" class="">Upload Image</label> -->
+                                                <div class="d-flex">
+                                                    <input type="file" (change)="handleFileInput1($event)"
+                                                        formControlName="slipImage" class="form-control-file pl-0"
+                                                        id="mail_File_attachment">
+                                                    <label for="start-date" class="">Upload Image</label>
+                                                </div>
+                                                <!-- <div *ngIf="c.slipImage.touched && c.slipImage.invalid" class="alert-error">
+                                        <div *ngIf="c.slipImage.errors.required"><small><b>Image is required.</b></small></div>
+                                    </div> -->
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+                                <div class="col-12 col-lg-12 col-sm-12 col-md-12 text-center">
+                                    <button type="submit" class="btn btn-primary mt-3" [disabled]="!cashDeposite.valid"
+                                        (click)="CDeposite()">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+
+                    <div class="tab-pane fade" id="online" role="tabpanel" aria-labelledby="online-tab">
+                        <form [formGroup]="form" class="custom-form">
+                            <div class="form-group input-field flex-wrap">
+                                <div class="form-row">
+                                    <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group mb-2 mr-sm-2">
+                                                
+                                             <i class="fa fa-inr" aria-hidden="true"></i>
+
+                                                <!-- <label for="inputAddress">Request Type</label> -->
+                                                <select class="form-control basic"
+                                                    [ngClass]="{ 'is-invalid': f.requesttype.dirty && f.requesttype.invalid }"
+                                                    formControlName="requesttype">
+                                                    <option value="" selected="selected" disabled="disabled">-- select
+                                                        Type --
+                                                    </option>
+                                                    <option value="1">NEFT </option>
+                                                    <option value="2">RTGS / IMPS </option>
+                                                    <option value="3">Bank Transfer </option>
+                                                </select>
+                                                <div *ngIf="f.requesttype.dirty && f.requesttype.invalid"
+                                                    class="alert-error">
+                                                    <div *ngIf="f.requesttype.errors.required"><small><b>Request Type is
+                                                                required.</b></small></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group mb-2 mr-sm-2">
+                                                <i class="fa fa-university" aria-hidden="true"></i>
+                                                <!-- <label for="inputEmail4">Bank Name</label> -->
+                                                <ng-select2
+                                                    [ngClass]="{ 'is-invalid': f.bankid.touched && f.bankid.invalid }"
+                                                    formControlName="bankid" [data]="bankLisitng"
+                                                    [placeholder]="'Please select a bank...'" class="w-100">
+                                                </ng-select2>
+                                                <div *ngIf="f.bankid.touched && f.bankid.invalid" class="alert-error">
+                                                    <div *ngIf="f.bankid.errors.required"><small><b>Bank Name is
+                                                                required.</b></small></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group mb-2 mr-sm-2">
+                                                <i class="fa fa-inr" aria-hidden="true"></i>
+                                               
+                                                <input type="text" formControlName="txnid"
+                                                    [ngClass]="{ 'is-invalid': f.txnid.touched && f.txnid.invalid }"
+                                                    name="txnid" class="form-control"
+                                                   >
+                                                    <label for="inputAddress">Transaction ID</label>
+                                                <div *ngIf="f.txnid.touched && f.txnid.invalid" class="alert-error">
+                                                    <div *ngIf="f.txnid.errors.required"><small><b>Transaction ID is
+                                                                required.</b></small></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group mb-2 mr-sm-2">
+                                                <i class="fa fa-inr" aria-hidden="true"></i>
+                                                
+                                                <input type="text" formControlName="amount" OnlyNumber
+                                                    [ngClass]="{ 'is-invalid': f.amount.touched && f.amount.invalid }"
+                                                    name="amount" class="form-control">
+                                                    <label for="inputAddress">Amount</label>
+                                                <div *ngIf="f.amount.touched && f.amount.invalid" class="alert-error">
+                                                    <div *ngIf="f.amount.errors.required"><small><b>Amount is
+                                                                required.</b></small></div>
+                                                    <div *ngIf="f.amount.errors.pattern"><small><b>Please fill a valid
+                                                                amount</b></small></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group mb-2 mr-sm-2">
+                                                <i class="fa fa-university" aria-hidden="true"></i>
+                                              
+                                                <input type="text" formControlName="depositedbranch"
+                                                    [ngClass]="{ 'is-invalid': f.depositedbranch.touched && f.depositedbranch.invalid }"
+                                                    name="depositedbranch" class="form-control"
+                                                   >
+                                                    <label for="inputAddress">Deposit Branch name</label>
+                                                <div *ngIf="f.depositedbranch.touched && f.depositedbranch.invalid"
+                                                    class="alert-error">
+                                                    <div *ngIf="f.depositedbranch.errors.required"><small><b> Branch name
+                                                                is
+                                                                required.</b></small></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-lg-4 col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group mb-2 mr-sm-2">
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                               
+                                                <input class="form-control"
+                                                    [ngClass]="{ 'is-invalid':  f.depositeddate.touched && f.depositeddate.invalid }"
+                                                    name="depositeddate" id="depositeddate"
+                                                    formControlName="depositeddate"
+                                                    [minDate]="minDate" [maxDate]="maxDate" #dp="bsDatepicker"
+                                                    bsDatepicker [(ngModel)]="depositeddate" autocomplete="off">
+                                                    <label for="inputAddress">Deposit Date: mm-dd-yyyy</label>
+                                                <div *ngIf="f.depositeddate.touched && f.depositeddate.invalid"
+                                                    class="alert-error">
+                                                    <div *ngIf="f.depositeddate.errors.required"><small><b>Deposit Date
+                                                                is
+                                                                required.</b></small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="form-group col-md-6">
+
+                                        <div class="d-flex">
+                                            <input type="file" (change)="handleFileInput1($event)"
+                                                formControlName="slipImage" class="form-control-file pl-0"
+                                                id="mail_File_attachment">
+                                            <label for="start-date" class="">Upload Image</label>
+                                        </div>
+                                        <!-- <div *ngIf="f.slipImage.touched && f.slipImage.invalid" class="alert-error">
+                                        <div *ngIf="f.slipImage.errors.required"><small><b>Image is required.</b></small></div>
+                                    </div> -->
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-12 col-sm-12 col-md-12 text-center">
+                                    <button type="submit" class="btn btn-primary mt-3" [disabled]="!form.valid"
+                                        (click)="onSubmit()">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+
+                    <div class="tab-pane fade" id="exceptional" role="tabpanel" aria-labelledby="exceptional-tab">
+                        <form [formGroup]="formexceptional" class="custom-form">
+                            <div class="form-group input-field flex-wrap">
+                                <div class="form-row">
+                                    <div class="col-12 col-lg-6 col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group mb-2 mr-sm-2">
+                                                <i class="fa fa-inr" aria-hidden="true"></i>
+                                               
+                                                <input type="text" formControlName="amount" OnlyNumber
+                                                    [ngClass]="{ 'is-invalid': e.amount.touched && e.amount.invalid }"
+                                                    name="amount" class="form-control">
+                                                    <label for="inputAddress">Amount</label>
+                                                <div *ngIf="e.amount.touched && e.amount.invalid" class="alert-error">
+                                                    <div *ngIf="e.amount.errors.required"><small><b>Amount is
+                                                                required.</b></small></div>
+                                                    <div *ngIf="e.amount.errors.pattern"><small><b>Please fill a valid
+                                                                amount</b></small></div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                            </div>
+
+
+
+
+                                            <div class="col-12 col-lg-6 col-sm-12 col-md-6">
+                                                <div class="form-group">
+                                                    <div class="input-group mb-2 mr-sm-2">
+                                                        <i class="fa fa-exclamation" aria-hidden="true"></i>
+                                                       
+                                                        <textarea formControlName="remarks" name="remarks"
+                                                            class="form-control" rows="1"></textarea>
+                                                            <label for="inputAddress">Remarks</label>
+                                                        <div *ngIf="e.remarks.touched && e.remarks.invalid"
+                                                            class="alert-error">
+                                                            <div *ngIf="e.remarks.errors.required"><small><b>Remarks is
+                                                                        required.</b></small></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-12 col-lg-12 col-sm-12 col-md-6">
+                                                <div class="form-group">
+                                                    <div class="input-group mb-2 mr-sm-2">
+                                                        <!-- <label for="start-date" class="">Upload Image</label> -->
+                                                        <div class="d-flex">
+                                                            <input type="file" (change)="handleFileInput1($event)"
+                                                                formControlName="slipImage" class="form-control-file pl-0"
+                                                                id="mail_File_attachment">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </div>
+
+                                                <div class="col-12 col-lg-12 col-sm-12 col-md-12 text-center">
+                                                    <button type="submit" class="btn btn-primary mt-3"
+                                                        [disabled]="!formexceptional.valid"
+                                                        (click)="formexceptionalreq()">Submit</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

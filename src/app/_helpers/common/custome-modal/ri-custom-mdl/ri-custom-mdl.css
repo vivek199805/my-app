@@ -1,0 +1,53 @@
+ri-custom-mdl {
+    /* modals are hidden by default */
+    display: none;
+}
+
+ri-custom-mdl .ri-custom-mdl {
+    /* modal container fixed across whole screen */
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    /* z-index must be higher than .ri-custom-mdl-background */
+    z-index: 9001;
+    /* enables scrolling for tall modals */
+    overflow: auto;
+    /* My edit */
+    display: flex;
+}
+
+ri-custom-mdl .ri-custom-mdl .ri-custom-mdl-body {
+    /* padding: 20px; */
+    /* background: #fff; */
+    /* margin exposes part of the modal background */
+    margin: 40px;
+    /* My edit */
+    margin: auto;
+    /* width: 50vw; */
+    min-width: 400px;
+    max-width: 80vw;
+    max-height: 90vh;
+    overflow: auto;
+    position: relative;
+}
+
+ri-custom-mdl .ri-custom-mdl-background {
+    /* modal background fixed across whole screen */
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    /* semi-transparent black  */
+    background-color: #000;
+    opacity: 0.75;
+    /* z-index must be below .ri-custom-mdl and above everything else  */
+    z-index: 9000;
+}
+
+body.ri-custom-mdl-open {
+    /* body overflow is hidden to hide main scrollbar when modal window is open */
+    overflow: hidden;
+}

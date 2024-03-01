@@ -1,0 +1,153 @@
+<div class="layout-px-spacing">
+  <div class="row layout-top-spacing" id="cancel-row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing p-0 p-md-2">
+      <div class="widget">
+          <h5>Bank List</h5>
+          <form (submit)="filter()">
+              <div class="row">
+                <div class="col-md-6" >
+                  <label for="">Select Date</label>
+                  <input type="text" placeholder="Select Date" class="form-control" [ngModelOptions]="{standalone: true}" bsDaterangepicker [maxDate]="maxDate" [(ngModel)]="search" [bsConfig]="bsCustConfg" #rangePicker="bsDaterangepicker" (onShown)="onDateRangePickerShow()">
+                
+              </div>
+                  <div class="col-md-3 mt-1">
+                      <div class="form-group">
+                          <label>Status </label>
+                              <select name="status" [(ngModel)]="status" [ngModelOptions]="{standalone: true}" class="form-control" >
+                                  <option value="active">Active</option>
+                                  <option value="inactive">In-active</option>
+                                  <!-- <option value="pending">Pending</option> -->
+                              </select>
+                      </div>
+                  </div>
+                  <div class="col-md-3 mt-1">
+                      <div class="form-group">
+                          <button class="btn btn-primary mt-2 btn-lg" type="submit">Submit</button>
+                      </div>
+                  </div>
+              </div>
+          </form>
+          <app-data-table-tools [columns]="columns"  [url]="url" (funObj)="funObj($event)" ></app-data-table-tools>
+      </div>
+  </div>
+  
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"> Upper Network Details</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body1 ml-3 pb-3" *ngFor="let item of details  | keyvalue:originalOrder">
+            <!-- <h4>{{change(item.key)}}:<span>{{item.value}} </span></h4>  -->
+            <h4>{{item.key}}:  <span>{{item.value}} </span></h4> 
+            
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- <div class="col-xl-12 col-lg-12 col-sm-12 px-0 p-md-2">
+      <div class="widget-content widget-content-area br-6">
+        <div class="table-responsive mb-4 mt-4">
+          <table id="html5-extension" class="table table-hover non-hover" style="width:100%">
+            <thead>
+              <tr>
+                <th>Retailer Id</th>
+                <th>Bank Name</th>
+                <th>Account No.</th>
+                <th>IFSC Code</th>
+            
+                <th>Name</th>
+               
+                <th>Account Type</th>
+                <th>PayOut Type</th>
+                <th>Date</th>
+           
+                <th>Active / In-Active</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let list of acclist">
+                <td>{{list.merchant}}</td>
+                <td>{{list.bankname}}</td>
+                <td>{{list.account}}</td>
+                <td>{{list.ifsc}}</td>
+              
+                <td>{{list.name}}</td>
+                
+                <td>{{list.account_type}}</td>
+                <td>{{list.registered_at}}</td>
+                <td>{{list.dateadded | date:"medium"}}</td>
+
+                <td class="centers">
+                  <button type="button"
+                    *ngIf="list.payout_account_status == '1' && list.a_status == '2' && list.status == '1'  && list.registered_at != 'RAZORPAY'"
+                    class="btn btn-danger btn-sm actionBtn mb-2" (click)="getbeneidud(list,'1')">Approve</button><br>
+                  <button type="button"
+                    *ngIf="list.payout_account_status == '1' && list.a_status == '2' && list.status == '1'  && list.registered_at != 'RAZORPAY'"
+                    class="btn btn-danger btn-sm actionBtn mb-2" (click)="getbeneidud(list ,'0')">Reject</button><br>
+
+                  <span type="button" class="text-success font-italic font-weight-bold"
+                    *ngIf="( (list.a_status == '1' && list.status == '1') && list.registered_at != 'RAZORPAY' )">Approve</span>
+                  <span type="button" class="text-danger font-italic font-weight-bold"
+                    *ngIf="(( list.a_status == '0' && list.status == '1') && list.registered_at != 'RAZORPAY' )">reject</span>
+                  <span></span>
+                  <span type="button" class="text-danger font-italic font-weight-bold"
+                    *ngIf="list.registered_at == 'RAZORPAY' && list.status == '1'" (click)="ViewUpload(list)"><a>View
+                      Document</a></span>
+                </td>
+                <td>
+                 <button class="btn btn-primary" *ngIf="list.status == 0" (click)="changeStatus('1', list)" >In-Active</button>
+                 <button class="btn btn-warning" *ngIf="list.status == 1" (click)="changeStatus('0', list)" >Active</button>
+                </td>
+                <td>
+                 <button class="btn btn-primary" *ngIf="list.is_deleted == 0" (click)="isDeleted('1', list)" >Deleted By User</button>
+                 <button class="btn btn-warning" *ngIf="list.is_deleted == 1" (click)="isDeleted('0', list)" >Not Deleted By User</button>
+                </td>
+              </tr>
+            </tbody>
+            <tbody *ngIf="acclist?.length == 0">
+              <tr>
+                <td colspan="7" class="no-data-available text-center">No data!</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</div>
+
+
+<div class="modal justify-content-center align-items-center" id="myModal"
+  [style.display]="showModal==false?'none'  : 'flex'">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content model-center">
+      <div class="modal-header">
+        <span class="close" (click)="closeModal()" data-dismiss="modal">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="otp">
+          <p>passbook</p>
+          <img src="{{UploadDocs?.passbook}}">
+          <div *ngIf="UploadDocs?.doc_type == 'PAN'">
+            <p>{{UploadDocs?.doc_type}}</p>
+            <img src="{{UploadDocs?.pan}}">
+          </div>
+          <div *ngIf="UploadDocs?.doc_type == 'AADHAAR' || UploadDocs?.doc_type == 'DL'">
+            <p>{{UploadDocs?.doc_type}}</p>
+            <img src="{{UploadDocs?.front_image}}">
+            <img src="{{UploadDocs?.back_image}}">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="model-overlay"></div>
+</div>

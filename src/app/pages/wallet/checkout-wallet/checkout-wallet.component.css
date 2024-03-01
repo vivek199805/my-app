@@ -1,0 +1,8 @@
+.input-group i {
+    position: absolute;
+    left: 19px;
+    color: #787878;
+    top: 13px;
+    z-index: 9;
+    font-size: 20px;
+}

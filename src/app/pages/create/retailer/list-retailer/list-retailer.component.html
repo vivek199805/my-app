@@ -1,0 +1,32 @@
+<div class="layout-px-spacing">
+    <div class="row layout-top-spacing">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing p-0 p-md-2">
+            <div class="widget">
+                <h5>Retailer</h5>
+                <!--  <p class="text-center">DMT Statement</p> -->
+                <div class="row" *ngIf="this.userType==0 || userType == '2'  || userType == '4'|| userType == '3'">
+                    <div class="col-12">
+                        <a class="btn btn-primary mt-2 btn-sm float-right" routerLink="/account/retailer/create">Add Retailer</a>
+                    </div>
+                </div>
+                <app-data-table-tools [columns]="columns" [url]="url"  (funObj)="funObj($event)"></app-data-table-tools>
+            </div>
+        </div>
+    </div>
+</div>  
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+        
+        </div>
+        <div class="modal-body" *ngFor="let item of details  | keyvalue:originalOrder">
+            <h4>{{change(item.key)}}: <span>{{item.value}} </span></h4> 
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

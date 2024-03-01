@@ -1,0 +1,13 @@
+.inv-detail {
+    margin-bottom: 18px;
+    padding-bottom: 18px;
+    border-bottom: none !important;
+}
+.rowss{
+    width: 200% !important;
+}
+.closebtn{
+        margin-left: 10px;
+        height: 35px;
+        margin-top: 20px;
+}

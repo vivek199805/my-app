@@ -1,0 +1,53 @@
+<div class="table-responsive">
+    <table data-ordering="false" datatable [dtOptions]="dtOptions" id="datatable-serverside" class="table table-hover dataTable table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th *ngFor="let title of columns">{{title.title}}</th>
+            </tr>
+        </thead>
+        <tbody *ngIf="listing?.length != 0">
+            <tr *ngFor="let list of listing">
+                <td *ngFor="let values of columns">
+                    <div *ngIf="values.pipe != null">
+                        <span *ngIf="values.pipe == 'currency'">
+                            {{ list[values.data] | currency:"INR"}}
+                        </span>
+                        <span *ngIf="values.pipe == 'date'">
+                            {{ list[values.data] | date:"MMM d, y"}}
+                        </span>
+                        <span *ngIf="values.pipe == 'datetime'">
+                            {{ list[values.data] | date:"medium"}}
+                        </span>
+                        <span *ngIf="checkType(values.pipe) == 'function'">
+                            <span (click)="toggleHelp(list,$event)" [innerHTML]="convertIntoHtml(values.pipe(list))"></span>
+                        </span>
+                        <span *ngIf="values.pipe == 'print'">
+                            <!-- *ngIf="this.sliptype !=='dmt'" -->
+                            <button type="button" class="btn btn-primary mr-2 px-2 py-2 d-flex"  (click)="printSlip(list)"><svg class="mr-2"viewBox="0 0 65 65" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M53.3203 16.2627V2.03125H11.6797V16.2627C9.07832 16.396 6.6273 17.5225 4.83208 19.4099C3.03687 21.2972 2.03434 23.8015 2.03125 26.4062V50.7812H10.6641V46.7188H6.09375V26.4062C6.09556 24.7906 6.73817 23.2417 7.88057 22.0993C9.02298 20.9569 10.5719 20.3143 12.1875 20.3125H52.8125C54.4281 20.3143 55.977 20.9569 57.1194 22.0993C58.2618 23.2417 58.9044 24.7906 58.9062 26.4062V46.7188H53.3203V50.7812H62.9688V26.4062C62.9657 23.8015 61.9631 21.2972 60.1679 19.4099C58.3727 17.5225 55.9217 16.396 53.3203 16.2627V16.2627ZM49.2578 16.25H15.7422V6.09375H49.2578V16.25Z" fill="white"/>
+                                <path d="M50.2734 25.3906H54.3359V29.4531H50.2734V25.3906Z" fill="white"/>
+                                <path d="M14.7266 33.5156H9.64844V37.5781H14.7266V62.9688H49.2578V37.5781H54.3359V33.5156H14.7266ZM45.1953 58.9062H18.7891V37.5781H45.1953V58.9062Z" fill="white"/>
+                                </svg>
+                                Print</button>
+                        </span>
+                    </div>
+                    <span *ngIf="values.pipe == null">
+                        {{ list[values.data]  }}
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+        <tbody *ngIf="listing?.length == 0 || listing == null ">
+            <tr>
+                <td colspan="columns.length" class="no-data-available">No data!</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<ri-custom-mdl [id]="mdlId">
+    <app-slip-print [riCustomMdlId]="mdlId" [recepitListObj]="invoiceObj"  [dmt]="sliptype"  (closeCallBack)="closeMdl()"></app-slip-print>
+</ri-custom-mdl>
+
+

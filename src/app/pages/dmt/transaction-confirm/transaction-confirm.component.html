@@ -1,0 +1,115 @@
+<div class="widget mt-2">
+    <h5 class="text-center mb-3">
+        PLEASE VERIFY YOUR TRANSACTION DETAILS</h5>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="card mb-5">
+                    <div class="card-header card_bg">
+                        <h6 class="card-title m-0 text-center text-white">REMITTER DETAILS</h6>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered m-0">
+                            <tr>
+                                <th class="font-weight-bolder">Name</th>
+                                <td>{{dmtTransaction.remitter.fname}} {{dmtTransaction.remitter.lname}}</td>
+                            </tr>
+                            <tr>
+                                <th class="font-weight-bolder">Mobile</th>
+                                <td>{{dmtTransaction.remitter.mobile}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header card_bg">
+                        <h6 class="card-title m-0 text-center text-white">RECEIVER DETAILS</h6>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered m-0">
+                            <tr>
+                                <th class="font-weight-bolder">Name</th>
+                                <td>{{dmtTransaction.receiver.name}}</td>
+                            </tr>
+                            <tr>
+                                <th class="font-weight-bolder">Account no</th>
+                                <td>{{dmtTransaction.receiver.accno}}</td>
+                            </tr>
+                            <tr>
+                                <th class="font-weight-bolder">Bank</th>
+                                <td>{{dmtTransaction.receiver.bankname}}</td>
+                            </tr>
+                            <tr>
+                                <th class="font-weight-bolder">IFSC code</th>
+                                <td>{{dmtTransaction.receiver.ifsc}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-md-8 col-lg-8">
+                <form [formGroup]="form" autocomplete="off" (submit)="onSubmit()">
+                    <div class="card">
+                        <div class="card-header card_bg">
+                            <h6 class="card-title m-0 text-center text-white">Transaction Details</h6>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-bordered m-0">
+                                <tr>
+                                    <th class="font-weight-bolder">Amount</th>
+                                    <td>{{dmtTransaction.amount | currency:"INR"}}</td>
+                                </tr>
+                                <tr>
+                                    <th class="font-weight-bolder">Amount in words</th>
+                                    <td>{{dmtTransaction.amountInWords}}</td>
+                                </tr>
+                                <tr>
+                                    <th class="font-weight-bolder">Transfer Type</th>
+                                    <td>
+                                        <div class="form-group mb-0">
+                                            <label class="mr-2"><input [ngModel]="transfer_type" type="radio" name="transfer_type" formControlName="transfer_type"
+                                                value="IMPS"> IMPS
+                                        </label>
+                                            <label>
+                                            <input type="radio" name="transfer_type" formControlName="transfer_type"
+                                                value="NEFT"> NEFT
+                                        </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- <tr>
+                                    <th class="font-weight-bolder">Choose Wallet</th>
+                                    <td>
+                                        <div class="form-group mb-0">
+                                            <label *ngFor="let w of dmtTransaction.wallet_type" class="mr-2">
+                                            <input type="radio" [ngModel]="wallet" name="wallet" formControlName="wallet" value="{{w.key}}">
+                                            {{w.name}}
+                                        </label>
+                                        </div>
+                                    </td>
+                                </tr> -->
+                                <tr>
+                                    <td colspan="2" class="text-center">
+                                        <button type="submit" class="btn btn-success mr-2" [disabled]="getResult">Confirm Transaction</button>
+                                        <button type="button" class="btn btn-danger" (click)="goBack()">Cancel</button>
+                                    </td>
+                                </tr>
+                                <tr class="text-center">
+                                    <td colspan="2"><span class="text-danger">* Note - You are not allowed to charge more
+                                        than 1% of the transaction value.</span></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ri-custom-mdl [id]="mdlId">
+    <app-slip-print [riCustomMdlId]="mdlId" [recepitListObj]="invoiceObj" [dmttran]="sliptype" (closeCallBack)="goBack()"></app-slip-print>
+</ri-custom-mdl>

@@ -1,0 +1,73 @@
+<div class="layout-px-spacing">
+    <div class="row layout-top-spacing">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+            <div class="widget">
+                <h5>Self Signup User List</h5>
+                <app-data-table-tools [columns]="columns" (funObj)="funObj($event)" [url]="url"></app-data-table-tools>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="kycStatusModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog signup" role="document">
+        <div class="modal-content">
+            <form [formGroup]="selfform" (submit)="selfSignupform()">
+                <div class="modal-body">
+                    <span class="close" data-dismiss="modal" (click)="stmodalClose()">&times;</span>
+                    <div class="add-edit-event-box">
+                        <div class="add-edit-event-content">
+                            <h5 class="add-event-title modal-title">ASSIGN UPPER NETWORK</h5>
+
+                            <div class="form-row mt-3">
+                                <div class="col-md-12">
+
+                                    <div class="form-group col-md-12" *ngIf="(selfusertype == '2')">
+                                        <label for="inputAddress">ASM : <span class="alert-error">*</span></label>
+                                        <ng-select2 [ngClass]="{ 'is-invalid': f.asm.touched && f.asm.invalid }" [options]="options" formControlName="asm" [data]="asmLisitng" [placeholder]="'Please select a ASM...'">
+                                        </ng-select2>
+                                        <div *ngIf="f.asm.touched && f.asm.invalid" class="alert-error">
+                                            <div *ngIf="f.asm.errors.required"><small><b>ASM is required.</b></small></div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group col-md-12" *ngIf="(selfusertype == '4')">
+                                        <label for="inputEmail4">Partner : <span class="alert-error">*</span></label>
+                                        <ng-select2 [ngClass]="{ 'is-invalid': f.partner_id.touched && f.partner_id.invalid }" [options]="options" formControlName="partner_id" [data]="partnerLisitng" [placeholder]="'Please select a partner...'">
+                                        </ng-select2>
+                                        <div *ngIf="f.partner_id.touched && f.partner_id.invalid" class="alert-error">
+                                            <div *ngIf="f.partner_id.errors.required"><small><b>partner_id is required.</b></small></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-12" *ngIf="(selfusertype == '3')">
+                                        <label for="inputEmail4">Super distributor : <span class="alert-error">*</span></label>
+                                        <ng-select2 [ngClass]="{ 'is-invalid': f.supdistributor.touched && f.supdistributor.invalid }" formControlName="supdistributor" [data]="supdistributorLisitng" [placeholder]="'Please select a Super distributor...'">
+                                        </ng-select2>
+                                        <div *ngIf="f.supdistributor.touched && f.supdistributor.invalid" class="alert-error">
+                                            <div *ngIf="f.supdistributor.errors.required"><small><b>Super distributor is required.</b></small></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-12" *ngIf="(selfusertype == '5')">
+                                        <label for="inputAddress">Distributor : <span class="alert-error">*</span></label>
+                                        <ng-select2 [ngClass]="{ 'is-invalid': f.distributor.touched && f.distributor.invalid }" formControlName="distributor" [data]="distributorLisitng" [placeholder]="'Please select a distributor...'">
+                                        </ng-select2>
+                                        <div *ngIf="f.distributor.touched && f.distributor.invalid" class="alert-error">
+                                            <div *ngIf="f.distributor.errors.required"><small><b>Distributor is required.</b></small></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="discard" class="btn" (click)="stmodalClose()" data-dismiss="modal">Close</button>
+                    <button id="edit-event" class="btn btn-primary" [disabled]="!selfform.valid">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,121 @@
+.syncBtn {
+    display: flex;
+    background-color: red;
+    width: 30px;
+    height: 30px;
+    box-sizing: border-box;
+    color: #fff;
+    border-radius: 4px;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+}
+
+.navbar .language-dropdown .custom-dropdown-icon a.dropdown-toggle {
+    line-height: 17px !important;
+    background-color: #304aca !important;
+    letter-spacing: normal !important;
+    text-align: inherit !important;
+    max-height: 50px !important;
+    letter-spacing: 1px !important;
+}
+
+
+/* 
+.balance {
+    background: #fff;
+    box-shadow: rgb(206 203 196) 0px 2px 5px;
+    padding: 5px 12px 5px 12px;
+    border-radius: 3px;
+    margin-right: 10px;
+} */
+
+.balance p {
+    font-size: 14px;
+    color: #fff;
+    font-weight: 600;
+    display: inline-grid;
+    text-align: right;
+    margin-bottom: 0;
+    line-height: 18px;
+}
+
+.balance p span {
+    color: #000;
+    font-weight: 400;
+}
+
+
+/* .balance img {
+    padding-left: 1rem;
+    padding-top: 12px;
+} */
+
+
+.fixed-top{
+    background-color: #F7F7FF;
+    box-shadow:none;
+}
+.navbar-item li {
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-item li:nth-child(-n + 2) {
+    padding: 10px 12px;
+}
+
+.navbar .navbar-item .nav-item.user-profile-dropdown .nav-link svg {
+    color: #fff !important;
+}
+
+.profile .user-profile-section .media img{
+    width: 50px;
+    height: 50px;
+}
+.profile .user-profile-section .media h6{
+    margin: 0;
+
+}
+
+.profile .user-profile-section .media h6 strong{
+    font-size: 16px;
+    color:#fff;
+}
+
+
+.profile .user-profile-section .media p{
+    font-size: 11px;
+    margin: 0;
+    color:#fff;
+}
+
+.icon-wrap{
+    width: 35px;
+    height: 35px;
+    border: 1px solid #B6B6B6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    padding: 10px;
+    position: relative;
+    background:#fff;
+}
+
+#noti-count {
+    position: absolute;
+    top: 14px;
+    background-color: #fe0000;
+    color: #fff;
+    padding: 5px;
+    border-radius: 100%;
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    line-height: 6px;
+    font-size: 10px;
+    margin-left: 9px;
+  }
+.navbar-logo{width: 140px;}

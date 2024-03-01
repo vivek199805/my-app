@@ -1,0 +1,94 @@
+@media only screen and (min-width: 1400px) {}
+
+@media (max-width:1280px) {}
+
+@media (max-width:1024px) {
+    .checkbox {
+        font-size: 11px!important;
+        margin-right: 20px;
+    }
+    .card {
+        padding: 12px;
+    }
+    .img-div {
+        margin: 35px 0
+    }
+    .inner-box .card {
+        width: 100%
+    }
+    .login-bg {
+        display: none;
+    }
+    .inner-box .card .heading h3 {
+        font-size: 28px;
+    }
+}
+
+@media (max-width:980px) {
+    .img-div {
+        display: none;
+    }
+    .pr-0 {
+        padding-right: 15px!important;
+    }
+    .card {
+        border-radius: 20px;
+    }
+  
+    .inner-box{margin-top:4rem;}
+    .login-wrap{
+        height: auto;
+        background: #26547c;
+    }
+}
+
+@media (max-width:823px) {}
+
+@media (max-width:768px) {
+    .inner-box .card .heading h3 {
+        font-size: 25px;
+    }
+    
+}
+
+@media (max-width: 736px) {}
+
+@media (max-width:667px) {
+    .img-wrap{display:none!important;}
+    .login-wrap .pl-0{padding-left:15px!important;}
+    .logo {margin-bottom:2rem;}
+    .login-n{display:none;}
+    .btn-yellow{width:100%}
+}
+
+@media (max-width:640px) {}
+
+@media (max-width:568px) {}
+
+@media (max-width:480px) {
+    .inner-box {
+        margin-top: 1rem;
+    }
+    .login-in {
+        padding-left: 15px;
+    }
+    .inner-box .card .heading h3 {
+        font-size: 22px;
+    }
+    .login-wrap{height:100vh}
+    .login-back{background:none;}
+
+    .page-title h6{
+        font-size: 16px !important;
+    }
+}
+
+@media (max-width:414px) {}
+
+@media (max-width:375px) {}
+
+@media (max-width:360px) {
+ 
+}
+
+@media (max-width:320px) {}

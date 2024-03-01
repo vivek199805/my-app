@@ -1,0 +1,83 @@
+<div class="row layout-top-spacing">
+    <div class="col-lg-12 col-12 layout-spacing">
+        <div class="statbox widget box box-shadow">
+            <!-- <div class="widget-header">
+                <div class="row">
+                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                        <h5>Funds Details</h5>
+                    </div>
+                </div>
+            </div> -->
+
+
+            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8 layout-spacing">
+                <div class="widget">
+                    <h5>Creditor Details</h5>
+                        <table class="table table-bordered mb-0">
+                            <tbody>
+                                <tr>
+                                    <th>Creditor Name</th>
+                                    <td>{{creditor_name}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Credit Amount</th>
+                                    <td>{{credit | currency:"INR"}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                </div>
+                <div class="widget">
+                    <h5>Bank Details</h5>
+                        <table class="table table-bordered mb-0">
+                            <tbody>
+                                <tr>
+                                    <th>Transaction Id</th>
+                                    <td>{{txnid}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Bank Name</th>
+                                    <td>{{bankname}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Credit Amount</th>
+                                    <td>{{amount | currency:"INR"}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                </div>
+                <div class="widget">
+                    <form [formGroup]="form" (submit)="onSubmit()" autocomplete="off">
+                        <div class="form-row mb-4 Approval">
+                            <div class="form-group col-md-12">
+                                <label class="titleapp">Fund Request Status : <span class="alert-error">*</span></label><br>
+                                <label class="new-control new-radio new-radio-text radio-success">
+                                    <input  formControlName="fundrequestStatus" type="radio" checked class="new-control-input" name="fundrequestStatus" value="approved">
+                                    <span class="new-control-indicator"></span><span class="new-radio-content">Approve</span>
+                                  </label>
+                                <label class="new-control new-radio new-radio-text radio-danger">
+                                    <input formControlName="fundrequestStatus" type="radio" class="new-control-input" name="fundrequestStatus" value="rejected">
+                                    <span class="new-control-indicator"></span><span class="new-radio-content">Reject</span>
+                                  </label>
+                                  <div *ngIf="f.fundrequestStatus.touched && f.fundrequestStatus.invalid" class="alert-error">
+                                    <div *ngIf="f.fundrequestStatus.errors.required"><small><b>Fund Request Status is required.</b></small></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row mb-4 Approval">
+                            <div class="form-group col-md-12">
+                                <label class="titleapp">Remarks : <span class="alert-error">*</span></label>
+                                <textarea [ngClass]="{ 'is-invalid': f.remarks.touched && f.remarks.invalid }" formControlName="remarks" name="remarks" class="form-control" placeholder="Enter remarks"></textarea>
+                                <div *ngIf="f.remarks.touched && f.remarks.invalid" class="alert-error">
+                                    <div *ngIf="f.remarks.errors.required"><small><b>Remarks is required.</b></small></div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-2 mr-2" [disabled]="!form.valid"> Submit </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <app-header></app-header>
+    </div>
+</div>

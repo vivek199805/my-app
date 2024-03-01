@@ -1,0 +1,11 @@
+.form-form .form-container .form-content.border-gray{border:1px solid #C2C2C2}
+.form-form .form-container .form-content{padding: 33px 0px 0px;}
+.input-group i {
+    position: absolute;
+    left: 25px;
+    color: #787878;
+    top: 10px;
+    z-index: 9;
+    font-size: 26px;
+    width: 15px;
+}

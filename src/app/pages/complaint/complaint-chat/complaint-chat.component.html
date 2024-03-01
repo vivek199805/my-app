@@ -1,0 +1,70 @@
+
+<div class="layout-px-spacing">
+    <div class="row layout-top-spacing">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing p-0 p-md-2">   
+              <div class="widget">
+                <div class="row">
+                  <div class="col-sm-4"></div>
+                  <div class="col-sm-4"></div>
+                  <div class="col-sm-4" style="text-align: end">
+                  <button class="btn btn-primary mt-3" (click)="Back()" >Back</button>
+                </div>
+                </div>
+                <!--  <p class="text-center">DMT Statement</p> -->
+                <div class="messaging">
+                <div class="inbox_msg">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Ticket No</th>
+                        <th scope="col">Sender Name</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Type</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngFor="let item of chatuserdetails">
+                      <tr>
+                        <th>{{item.ticket_no}}</th>
+                        <td>{{item.sender_name}}</td>
+                        <td>{{item.status}}</td>
+                        <td>{{item.type}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+
+                  <div class="mesgs">
+                    <div class="msg_history">
+                    <div *ngFor="let chat of chatDetail" class="mb-2">
+                      <div [ngClass]="{'incoming_msg_img': chat.requested_type == 0 ,'outgoing_msg': chat.requested_type == 1}">
+                        <img *ngIf="chat.requested_type == 0" src="https://ptetutorials.com/images/user-profile.png" alt="sunil"/>
+                      </div>
+                      <div div [ngClass]="{'received_msg': chat.requested_type == 0,'sent_msg': chat.requested_type == 1}">
+                        <div class="received_withd_msg">
+                          <p>{{ chat.message }}</p>
+                          <span class="time_date"> {{chat.time}} | {{chat.date}} | {{chat.requested_type}}</span> 
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                    <div class="type_msg">
+                      <div class="input_msg_write">
+                      <form [formGroup]="form" class="mt-3" >
+                        <input type="text" class="write_msg" formControlName="chatMessage" placeholder="Type a message" />
+                        <button class="msg_send_btn" type="submit" (click)="addchatMessage()"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg> Send</button>
+
+                        <button class="msg_close_btn" type="submit" (click)="addcloseMessage()" ><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>Send And Close </button>
+                       
+                      </form>
+                      <!-- <form [formGroup]="form1" class="mt-3" (submit)="addcloseMessage()">
+                       
+                      </form> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+.card_bg{
+    height: 40px !important;
+    border-radius: unset !important;
+    padding: 10px !important;
+    background-color: #445ede !important;
+    border-color: #445ede !important;
+}

@@ -1,0 +1,73 @@
+.education .widget-content-area .timeline-alter .item-timeline .t-dot {
+    border-color: #e81d2c !important;
+}
+
+.education .widget-content-area .timeline-alter .item-timeline .t-dot::before {
+    content: '';
+    position: absolute;
+    border-color: inherit;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.education .widget-content-area .timeline-alter .item-timeline:not(:last-child) .t-dot::after {
+    content: '';
+    position: absolute;
+    /* border: 0.1px solid #ebedf2; */
+    border-color: inherit;
+    border-width: 2px;
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: auto;
+    top: 25px;
+    bottom: -15px;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-radius: 0;
+    border: 0.1px solid #ebedf2;
+}
+
+.widget-content-area h3 {
+    width: max-content !important;
+}
+
+.widget-content-area h3:after {
+    content: '';
+    width: 100% !important;
+    left: 15px !important;
+}
+
+.contacts-block__item i {
+    width: 22px;
+    text-align: center;
+}
+
+textarea {
+    width: 100%;
+    min-height: 20rem;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: 0.8rem;
+    line-height: 1.2;
+    background: #23241f;
+    color: white;
+}
+
+textarea[readonly] {
+    cursor: not-allowed;
+    background-color: #000000 !important;
+}

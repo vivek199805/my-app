@@ -1,0 +1,120 @@
+
+    <div class="col-12 mb-3">
+        <div class="page-title d-flex align-items-center"><img src="../../../../assets/AEPS_page.svg" alt="">
+            <h6 _ngcontent-blr-c107="" class="ml-1 mb-0 font-weight-bold">Add Bank Account</h6>
+        </div>
+    </div>
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing p-0 p-md-2">
+    <nav class="nav flex-column flex-sm-row bg-white w-100 mb-3"> 
+        <a class="flex-sm-fill text-sm-center nav-link"   (click)="modeChange('self')"
+        [ngClass]="{'active-item':mode=='self'}" >Self Account</a>
+        <a class="flex-sm-fill text-sm-center nav-link"  (click)="modeChange('other')"
+        [ngClass]="{'active-item':mode=='other'}">Other Account</a>
+</nav> 
+<div class="widget widget-width pt-5">
+     <form [formGroup]="form" (submit)="onSubmit()" class="custom-form">
+        <div class="form-group input-field d-flex flex-wrap">
+            <div class="form-group col-md-6">
+                 <div class="input-group mx-1">
+                    <i class="fa fa-university" aria-hidden="true"></i>
+              
+                <ng-select2 [ngClass]="{ 'is-invalid': f.bankName.touched && f.bankName.invalid }"
+                    formControlName="bankName" [data]="bankLisitng" class="w-100" placeholder="Bank Name">
+                </ng-select2>
+               
+                <div *ngIf="f.bankName.touched && f.bankName.invalid" class="alert-error">
+                    <div *ngIf="f.bankName.errors.required"><small><b>Bank Name is required.</b></small></div>
+                </div>
+            </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                <div class="input-group mx-1">
+                    <i class="fa fa-university" aria-hidden="true"></i>
+               
+                <input type="text" formControlName="ifsc" [ngClass]="{ 'is-invalid': f.ifsc.touched && f.ifsc.invalid }"
+                    name="ifsc" class="form-control">
+                    <label for="inputAddress">IFSC Code</label>
+                <div *ngIf="f.ifsc.touched && f.ifsc.invalid" class="alert-error">
+                    <div *ngIf="f.ifsc.errors.required"><small><b>IFSC Code is required.</b></small></div>
+                </div>
+            </div>
+      
+        </div>
+
+    
+            <div class="form-group col-md-6">
+                <div class="input-group mx-1">
+                    <i class="fa fa-university" aria-hidden="true"></i>
+              
+                <input type="text" formControlName="name" [ngClass]="{ 'is-invalid': f.name.touched && f.name.invalid }"
+                    name="name" class="form-control">
+                    <label for="inputAddress">Account Name</label>
+                <div *ngIf="f.name.touched && f.name.invalid" class="alert-error">
+                    <div *ngIf="f.name.errors.required"><small><b>Name is required.</b></small></div>
+                </div>
+            </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                <div class="input-group mx-1">
+                    <i class="fa fa-university" aria-hidden="true"></i>
+               
+                <input type="text" formControlName="accno"
+                    [ngClass]="{ 'is-invalid': f.accno.touched && f.accno.invalid }" name="accno" class="form-control"
+                   >
+                   <label for="inputAddress">Account Number</label>
+                <div *ngIf="f.accno.touched && f.accno.invalid" class="alert-error">
+                    <div *ngIf="f.accno.errors.required"><small><b>Account Number is required.</b></small></div>
+                </div>
+            </div>
+        </div>
+              <!-- <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputAddress">Account Type : <span class="alert-error">*</span></label>
+                <select formControlName="accounttype"
+                    [ngClass]="{ 'is-invalid': f.accounttype.touched && f.accounttype.invalid }" name="accounttype"
+                    class="form-control">
+                    <option value="PRIMARY">PRIMARY</option>
+                    <option value="RELATIVE">RELATIVE</option>
+                </select>
+                <div *ngIf="f.accounttype.touched && f.accounttype.invalid" class="alert-error">
+                    <div *ngIf="f.accounttype.errors.required"><small><b>Account type is required.</b></small></div>
+                </div>
+            </div>
+        </div> -->
+
+            <!-- <div class="form-row"> -->
+            <div class="form-group col-md-6">
+                <!-- <label for="">Browse File</label> -->
+                <div class="d-flex">
+                <input type="file" [ngClass]="{ 'is-invalid': f.file.touched && f.file.invalid }" (change)="handleFileInput1($event)" formControlName="file"  class="form-control-file">
+                 </div>
+                <div *ngIf="f.file.touched && f.file.invalid" class="alert-error">
+                    <div *ngIf="f.file.errors.required"><small><b>file is required.</b></small></div>
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="start-date" class="">File Image : </label>
+                <div class="d-flex">
+                    <div class="idImgBox">
+                            <img src={{fileImage}} alt="">
+                      
+                    </div> 
+               
+            </div>
+        </div>
+        <!-- </div> -->
+        
+
+        <div class="col-sm-12 text-center">
+            <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Submit</button>
+        </div>
+
+     </div>
+  
+      
+    </form>
+</div>
+</div>

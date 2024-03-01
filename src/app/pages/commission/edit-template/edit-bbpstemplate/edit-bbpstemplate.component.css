@@ -1,0 +1,22 @@
+.list-group-item{
+    width: 100%;
+    max-width: 142px;
+    padding: 10px;
+    min-width: 130px;
+}
+
+.form-group label, label{
+    font-size: 12px;
+    letter-spacing: 0;
+
+}
+
+.form-control{
+    font-size: 13px;
+    padding: 10px;
+}
+.list-group-horizontal>.list-group-item:first-child{
+    font-size: 12px;
+    white-space: break-spaces;
+    word-break: break-word;
+}

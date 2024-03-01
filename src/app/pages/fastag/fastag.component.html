@@ -1,0 +1,85 @@
+<div class="col-lg-12 col-12 layout-spacing mt-5">
+  <div class="statbox widget box box-shadow">
+    <!-- <div class="widget-header">
+      <div class="row">
+        <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+          <h4>FASTag</h4>
+        </div>
+      </div>
+    </div> -->
+    <div class="widget-header"> 
+      <div class="d-flex align-items-center">
+        <button  [routerLink]="['/']" routerLinkActive="router-link-active"   class="d-flex align-items-center btn btn-primary btn-sm mr-2 px-1"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="mr-1 bi bi-arrow-return-left" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"/>
+        </svg> Back</button>
+        <img class="icon" src="https://cdn.statically.io/img/cdn6.aptoide.com/split-store/1f448fff448ccca22aebf10c5a86a281_icon.png" alt="">
+        <h5 class="ml-2 my-0">FASTag</h5>
+
+    </div>
+    </div>
+    
+    <div class="widget-content border-tab">
+      <div class="tab-content mb-4">
+        <div class="tab-pane fade show active" id="prepaid" role="tabpanel" aria-labelledby="prepaid-tab">
+          <form [formGroup]="fastagForm">
+            <div class="row my-4">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="inputEmail4">Operator : <span class="alert-error">*</span></label>
+                  <ng-select2 formControlName="operator" [(ngModel)]="value" [data]="prepaidOperatorLisitng"
+                    [ngClass]="{ 'is-invalid': p.operator.touched && p.operator.invalid }"
+                    [placeholder]="'Please select a operator...'">
+                  </ng-select2>
+                  <div *ngIf="p.operator.touched && p.operator.invalid" class="alert-error">
+                    <div *ngIf="p.operator.errors?.required"><small><b>Operator is required.</b></small></div>
+                  </div>
+                  <div class="text-right" *ngIf="HLRinfo.circle">
+                    <p class="cir">{{HLRinfo.circle}}</p>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="inputAddress">Vehicle Number : <span class="alert-error">*</span></label>
+                  <input type="text" formControlName="canumber"
+                    [ngClass]="{ 'is-invalid': (p.canumber.touched || p.canumber.dirty) && p.canumber.invalid }"
+                    name="canumberno" class="form-control" placeholder="Enter Vehicle Number">
+                  <div *ngIf="(p.canumber.touched || p.canumber.dirty) && p.canumber.invalid" class="alert-error">
+                    <div *ngIf="p.canumber.errors?.required"><small><b>Vehicle no is required.</b></small></div>
+                  </div>
+                </div>
+                <div *ngIf="btnng">
+                  <div *ngFor="let item of fetchDetails ">
+                    <div class="border px-2 py-2"> <label class="m-0">Name</label> : <span>{{item.name}}</span><br>
+                    </div>
+                    <!-- /.border -->
+                    <div class="border border-top-0 px-2 py-2"> <label class="m-0">Amount</label> :<span><input [(ngModel)]="item.amount" [ngModelOptions]="{standalone: true}"></span><br>
+                    </div>
+                    <!-- /.border -->
+                    <div class="border border-top-0 px-2 py-2"> <label class="m-0">Vehicle Number</label> :<span>{{item.bill_fetch.cellNumber}}</span><br>
+                    </div>
+                    <!-- /.border -->
+                    <div class="border border-top-0 px-2 py-2"> <label class="m-0">Due Date</label> : <span>{{item.duedate}}</span><br>
+                    </div>
+                    <!-- /.border -->
+                    <div class="border border-top-0 px-2 py-2"> <label class="m-0">Message</label> : <span>{{item.message}}</span><br>
+                    </div>
+                    <!-- /.border -->
+                  </div>
+                </div>
+                <button *ngIf="!btnng" type="submit" [disabled]="!fastagForm.valid" class="btn btn-primary mt-2"
+                  (click)="fetchDeatils()">Fetch
+                  Details</button>
+                <button *ngIf="btnng" type="submit" [disabled]="!fastagForm.valid" class="btn btn-primary mt-2"
+                  (click)="submit(fetchDetails)">PAY</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ri-custom-mdl [id]="mdlId">
+    <app-slip-print [riCustomMdlId]="mdlId" [recepitListObj]="invoiceObj" (closeCallBack)="slipClose()"></app-slip-print>
+</ri-custom-mdl>

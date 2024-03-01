@@ -1,0 +1,77 @@
+<div class="layout-px-spacing">
+  <div class="row layout-top-spacing">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing p-0 p-md-2">
+      <div class="widget">
+        <h5>Banner / Marquee History</h5>
+        <div class="row">
+          <div class="col-12">
+            <a class="btn btn-primary mt-2 btn-sm float-right" routerLink="/add-banner">Add New Banner / Text</a>
+          </div>
+        </div>
+        <!--  <p class="text-center">DMT Statement</p> -->
+        <form (submit)="filter()" [formGroup]="form">
+          <div class="row">
+            <div class="col-md-4 mt-1">
+              <label for="">Select Date</label>
+              <input type="text " onkeydown="return false" placeholder="Select Date" class="form-control"
+                bsDaterangepicker [maxDate]="maxDate" formControlName="selectdate" [bsConfig]="bsCustConfg"
+                #rangePicker="bsDaterangepicker" (onShown)="onDateRangePickerShow()">
+            </div>
+            <!-- <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Start Date: </label>
+                                <input onkeydown="return false" class="form-control" name="startdate" id="startdate" placeholder="yyyy-mm-dd" #dp="bsDatepicker" bsDatepicker [(ngModel)]="search.startdate" autocomplete="off">
+
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>End Date : </label>
+                                <input onkeydown="return false" class="form-control" name="enddate" id="enddate" placeholder="yyyy-mm-dd" #dp="bsDatepicker" bsDatepicker [maxDate]="maxDate" [(ngModel)]="search.enddate" autocomplete="off">
+
+                            </div>
+                        </div> -->
+
+            <div class="col-md-3 mt-1">
+              <div class="form-group ">
+                <button class="btn btn-primary mt-2 btn-lg " type="submit ">Submit</button>
+              </div>
+            </div>
+          </div>
+        </form>
+        <app-data-table-tools [columns]="columns" (funObj)="funObj($event)" [url]="url"></app-data-table-tools>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="signupform" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog signup" role="document">
+    <h4>Updates</h4><span class="close" (click)="closeModal()" data-dismiss="modal">&times;</span>
+
+    <div class="modal-content p-3">
+      <div *ngIf="IGtypeof=='banner_desc'">
+        <form [formGroup]="BannerForm" (submit)="updateBanner()">
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1"></label>
+            <input class="form-control" type="file" accept="image/png,image/jpeg" formControlName='banner'
+              (change)="setImage($event)">
+            <div *ngIf="submitted && e.password.errors" class="alert-error">
+              <div *ngIf="submitted && e.password.errors"><small><b> Banner File is required</b></small></div>
+            </div>
+          </div>
+          <button type="submit" [disabled]="!BannerForm.valid" name="submit" class="btn btn-primary">Upload
+            Image</button>
+        </form>
+      </div>
+
+
+      <div *ngIf="IGtypeof=='banner_name'">
+        <ckeditor [editor]="editor" [data]="data" id="editor" (change)="onChange($event)"></ckeditor>
+        <button type="submit" name="submit" class="btn btn-primary mt-2 text-white font-weight-bold" (click)="UpdateMarquee()">Upload
+          Text</button>
+      </div>
+    </div>
+  </div>
+</div>

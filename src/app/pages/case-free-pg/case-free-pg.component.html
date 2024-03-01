@@ -1,0 +1,105 @@
+<div class="col-lg-12 col-12 layout-spacing mt-5">
+  <div class="statbox widget box box-shadow">
+    <!-- <div class="widget-header">
+        <div class="row">
+          <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+            <h4>FASTag</h4>
+          </div>
+        </div>
+      </div> -->
+    <div class="widget-header">
+      <div class="d-flex align-items-center">
+        <button [routerLink]="['/']" routerLinkActive="router-link-active"
+          class="d-flex align-items-center btn btn-primary btn-sm mr-2 px-1"><svg xmlns="http://www.w3.org/2000/svg"
+            width="16" height="16" fill="currentColor" class="mr-1 bi bi-arrow-return-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z" />
+          </svg> Back</button>
+        <!-- <img class="icon"
+                    src="https://cdn.statically.io/img/cdn6.aptoide.com/split-store/1f448fff448ccca22aebf10c5a86a281_icon.png"
+                    alt=""> -->
+        <h5 class="ml-2 my-0">PG</h5>
+
+      </div>
+    </div>
+
+    <div class="widget-content border-tab">
+      <div class="tab-content mb-4">
+        <div class="tab-pane fade show active" id="prepaid" role="tabpanel" aria-labelledby="prepaid-tab">
+          <form [formGroup]="pgForm">
+            <div class="row my-4">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="inputAddress">Name: <span class="alert-error">*</span></label>
+                  <input type="text" formControlName="name"
+                    [ngClass]="{ 'is-invalid': (p.name.touched || p.name.dirty) && p.name.invalid }"
+                    class="form-control" placeholder="Enter your name">
+                  <div *ngIf="(p.name.touched || p.name.dirty) && p.name.invalid" class="alert-error">
+                    <div *ngIf="p.name.errors?.required"><small><b>Name is required.</b></small>
+                    </div>
+                    <div *ngIf="p.name.errors?.pattern"><small><b>Name is invalid.</b></small></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="inputAddress">Mobile: <span class="alert-error">*</span></label>
+                  <input type="text" formControlName="mobile"
+                    [ngClass]="{ 'is-invalid': (p.mobile.touched || p.mobile.dirty) && p.mobile.invalid }"
+                    class="form-control" placeholder="Enter Mobile Number">
+                  <div *ngIf="(p.mobile.touched || p.mobile.dirty) && p.mobile.invalid" class="alert-error">
+                    <div *ngIf="p.mobile.errors?.required"><small><b>Mobile no is
+                          required.</b></small></div>
+                    <div *ngIf="p.mobile.errors?.pattern"><small><b>Mobile no is
+                          invalid.</b></small></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="inputAddress">Email: <span class="alert-error">*</span></label>
+                  <input type="text" formControlName="email"
+                    [ngClass]="{ 'is-invalid': (p.email.touched || p.email.dirty) && p.email.invalid }"
+                    class="form-control" placeholder="Enter email address">
+                  <div *ngIf="(p.email.touched || p.email.dirty) && p.email.invalid" class="alert-error">
+                    <div *ngIf="p.email.errors?.required"><small><b>Email id is
+                          required.</b></small></div>
+                    <div *ngIf="p.email.errors?.email"><small><b>Email id is invalid.</b></small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="inputAddress">Amount: <span class="alert-error">*</span></label>
+                  <input type="text" formControlName="amount"
+                    [ngClass]="{ 'is-invalid': (p.amount.touched || p.amount.dirty) && p.amount.invalid }"
+                    class="form-control" placeholder="Enter amount">
+                  <div *ngIf="(p.amount.touched || p.amount.dirty) && p.amount.invalid" class="alert-error">
+                    <div *ngIf="p.amount.errors?.required"><small><b>Amount is required.</b></small>
+                    </div>
+                    <div *ngIf="p.amount.errors?.pattern"><small><b>Amount is invalid.</b></small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+
+              </div>
+              <div class="col-md-6">
+                <button type="submit" [disabled]="!pgForm.valid" class="btn btn-primary"
+                  (click)="onSubmit()">PAY</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <ri-custom-mdl [id]="mdlId">
+      <app-slip-print [riCustomMdlId]="mdlId" [recepitListObj]="invoiceObj" (closeCallBack)="slipClose()"></app-slip-print>
+  </ri-custom-mdl> -->

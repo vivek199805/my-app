@@ -1,0 +1,393 @@
+ <section *ngIf="loginscreen === 'login1'" class="login-main">
+    <div class="container-fluid h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+
+            <!-- -right- -->
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 pr-0">
+                <div class="img-div m-0">
+                    <!-- <img src="assets/login/images/image-bg.svg" alt="" class="img-fluid"> -->
+                     <img src="{{loginbackground}}" alt="" class="img-fluid">
+                </div>
+                <!-- /.img-wrap -->
+            </div>
+                        <!-- /.col-lg-7 -->
+                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 login-in">
+                            <div class="inner-box m-0">
+
+                                <div class="card">
+                                    <div class="heading p-0 m-0">Welcome Back!</div>
+                                    <div class="logo"><img src="{{logocolor}}"></div>
+                                    <!-- <div class="heading mb-3 px-md-4">
+                                    <h3>Welcome to <span>Banksafar</span></h3>
+                                </div> -->
+                                    <!-- <div class="logo"><img src="assets/login/images/logo.png"></div> -->
+
+                                    <!-- <h2>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply.</h2> -->
+                                    <form class="custom-form p-md-4" autocomplete="off" [formGroup]="logindata"
+                                        (submit)="login()">
+
+                                        <div class="form-group input-field">
+                                            <div class="input-group">
+                                                <span id="iconn" class="input-group-addon"><img src="assets/login/images/user.png"></span>
+                                                <input type="text"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+                                                    class="form-control" id="text1" formControlName="username"
+                                                    autocomplete="off">
+                                                <label for="">Username</label>
+                                            </div>
+                                            <div *ngIf="submitted && f.username.errors" class="alert-error">
+                                                <div *ngIf="submitted && f.username.errors"><small><b>Username is
+                                                            required</b></small></div>
+                                            </div>
+                                            <div class="input-group">
+                                                <span id="iconn" class="input-group-addon"><img src="assets/login/images/password.png"></span> 
+
+                                                <input  [type]="password"
+                                                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+                                                    class="form-control" id="text2" formControlName="password"
+                                                    autocomplete="new-password">
+                                                <label for="">Password</label> 
+                                                <a href="javascript:void(0)" (click)="onClick()">
+                                                <i class="fa fa-eye"   *ngIf="!show"></i>
+                                                <i class="fa fa-eye-slash"   *ngIf="show"></i>
+                                            </a>
+                                            </div>
+                                            <div *ngIf="submitted && f.password.errors" class="alert-error">
+                                                <div *ngIf="submitted && f.password.errors"><small><b>Password is
+                                                            required</b></small></div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-12 pl-0">
+                                            <div class="forgot">
+                                                <!-- <a href="#" routerLink="/signup"> Sign Up?</a> -->
+                                                <a href="#" class="font-weight-bold" routerLink="/forgot-password">
+                                                    Forgot Password?</a>
+                                            </div>
+                                        </div>
+
+                                        <!-- <div class="form-group input-field">
+        
+                                    </div> -->
+
+                                        <div class="form-group text-center">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" [ngModel]="true"
+                                                        [ngClass]="{ 'is-invalid': submitted && f.isagreed.errors }"
+                                                        formControlName="isagreed" name="remember"><p>By continuing, you
+                                                    agree to the <a href="#" data-toggle="modal" data-target="#modalterms">Terms of Service</a> & <a href="#" data-toggle="modal" data-target="#modalpolicy">Privacy Policies</a></p>
+                                                </label>
+                                            </div>
+                                            <div *ngIf="submitted && f.isagreed.errors" class="alert-error">
+                                                <div *ngIf="submitted && f.isagreed.errors"><small><b>Accept The Terms &
+                                                            conditions</b></small></div>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="mb-2">
+                                            <button type="submit" [disabled]="!logindata.valid" name="submit"
+                                                class="btn btn-yellow p-2 font-weight-bold">Login</button>
+                                        </div>
+                                                                            
+                                    <div class="row">
+                                        <div class="col-sm-12 ">
+                                            <div class="signup text-center">
+                                                <p class="m-0">Don’t have an account?</p>
+                                                <a href="#" class="font-weight-bold" routerLink="/signup">Sign Up</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    </form>
+                                    <div class="download-app text-center d-md-flex mt-2 pt-2 border-top justify-content-between align-items-center">
+                                        <div class="content-wrap">
+                                            <h6><strong>Helpline Number</strong></h6>
+                                            <ul class="contact-details">
+                                                <li><i class="fa fa-phone"></i>  +91 {{number}}</li>
+                                                <li><i class="fa fa-envelope"></i> {{mail}}</li>
+                                            </ul>
+                                        </div>
+                                        <!-- /.content-wrap -->
+                                       <a href="https://play.google.com/store/apps/details?id=com.multipe.services" target="blank"><img width="150" src="assets/google-play-badge.png"    alt=""></a> 
+                                    </div>
+                                    <!-- /.download-app -->
+                                </div>
+
+                            </div>
+                        </div>
+                
+                    <!-- /.col-lg-5 -->
+        
+                <!-- /.row -->
+
+
+            <!--  right end -->
+        </div>
+    </div>
+</section>
+
+<div class="form-container outer" *ngIf="loginscreen === 'login2'">
+    <div class="form-form">
+        <div class="form-form-wrap">
+            <div class="form-container">
+                <div class="form-content text-left">
+                    <a routerLink="/" class="navbar-brand">
+                        <img src="assets/logo.png" alt="logo" class="img-fluid" />
+                    </a>
+                    <br><br>
+                    <h1 class="">{{heading}}</h1>
+                    <p class="">{{desc}}</p>
+                    <form [formGroup]="logindata" (submit)="login()">
+                        <div class="form">
+                            <div id="username-field" class="field-wrapper input">
+                                <label for="username">USERNAME</label>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                                <input id="username" name="username" type="text" formControlName="username" class="form-control" placeholder="e.g John Doe">
+                            </div>
+
+                            <div id="password-field" class="field-wrapper input mb-2">
+                                <div class="d-flex justify-content-between">
+                                    <label for="password">PASSWORD</label>
+
+                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock">
+                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                </svg>
+                                <input id="password" name="password" type="password" formControlName="password" class="form-control" placeholder="Password">
+
+                            </div>
+                            <p class="signup-link text-left mt-2">
+                                <input [ngModel]="true" type="checkbox" formControlName="isagreed" class="isagreed" id="isagreed" value="1"> I Agree to the <a routerLink="/term-condition"> term and conditions</a> &
+                                <a routerLink="/privacy-policy">Privacy Policies</a>
+                            </p>
+                            <div class="d-sm-flex justify-content-between">
+                                <div class="field-wrapper">
+                                    <button type="submit" class="btn btn-primary initCustom" [disabled]="!logindata.valid">Login</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="forgot d-flex justify-content-between">
+                                        <a href="#" routerLink="/signup"> Sign Up?</a>
+                                        <a href="#" routerLink="/forgot-password"> Forget Password?</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <img src="assets/img/login-bg.jpg" class="fixed-bg" />
+</div>
+
+  <!-- =modal= -->
+  <div class="modal fade" id="modalterms" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Term and Conditions</h4>
+        </div>
+        <div class="modal-body">
+            <div class="form_blk" style="text-align:justify;">
+                <p><strong>TERMS AND CONDITIONS FOR APPOINTMENT AS RETAILER/DISTRIBUTOR/STAR DISTRIBUTOR</strong></p>
+                <p>These terms and conditions (Terms and Conditions) shall apply to and govern the commercial arrangement between {{site_name}} Services Pvt. Ltd. (herein after referred as '{{site_name}}') and the Retailer/Distributor/Star Distributor. These Terms
+                    and Conditions and any attachments hereto represent the entire agreement between {{site_name}} and the Retailer/Distributor/Star Distributor and no changes to the same are binding unless they are in writing and intimated by the authorized
+                    representative of {{site_name}}.</p>
+                <p>“<strong>{{site_name}}</strong>” is a digital financial facilitation service provider, a company incorporated under the Companies Act, 2013 (hereinafter referred to as the <strong>Company/{{site_name}}</strong> which expression shall unless repugnant
+                    to the context or meaning thereof mean and include its successors and permitted assigns).</p>
+                <ol>
+                    <li><strong> OPERATION OF THE RETAIL /Distributor/Star Distributor OUTLET</strong></li>
+                </ol>
+                <p>1.1 During the Term, the Retailer/Distributor/Star Distributor shall render the services (“Services”) of {{site_name}}, by and through such of its officers, employees, agents, representatives and affiliates as it shall designate, from time to
+                    time. Notwithstanding anything contrary contained in these Terms and Conditions, {{site_name}} shall have the right at any time, to modify, alter and amend the lists of Services, including the manner, procedure, process in which the Retailer/Distributor/Star
+                    Distributor will be required to perform the Services and the Retailer/Distributor/Star Distributor shall be bound by all such modifications, alterations and amendments made by {{site_name}}.</p>
+                <p>1.2 The Retailer/Distributor/Star Distributor shall only market, distribute sell or promote such {{site_name}} Services as are permitted expressly by {{site_name}}. The Retailer/Distributor/Star Distributor shall not automatically have the right
+                    to market, sell, distribute, or promote any product or service that may be provided by other retail outlets, whether in the present or in the future. In the event of any addition to the Services, {{site_name}} may, at its sole discretion,
+                    intimate the Retailer/Distributor/Star Distributor that the Retailer/Distributor/Star Distributor is entitled to sell, market, distribute and promote such product or service. {{site_name}} shall also have the right to direct the Retailer/Distributor/Star
+                    Distributor to discontinue providing any of the {{site_name}} Services at the Retail Outlet without assigning any reason whatsoever.</p>
+                <p>1.3 {{site_name}} shall specify to the Retailer/Distributor/Star Distributor, the necessary infrastructure and equipment including but not limited to computer terminals, peripherals attachments, internet and broadband connectivity, mobile device
+                    and/or any such device with GPRS connectivity, HTML enabled, which is compatible enough to run {{site_name}} Software/Services etc, for effectively providing the {{site_name}} Services, which the Retailer/Distributor/Star Distributor shall acquire
+                    at its sole expense. In case of the MPOS Application, the Retailer/Distributor/Star Distributor shall be entitled to install the {{site_name}} Software on that particular mobile device and/or any such other device, which is proposed to be
+                    registered with {{site_name}} for availing {{site_name}} Services, and no other mobile/device of the Retailer/Distributor/Star Distributor shall have such Software installed unless registered under the terms and conditions of this Agreement.
+                    Further, the Retailer/Distributor/Star Distributor shall prominently display the {{site_name}} signage, signboards, logos, etc at a prominent place in the Retail Outlet, strictly in accordance with the directions issued by {{site_name}} in this
+                    regard.</p>
+                <p>1.4 Upon satisfactory installation and operation of the necessary equipment and peripherals, {{site_name}} shall, subject to these Terms and Conditions, install the necessary software and other {{site_name}} Intellectual Property to enable the provision
+                    of the Services. All Services shall be provided solely through the portal of {{site_name}} or are recorded therein and no offline transactions are permitted and/or no such fake/false receipts should be issued by the Retailer/Distributor/Star
+                    Distributor for the willful fraud transaction done by the Retailer/Distributor/Star Distributor which are not transacted through {{site_name}} Software/portal. However, if any Retailer/Distributor/Star Distributor is found and/or discovered
+                    doing any such malicious/wrong/willful/fraudulent acts and/or offline transactions, it shall be liable and charged for such civil/penal and criminal acts by and under but not limited to the Indian Penal Code 1860 and Criminal Procedure
+                    Code 1973.</p>
+                <p>1.5 The Retailer/Distributor/Star Distributor shall obtain all necessary license(s), permits and approvals for selling, distributing, marketing and promoting the Services from the Retail Outlet and shall bear all costs and incidental expenses
+                    incurred in this regard, including without limitation all fees for application, license fees, charges and taxes.</p>
+                <p>1.6 The Retailer/Distributor/Star Distributor shall keep the Retailer/Distributor/Star Distributor Outlet open for business during normal business hours, or as permitted by law or such other time period as {{site_name}} may specify from time
+                    to time.
+                </p>
+                <p>1.7 The Retailer/Distributor/Star Distributor shall ensure that the Retail Outlet is utilized for the purpose of rendering the Services in accordance with these Terms and Conditions. The Retailer/Distributor/Star Distributor shall further
+                    ensure that and shall not cause or permit (a) any material that may not be made available to the public under applicable law, including without limitation any vulgar, obscene, pornographic, misleading, defamatory, libellous, offensive,
+                    derogatory, threatening, harassing, abusive or violent content, to be made available in the Retail Outlet or (b) any activities that are proscribed under law or reasonably considered to be immoral or against public interest.</p>
+                <p>1.8 {{site_name}} may, at its sole discretion and with or without consideration, provide training manuals, technology support, ongoing advice and assistance to the Retailer/Distributor/Star Distributor and designated employees of the Retailer/Distributor/Star
+                    Distributor, including, provision of brochures, pamphlets, charts, signboards, signage and other materials for the purposes of advertisement, promotion and marketing the Services. Any materials supplied by {{site_name}} shall be utilized
+                    solely in relation to the provision of Services and the Retailer/Distributor/Star Distributor shall ensure that such materials are not utilized for any other purpose.</p>
+                <p>1.9 The Retailer/Distributor/Star Distributor shall not encroach/poach upon the areas of operation of other neighbouring Retailer/Distributor/Star Distributors appointed by {{site_name}} or act in any manner which will prejudice the business
+                    prospects of neighbouring Retailer/Distributor/Star Distributors appointed by {{site_name}}.</p>
+                <ol start="2">
+                    <li><strong> DEFINITIONS AND INTERPRETATION</strong></li>
+                </ol>
+                <p>2.1. In this Terms of Use, unless the contrary intention appears and/or the context otherwise requires, capitalised terms defined by: (i) inclusion in quotations and/ or parenthesis have the meanings so ascribed; and (ii) the following terms
+                    shall have the meanings assigned to them herein below:</p>
+                <p>“<strong>Applicable Law</strong>” includes all applicable Indian statutes, enactments, acts of the state legislature or parliament, laws, ordinances, rules, bye-laws, regulations, notifications, guidelines, directions, directives and orders
+                    of any governmental authority, statutory authority, board, recognized stock exchange, as may be applicable including but not limited to Guidelines on Managing Risks and Code of Conduct in Outsourcing of Financial Services by Banks, Business
+                    Correspondent Guidelines issued by RBI from time to time, Payment &amp; Settlement Systems Act, 2007, Payment &amp; Settlement Systems Regulations, 2008, Policy Guidelines on Issuance and operation of Pre-paid Payment Instruments in India,
+                    and any other guideline in relation to pre-paid cards issued from time to time by Reserve Bank of India and in each case, any implementing regulation or interpretation issued thereunder including any successor Applicable Law;</p>
+                <p><strong>“Applicant</strong>” shall mean You or any individual person above the age of [18 (eighteen)] years, using an operational mobile phone connection, who applies either on his owner approaches Retail Partner at the Retail Outlet locations
+                    and/or such other locations, for availing the Company Services;</p>
+                <p>“<strong>Company Rules</strong>” shall mean policies issued by the Company with respect to its strategic business partners, retail partners, distributors, Consumers including but not limited to the policy on the code of conduct and other sales
+                    and management policies as issued on the Website, Platform and/ or otherwise and amended from time to time;</p>
+                <p>“<strong>Consumer</strong>” shall mean an Applicant who upon submission of the CAF and upon completion of necessary formalities, is found to be eligible by Company as per guidelines issued by RBI (if any), to avail the Company Services and
+                    has opened a Membership Account;</p>
+                <p>“<strong>Governmental Authority</strong>” means any nation, state, sovereign, or government, any federal, regional, state, local or political subdivision and any entity exercising executive, legislative, judicial, regulatory or administrative
+                    functions of or pertaining to government, constitutionally established and having jurisdiction over any of the parties (to the extent relevant to the transactions contemplated hereby) or the assets or operations of any of the foregoing
+                    or the transactions contemplated hereby;</p>
+                <p>“<strong>INR</strong>” or “<strong>RS</strong>” means Indian Rupees, the lawful currency of the Republic of India;</p>
+                <p>“<strong>Intellectual Property</strong>” shall mean all intellectual property used for the purpose of or in association with or in relation to providing the Company Services utilising the Platform and includes without limitation, (a) Software,
+                    operating manuals, software code, program, instructions, specifications, processes, input methods, data or information used in relation to, in association with or for the operation of the software installed by Company ; (b) the trademarks,
+                    service marks, trade names, business names, logos, symbols, styles, colour combinations used by Company during the course of its business and all depictions, derivations and representations thereof; (c) all promotional material including
+                    without limitation, advertisements, literature, graphics, images, content and the ‘look and feel’ of all of the above; and (d) all techniques, formulae, patterns, compilations, processes, inventions, practices, methodology, techniques,</p>
+                <p>“<strong>Tax</strong>” or “<strong>Taxes</strong>” shall mean any and all taxes, GST, cess, levies, imposts, duties, charges, deposits, fees, deductions or withholdings that are, or that are to be, imposed, levied, collected, withheld or assessed,
+                    together with any and all interest, penalties, claims or other liabilities arising under or relating thereto;</p>
+                <ol start="">
+                    <li><strong> ACCEPTANCE AND APPOINTMENT AS RETAILER/DISTRIBUTOR/STAR DISTRIBUTOR</strong></li>
+                </ol>
+                <p>3.1 These Terms and Conditions shall come into force from the date (Effective Date) of Retailer/Distributor/Star Distributor Application Form attached herewith. Within 30 (thirty) days from the date of acceptance by Retailer/Distributor/Star
+                    Distributor, the Retailer/Distributor/Star Distributor shall commence business in accordance with these Terms and Conditions.</p>
+                <p>3.2 The Retailer/Distributor/Star Distributor acknowledges that it has read and understood these Terms and Conditions at the time of making an application to {{site_name}} for operation of a retail outlet to provide the Services (as defined herein)
+                    under the name and style of “{{site_name}}” and that it has had sufficient time to evaluate the financial requirements, equipment required to conduct the business, services applicable/ enable in his area of operation and risks associated
+                    with the establishment and operation of the retail outlet.</p>
+                <p>3.3 : During the Term and subject to these Terms and Conditions, {{site_name}} hereby appoints the Retailer/Distributor/Star Distributor and the Retailer/Distributor/Star Distributor hereby accepts the appointment as a {{site_name}} Retailer/Distributor/Star
+                    Distributor, to establish and operate a retail outlet at such address as specified in the Retailer/Distributor/Star Distributor application form attached herewith for the purpose of marketing, selling and providing the Services (“Retail
+                    Outlet”). No changes to the address as mentioned in the Retailer/Distributor/Star Distributor Application form shall be permitted, except with the prior written consent from {{site_name}} whereas such consent shall be signed by the Authorized
+                    Representative of the level of Vice President or above.</p>
+                <p>3.4 The appointment of the Retailer/Distributor/Star Distributor under these Terms and Conditions shall remain valid up to the termination (“Term”). {{site_name}} may exercise its right of withdrawal by giving a notice in writing to the Retailer/Distributor/Star
+                    Distributor 1 (one) month prior to withdrawal unless any breach of this agreement by the Retailer/Distributor/Star Distributor.</p>
+                <p>3.5 The Retailer/Distributor/Star Distributor may describe himself as an 'authorized Retailer/Distributor/Star Distributor' of {{site_name}}, but must not hold [itself/himself] out as being entitled to bind {{site_name}} in any way. The Retailer/Distributor/Star
+                    Distributor shall not make, cause or permit, directly or indirectly, any description or projection of itself as a partner or employee or officer or representative of {{site_name}}.</p>
+                <p>3.6 {{site_name}} is in the business of facilitating/distributing/marketing/providing of product(s)/service(s) of various service providers to enable them to expand the distribution networks for the services provided by them.</p>
+                <p>3.7 The Retailer/Distributor/Star Distributor has understood the business model and aware that {{site_name}} is just a facilitator and distributor of products and services and does not own such services or products by itself. {{site_name}} takes
+                    reasonable efforts to make available the services and products, however, shall not be liable and responsible for any deficiency of such services and products. {{site_name}} further also takes reasonable efforts to provide its best uninterrupted
+                    services at best quality; however, technological systems are prone to interruption for upgradation, maintenance, break down of either the systems of {{site_name}} or that of the Service Providers’. The Retailer/Distributor/Star Distributor
+                    shall be managing his business considering such interruptions.</p>
+                <ol start="4">
+                    <li><strong> PAYMENTS AND COMMISSIONS</strong></li>
+                </ol>
+                <p>4.1 Non Refundable Registration Fee: The Retailer/Distributor/Star Distributor shall deposit such an amount (“Registration Fees”) by way of a non-refundable registration fee as per commercial terms defined by {{site_name}} on or before the Effective
+                    Date.
+                </p>
+                <p>4.2 Working Capital: The Retailer/Distributor/Star Distributor shall maintain and deposit with {{site_name}} working capital (“Working Capital”) in a bank designated and intimated to the Retailer/Distributor/Star Distributor for this purpose
+                    (“Designated Bank”) which will be an interest free deposit. The Working Capital limit may be increased from time to time by way of written intimation to the Retailer/Distributor/Star Distributor. The Retailer/Distributor/Star Distributor
+                    shall immediately deposit such further amounts to ensure that the Working Capital is maintained at the aforementioned amounts at all times.</p>
+                <p>4.3 Working Capital Limit: The Retailer/Distributor/Star Distributor shall be entitled to a credit limit equivalent to the Working Capital balance in the books of {{site_name}} (“Credit Limit”). The Retailer/Distributor/Star Distributor may enter
+                    into transactions up to the value of the existing Credit Limit. In the event the value of the transactions exceed the Credit Limit, all further transactions exceeding the Credit Limit shall automatically be blocked until the Credit Limit
+                    is sufficient to permit further transactions. In the event the Retailer/Distributor/Star Distributor desires to enter into transactions in excess of the Credit Limit, the Retailer/Distributor/Star Distributor shall deposit the amount either
+                    with the Distributor or {{site_name}} as the case may be to increase its Credit Limit accordingly. The Distributor/ {{site_name}} shall, at their sole discretion, permit enhancement of the Credit Limit. If the amount is deposited with the Distributor,
+                    the Retailer/Distributor/Star Distributor need to obtain proper receipt and the limit gets enhanced from the Distributor. {{site_name}} shall not be responsible for any liabilities in such an event.</p>
+                <p>4.4 Commission: The Retailer/Distributor/Star Distributor shall be entitled to commission, which shall be adjusted on a daily basis/monthly basis/transaction basis, for the provision of the Services at a rate to be intimated by {{site_name}}
+                    to the Retailer/Distributor/Star Distributor from time to time through its portal, either by way of credit to the Working Capital or the Retailer/Distributor/Star Distributor may deduct the commission due to it, prior to depositing the
+                    proceeds of a transaction in the Current Account. The Retailer/Distributor/Star Distributor shall be regularly updated on the Rates of Commission through the Portal. {{site_name}}, at its sole discretion shall decide the sharing of Gross
+                    Margin with the Retailer/Distributor/Star Distributors and its decision will be final. It is presumed that the Retailer/Distributor/Star Distributor has agreed to such commission / margin before the transaction. Any dispute in this regards
+                    will not be admissible by {{site_name}}.</p>
+                <p>4.5 Prices and discounts: All prices, charges, fees and discounts for all {{site_name}} Services shall be determined, and may from time to time be revised, by {{site_name}} at its sole discretion. The Retailer/Distributor/Star Distributor shall
+                    not collect cash from the customers by offering discounts on the Services which do not have {{site_name}}'s sanction. The Retailer/Distributor/Star Distributor shall also not provide any incentives, subsidies or do any act/ omission or thing,
+                    which shall have the effect of providing incentives or subsidies on the Services. The Retailer/Distributor/Star Distributor acknowledges that {{site_name}} has the right to alter the prices or nullify any sales that have been entered in the
+                    portal.</p>
+                <p>4.6 Taxes: All current and/or future taxes or similar fees including without limitation GST, value added tax, service tax and other local or municipal taxes shall be payable by the Retailer/Distributor/Star Distributor. Such amounts shall
+                    not be retained by the Retailer/Distributor/Star Distributor while retaining its commission. Payments made to the Retailer/Distributor/Star Distributor shall be subject to such withholdings as prescribed under applicable law. Subject to
+                    the aforesaid, {{site_name}} assumes no responsibility for the tax compliance of the Retailer/Distributor/Star Distributor.</p>
+                <p>4.7 Costs: All costs and expenses for operation of {{site_name}} Kiosk including but not limiting to electricity, telephone, staff salary, traveling, promotional activities and other similar out-of-pocket expenses incurred in the performance
+                    of the Services shall be borne by the Retailer/Distributor/Star Distributor.</p>
+                <p>4.8 Activity/Inactivity charges: A minimum monthly charges plus Taxes may be levied by {{site_name}} and the same shall be deducted from the Retailer/Distributor/Star Distributor’s Working Capital balance. The Retailer/Distributor/Star Distributor
+                    hereby agrees and acknowledges to pay such charges as intimated to the Retailer/Distributor/Star Distributor from to time.</p>
+                <p>4.9 Set off: {{site_name}} may, deduct sums due from the Retailer/Distributor/Star Distributor under these Terms and Conditions from any sums due to the Retailer/Distributor/Star Distributor under the same and the Retailer/Distributor/Star Distributor
+                    hereby consents to such set off being made by {{site_name}}.</p>
+                <ol start="5">
+                    <li><strong> EMPLOYEES</strong></li>
+                </ol>
+                <p>5.1 The Retailer/Distributor/Star Distributor shall be solely responsible for all such personnel employed by it, including payment of wages, making of contributions under various labour laws, such as the Employees Provident Fund and Miscellaneous
+                    Provisions Act, 1952, the Employees State Insurance Act, 1948, etc.</p>
+                <p>5.2 The Retailer/Distributor/Star Distributor acknowledges that it shall be responsible for all acts and omissions of its employees, subordinates, agents, aforesaid assignees or other personnel engaged by the Retailer/Distributor/Star Distributor.</p>
+                <ol start="6">
+                    <li><strong> EXCLUSIVITY AND NON COMPETE</strong></li>
+                </ol>
+                <p>6.1 During the continuation Term of this agreement, the Retailer/Distributor/Star Distributor shall not, directly or indirectly, through any other person, firm, corporation or other entity (whether as an officer, director, employee, partner,
+                    consultant, holder of equity or debt investment, lender or in any other manner or capacity):</p>
+                <p>(a) market, offer and/or perform services similar to that being developed, offered or sold by {{site_name}};</p>
+                <p>(b)solicit, induce, encourage or attempt to induce or encourage any employee or consultant of {{site_name}} to terminate his or her employment or consulting relationship with {{site_name}}, or to breach any other obligation to {{site_name}}; (c) solicit,
+                    interfere with, disrupt, alter or attempt to disrupt or alter the relationship, contractual or otherwise, between {{site_name}} and any other person including, without limitation, any consultant, contractor, customer, potential customer,
+                    or supplier of {{site_name}}; or (d) engage in or participate in any business conducted under any name that shall be the same as or similar to the name of {{site_name}} or any trade name used by {{site_name}}.</p>
+                <ol start="7">
+                    <li><strong> INTELLECTUAL PROPERTY</strong></li>
+                </ol>
+                <p>7.1 No license under any patents, copyrights, trademarks or any other intellectual property rights of {{site_name}} / its affiliates / its Service Provider(s) / third party(ies) is granted to or conferred upon to the Retailer/Distributor/Star
+                    Distributor by virtue of being the Retailer/Distributor/Star Distributor of {{site_name}}. The Retailer/Distributor/Star Distributor shall not acquire any interest and right on the trademark(s), trade name(s), logo, etc. of other party including
+                    {{site_name}} by virtue of this Agreement and shall not use the logos, trademark of {{site_name}}/owner of intellectual property on including interalia the Retailer/Distributor/Star Distributor’s Rubber stamps, letterheads, Visiting Cards, websites
+                    etc. and/or any such material in whatsoever manner.</p>
+                <p>7.2. The Retailer/Distributor/Star Distributor agrees to protect the logo, trade name and trademark of {{site_name}} and not use the same, in any unauthorised manner, whatsoever, including interalia as a tool for acknowledging payments accepted
+                    by the Retailer/Distributor/Star Distributor/his representative, thereby creating false impression about the authenticity of such acknowledgment / receipt. The Retailer/Distributor/Star Distributor hereby undertakes to indemnify, defend
+                    and hold {{site_name}} harmless for all loss(es) / damage(s) arising due to infringement of this clause.</p>
+                <p>The Retailer/Distributor/Star Distributor is aware of the consequences, if at all, the Retailer/Distributor/Star Distributor and/or his representative are found in unauthorized use of {{site_name}} logo/ trade name(s) in any manner, then strict
+                    action shall be taken against the Retailer/Distributor/Star Distributor, including permanent deactivation of his Services</p>
+                    </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- =modal end= -->
+
+    <!-- =modal= -->
+    <div class="modal fade" id="modalpolicy" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Privacy Policy</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form_blk" style="text-align:justify;">
+                    <p>{{site_name}} is committed to appreciating and respecting the choice and privacy of its user base and the business associates when they use our website and services. The statement here highlights and gives information about the privacy practices
+                        employed and used by us in relation to the personal information we hold of our business associates and users.</p>
+                    <p><strong>Definition and Description</strong></p>
+                    <p>For the purposes of the privacy policy, personal information and data include the data and information that can be identified or linked to specific users. This information may include address, name, mailing address, email id, telephone number,
+                        debit/credit card details, name of the cardholder, expiration, date of the card, mobile phone number related information, data card, DTH service information, electricity connection data and any other data, information, and details that
+                        are provided by the users and associates voluntarily while availing the services of the website of {{site_name}}.</p>
+                    <p>Exception to {{site_name}} Privacy Policy: Data and information provided by the users/business associates in the public forums and environments, live chat room, blog, album, social networking sites, discussion boards, classifieds, community and
+                        the likes (without limitation), are not deemed to be confidential and hence are not considered as personal/sensitive information and data, according to {{site_name}} privacy policy. Such information is therefore not protected under our privacy
+                        policy.
+                    </p>
+                    <p><strong>Use of Personal Information and Data</strong></p>
+                    <p>{{site_name}} uses the personal data and information given by the users/business associates to provide them and with specific services that have been explicitly requested by a user/associate. The personal information is required and used by PIGO
+                        PAY to troubleshoot concerns, resolve disputes, collect money, promote safe and secure services, inform the users and associates about our services/offers/updates, assess the interest of users and associates in our services, and prevent
+                        us in committing errors. The information may also be used for preventing criminal activity and fraud, and for enforcing terms and conditions, among other uses.</p>
+                    <p><strong>Disclosure of Information Data</strong></p>
+                    <p> {{site_name}} shares sensitive or private confidential data or information with an external organization only when it is necessary to enable us to provide the services to business associates and users. We may also share the information when it
+                        is necessary for us to do so for completing a legitimate transaction, for reporting purposes (required or necessary under the terms and conditions applicable to the information), and/or because of the applicability of the law. In no other
+                        scenario shall we share the confidential and personal data and information of our users and business associates. The information of the business associates and users will be shared when it is required or permitted by law.</p>
+                    <p><strong>Observation and Implementation of Reasonable Security Practices</strong></p>
+                </div>
+            </div>
+    
+          </div>
+        </div>
+      </div>
+      <!-- =modal end= -->
+
+<app-custom-model [length]="4" (onClickResendOtp)="resend_otp()" (onFocusNext)="moveFocus()"></app-custom-model>

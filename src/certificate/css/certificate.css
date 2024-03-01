@@ -1,0 +1,200 @@
+@charset "utf-8";
+/* CSS Document */
+
+html{
+    max-inline-size: fit-content;
+    margin: 0 auto;
+}
+
+body{
+    font-family:'Rubik', sans-serif;
+}
+
+body.A4.landscape .sheet{
+	padding: 20px;
+}
+
+.outer_wrapper{
+	padding: 15px;
+	background:url(../images/certificate-frame.svg)no-repeat;
+	position: relative;
+    background-size: cover;
+}
+
+.back_bg{
+	position: absolute;
+	left: 0;
+	top: 20px;
+	width: 100%;
+	text-align: center;
+}
+
+.header{
+	position: relative;
+}
+
+.header:after, .footer:after{
+	display: table;
+	content: '';
+	clear: both;
+}
+
+
+.rnfi_logo{
+    text-align: center;
+    height: 80px;
+    margin-top: 3rem;
+}
+
+.heading{
+	font-size: 30px;
+	font-weight: 800;
+	color: #000075;
+	text-align: center;
+	padding: 16px 30px 0;
+}
+
+.licence{
+	font-size:60px;
+	color: #0C78D8;
+	text-align: center;
+    margin-bottom: 60px;
+    font-weight: 600;
+}
+
+.licence p{
+	font-weight: 400;
+    font-size:30px;
+        margin: 0;
+}
+
+.cert_matter{
+    text-align: center;
+    padding: 0 25px;
+}
+
+.cert_matter p{
+    text-align: center;
+    font-size: 27px;
+    margin: 0;
+    padding: 6px 0;;
+}
+.matter2{margin-top:20px!important}
+
+.cert_matter p span{
+    font-weight: bold;
+    display: block;
+    border-bottom: 1px dashed #000;
+}
+.sign img{margin-bottom: 13px;}
+
+.footer{
+    margin-top: 40px;
+}
+
+.auth{
+	font-size: 20px;
+	padding: 0 45px;
+	text-align: center;
+	line-height: 30px;
+	margin-bottom: 45px;
+}
+
+.auth span{
+	font-size: 21px;
+}
+
+
+.warning{
+	font-size: 14px;
+	text-align: center;
+	margin-bottom: 15px;
+}
+
+.footer{
+    position: relative;
+}
+
+.footer .sign ul{
+	margin: 0;
+	padding: 0;
+}
+
+.footer .sign ul li{
+    list-style: none;
+    text-align: center;
+    font-size: 16px;
+    border-bottom: 1px dashed #000;
+    line-height: 36px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.sign ul li:last-child{
+	border: none;
+}
+
+.blks{
+    float: left;
+    width: 23%;
+    margin: 0 1%;
+}
+
+.footer .power ul{
+	margin: 0;
+	padding: 0;
+}
+
+.footer .power ul li{
+    list-style: none;
+    text-align: center;
+    font-size: 15px;
+    line-height: 36px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.footer .partner_logo{
+    margin: 0 150px;
+    text-align: center;
+}
+
+
+.footer .partner_logo h3{
+    font-size: 18px;
+    color: #f04e2d;
+    font-family: 'Quicksand', sans-serif;
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 1px dashed #000;
+    display: inline-block;
+    padding: 0 30px;
+    line-height: 39px;
+}
+
+
+
+
+.user_code ul{
+	margin: 0;
+	padding: 0;
+}
+
+.user_code ul li{
+    list-style: none;
+    text-align: center;
+    font-size: 16px;
+    border-bottom: 1px dashed #000;
+    line-height: 36px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.user_code ul li:first-child{
+    line-height: 81px;
+    font-size: 24px;
+}
+
+.user_code ul li:last-child{
+	border: none;
+}

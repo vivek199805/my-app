@@ -1,0 +1,62 @@
+<div class="widget mt-4">
+    <h5 class="aeps-title">Permission</h5>
+    <form [formGroup]="form" class="mt-3">
+        <div class="form-row">
+
+            <div class="col-md-6">
+                <label>Search User By</label><br>
+                <div class="ng-autocomplete userAutoComData w-100 w-100">
+                    <ng-autocomplete [data]="userAutoComData" [searchKeyword]="userKeyword" [debounceTime]="600" (selected)='selectEvent($event)' (inputCleared)="searchCleared()" (inputChanged)='getServerResponse($event)' [itemTemplate]="userItemTemplate" [notFoundTemplate]="userNotFoundTemplate"
+                        [minQueryLength]="5" placeholder="eg 'name', 'firm name', 'firm id'">
+                    </ng-autocomplete>
+
+                    <ng-template #userItemTemplate let-item>
+                        <a [innerHTML]="item.userdetail"></a>
+                    </ng-template>
+
+                    <ng-template #userNotFoundTemplate let-notFound>
+                        <div [innerHTML]="notFound"></div>
+                    </ng-template>
+                </div>
+            </div>
+
+        </div>
+
+        <div *ngIf="permissionData" formArrayName="secondForm">
+            <div class="row">
+                <div class="col-10 col-md-8 col-lg-6 mx-auto my-3">
+                    <h4>
+                        Update Permission of {{selectedUser}}
+                    </h4>
+                    <div>We have selected the access rights per our understanding. Still you can edit it</div>
+
+                    <div class="row setRightsBtnSec">
+                        <ng-template ngFor let-role [ngForOf]="getSecondForm.controls" let-i="index">
+                            <div class="col-6" [formGroupName]="i">
+                                <label>{{role.get('name')?.value | titlecase | replace : '_' : ' '}} </label>
+                                <div class="input_wrapper">
+                                    <!-- <input type="checkbox" class="switch_4" formControlName="value" [checked]="role.get('value')?.value == 1"> -->
+                                    <input type="checkbox" class="switch_4" formControlName="value">
+                                    <svg class="is_checked" viewBox="0 0 426.67 426.67">
+                                <path
+                                    d="M153.504 366.84c-8.657 0-17.323-3.303-23.927-9.912L9.914 237.265c-13.218-13.218-13.218-34.645 0-47.863 13.218-13.218 34.645-13.218 47.863 0l95.727 95.727 215.39-215.387c13.218-13.214 34.65-13.218 47.86 0 13.22 13.218 13.22 34.65 0 47.863L177.435 356.928c-6.61 6.605-15.27 9.91-23.932 9.91z" />
+                            </svg>
+                                    <svg class="is_unchecked" viewBox="0 0 212.982 212.982">
+                                <path
+                                    d="M131.804 106.49l75.936-75.935c6.99-6.99 6.99-18.323 0-25.312-6.99-6.99-18.322-6.99-25.312 0L106.49 81.18 30.555 5.242c-6.99-6.99-18.322-6.99-25.312 0-6.99 6.99-6.99 18.323 0 25.312L81.18 106.49 5.24 182.427c-6.99 6.99-6.99 18.323 0 25.312 6.99 6.99 18.322 6.99 25.312 0L106.49 131.8l75.938 75.937c6.99 6.99 18.322 6.99 25.312 0 6.99-6.99 6.99-18.323 0-25.313l-75.936-75.936z"
+                                    fill-rule="evenodd" clip-rule="evenodd" />
+                            </svg>
+                                </div>
+                            </div>
+                        </ng-template>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button type="button" class="btn btn-primary mt-3" [disabled]="form.pristine" (click)="onSubmit()">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>

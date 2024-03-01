@@ -1,0 +1,23 @@
+<app-loader></app-loader>
+<app-header *ngIf="checkLogin"></app-header>
+
+<div class="main-container" id="container">
+    <div class="overlay"></div>
+    <div class="search-overlay"></div>
+    <!-- BEGIN SIDEBAR  -->
+    <app-sidebar *ngIf="checkLogin"></app-sidebar>
+    <!-- END SIDEBAR  -->
+    <div id="content" class="main-content" [ngClass]="{'no-sidebar login':!checkLogin}">
+        <div class="layout-px-spacing ">
+            <router-outlet></router-outlet>
+        </div>
+        <!-- <select name="color" [(ngModel)]="changeColor" id="">
+            <option value="themecolor1">myClass1</option>
+            <option value="themecolor2">myClass2</option>
+            <option value="themecolor3">myClass3</option>
+            <option value="themecolor4">myClass4</option>
+        </select>
+        <button (click)="change(changeColor)">click</button> -->
+        <app-footer *ngIf="checkLogin "></app-footer>
+    </div>
+</div>

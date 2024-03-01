@@ -1,0 +1,95 @@
+<div class="layout-px-spacing">
+    <div class="row layout-top-spacing">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing p-0 p-md-2">
+            <div class="widget">
+                <h5>Mini Statement Txn</h5>
+                <!--  <p class="text-center">DMT Statement</p> -->
+                <form (submit)="filter()" [formGroup]="form">
+                    <div class="row">
+                        <div class="col-md-4 mt-1">
+                            <label for="">Select Date</label>
+                            <input type="text" placeholder="Select Date" class="form-control" bsDaterangepicker
+                                [maxDate]="maxDate" formControlName="selectdate" [bsConfig]="bsCustConfg"
+                                #rangePicker="bsDaterangepicker" (onShown)="onDateRangePickerShow()">
+                        </div>
+                        <!-- <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Start Date: <span class="alert-error">*</span></label>
+                                <input class="form-control" name="startdate" id="startdate" placeholder="yyyy-mm-dd" #dp="bsDatepicker" bsDatepicker [(ngModel)]="search.startdate" autocomplete="off">
+
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>End Date : <span class="alert-error">*</span></label>
+                                <input class="form-control" name="enddate" id="enddate" placeholder="yyyy-mm-dd" #dp="bsDatepicker" bsDatepicker [maxDate]="maxDate" [(ngModel)]="search.enddate" autocomplete="off">
+
+                            </div>
+                        </div> -->
+                        <div class="col-md-3 mt-1">
+                            <div class="form-group">
+                                <button class="btn btn-primary mt-2 btn-lg" type="submit">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div>
+                    <button (click)="download($event)" *ngIf="downloadexl" class="btn btn-danger mb-2 mr-2"
+                        style="float: right;">Export</button>
+                </div>
+                <app-data-table-tools [columns]="columns" [url]="url" (funObj)="funObj($event)"  (btnexl)="GetChildData($event)"></app-data-table-tools>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade"  id="transactionStatus"  data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <!-- <div class="modal-header">
+                <h4>Transaction Details</h4><span class="close" (click)="closeModal()" data-dismiss="modal">&times;</span>
+            </div> -->
+            <div class="modal-body">
+                <div><h3>Details</h3></div>
+                <table class="table table-bordered mb-0">
+                    <tbody>
+                        <tr *ngFor="let item of ministatementDetails  | keyvalue">
+                            <th *ngIf="item.key =='accessmode'">Access Mode</th>
+                            <td *ngIf="item.key =='accessmode'">{{item.value}}</td>
+
+                            <th *ngIf="item.key =='adddate'">Add Date</th>
+                            <td *ngIf="item.key =='adddate'">{{item.value}}</td>
+
+                            <th *ngIf="item.key =='aepsrefId'">AEPS Ref Id</th>
+                            <td *ngIf="item.key =='aepsrefId'">{{item.value}}</td>
+
+                            <th *ngIf="item.key =='commission'">Commission</th>
+                            <td *ngIf="item.key =='commission'">{{item.value}}</td>
+                            <th *ngIf="item.key =='id'">Id</th>
+                            <td *ngIf="item.key =='id'">{{item.value}}</td>
+                            <th *ngIf="item.key =='ipaddress'">IP Address</th>
+                            <td *ngIf="item.key =='ipaddress'">{{item.value}}</td>
+
+                            <th *ngIf="item.key =='lat'">Latitute</th>
+                            <td *ngIf="item.key =='lat'">{{item.value}}</td>
+                            <th *ngIf="item.key =='longt'">Longtitude</th>
+                            <td *ngIf="item.key =='longt'">{{item.value}}</td>
+                            <th *ngIf="item.key =='mobile'">Mobile</th>
+                            <td *ngIf="item.key =='mobile'">{{item.value}}</td>
+                            <th *ngIf="item.key =='remarks'">Remarks</th>
+                            <td *ngIf="item.key =='remarks'">{{item.value}}</td>
+                            <th *ngIf="item.key =='tds'">TDS</th>
+                            <td *ngIf="item.key =='tds'">{{item.value}}</td>
+                            <th *ngIf="item.key =='userid'">User Id</th>
+                            <td *ngIf="item.key =='userid'">{{item.value}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer"> 
+                <button class="btn" (click)="closeModal()" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

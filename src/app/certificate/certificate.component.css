@@ -1,0 +1,25 @@
+@import url(../../certificate/css/certificate.css);
+@import url(../../certificate/css/normalize.min.css);
+@import url(../../certificate/css/paper.css);
+@page { size: A4 landscape }
+
+
+body
+        {
+            counter-reset: page;
+        }
+        #pageFooter
+        {
+            page-break-before: always;
+            counter-increment: page;
+        }
+        #pageFooter:after
+        {
+            display: block;
+            text-align: right;
+            /*content: "Page " counter(page);*/
+        }
+        #pageFooter.first.page
+        {
+            page-break-before: avoid;
+        }

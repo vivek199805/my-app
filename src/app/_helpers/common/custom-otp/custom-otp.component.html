@@ -1,0 +1,33 @@
+<div class="d-block text-center">
+    <div *ngIf="showMesgOtpSendToMobile" class="">
+        <p>
+            <label for="" [innerHTML]="showMesgOtpSendToMobile"></label>
+        </p>
+    </div>
+    <div class="d-flex justify-content-center">
+        <ng-template ngFor let-control [ngForOf]="code.controls" let-i="index" let-isLast="last">
+            <ng-template [ngIf]="!isLast || isLast && isSubmitBtn">
+                <input type="text" class="digit mx-10" appFocusToNextInput [focusAfterLastInput]="'#verifyOtpBtn'" maxlength="1" (keypress)="numberOnly($event)" [formControl]="getket(i)">
+            </ng-template>
+            <ng-template [ngIf]="isLast && !isSubmitBtn">
+                <input type="text" class="digit mx-10" appFocusToNextInput [focusAfterLastInput]="'#verifyOtpBtn'" maxlength="1" (keypress)="numberOnly($event,true)" [formControl]="getket(i)">
+            </ng-template>
+        </ng-template>
+    </div>
+
+    <div class="d-flex justify-content-center mt-2" *ngIf="isResendOTP">
+        <span class="text-right" [style.width.px]="40 * otpBox + 15">
+            <span *ngIf="count">Resend again after {{count}} second</span>
+        <a href="javascript:void(0)" *ngIf="!count" (click)="resendOtpFn()"> Resend OTP</a>
+        </span>
+    </div>
+
+    <div class="mt-4" *ngIf="isSubmitBtn">
+        <button type="button" id="verifyOtpBtn" (click)="checkit()" class="btn btn-danger">
+            {{submitBtnName}}
+        </button>
+    </div>
+
+</div>
+
+<!-- <input type="text" class="digit mx-10" appValidComm maxlength="1" (keypress)="numberOnly($event)" *ngFor="let control of code.controls; index as i" [formControl]="getket(i)"> -->

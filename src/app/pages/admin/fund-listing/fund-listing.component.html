@@ -1,0 +1,115 @@
+<div class="layout-px-spacing">
+    <div class="row layout-top-spacing">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing p-0 p-md-2">
+            <div class="widget">
+                <h5>Funding List</h5>
+                <!-- <div class="row">
+                    <div class="col-12">
+                        <a class="btn btn-primary mt-2 btn-sm float-right" routerLink="/fund/create">Add Fund</a>
+                        <a class="btn btn-primary mt-2 btn-sm float-right mr-2" *ngIf="usertype !== '5'" routerLink="/fund/transfer">Transfer Fund</a>
+                    </div>
+                </div> -->
+                <!-- <form (submit)="filter()">
+                    <div class="row">
+                        <div class="col-md-3 mt-1">
+                            <div class="form-group">
+                                <label>Start Date: </label>
+                                <input onkeydown="return false"  class="form-control" name="startdate" id="startdate" placeholder="yyyy-mm-dd" #dp="bsDatepicker" bsDatepicker [maxDate]="maxDate" [(ngModel)]="search.startdate" autocomplete="off">
+
+                            </div>
+                        </div>
+                        <div class="col-md-3 mt-1">
+                            <div class="form-group">
+                                <label>End Date : </label>
+                                <input onkeydown="return false" class="form-control" name="enddate" id="enddate" placeholder="yyyy-mm-dd" #dp="bsDatepicker" bsDatepicker [maxDate]="maxDate" [(ngModel)]="search.enddate" autocomplete="off">
+
+                            </div>
+                        </div>
+                        <div class="col-md-3 mt-1">
+                            <div class="form-group">
+                                <label>Status :</label>
+                                <select class="form-control" name="status" [(ngModel)]="status">
+                                    <option value="">All</option>
+                                    <option value="1">Approved</option>
+                                    <option value="2">Pending</option>
+                                    <option value="3">Authorization Pending </option>
+                                    <option value="4">Hold</option>
+                                    <option value="0">Rejected</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mt-1">
+                            <div class="form-group ">
+                                <button class="btn btn-primary mt-2 btn-lg " type="submit ">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </form> -->
+                <app-data-table-tools [columns]="columns" [url]="url" (funObj)="funObj($event)"></app-data-table-tools>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="transactionStatus" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form [formGroup]="otp" (submit)="verify_otp()">
+                    <div class="row">
+                        <div class="col-md-12 col-12 mx-auto">
+                            <div class="form-group">
+                                <!-- [(ngModel)]="amount1" -->
+                                <label>Amount : <span class="alert-error">*</span></label>
+                                <input type="text" [ngClass]="{ 'is-invalid':  r.amount.touched && r.amount.invalid }" class="form-control" formControlName="amount" [readonly]="isValue" autocomplete="off" placeholder="Enter amount">
+                                <div *ngIf="r.amount.touched && r.amount.invalid" class="alert-error">
+                                    <div *ngIf="r.amount.errors.required"><small><b>amount is required.</b></small></div>
+                                    <div *ngIf="r.amount.errors.pattern"><small><b>Only Number allowed.</b></small></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-12 mx-auto">
+                            <div class="form-group">
+                                <label>Otp : <span class="alert-error">*</span></label>
+                                <input type="text" [ngClass]="{ 'is-invalid':  r.otp.touched && r.otp.invalid }" class="form-control" formControlName="otp" autocomplete="off" placeholder="Enter otp">
+                                <div *ngIf="r.otp.touched && r.otp.invalid" class="alert-error">
+                                    <div *ngIf="r.otp.errors.required"><small><b>otp is required.</b></small></div>
+                                    <div *ngIf="r.otp.errors.pattern"><small><b>Only Number allowed.</b></small></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-12 mx-auto">
+                            <div class="form-group">
+                                <label for="inputAddress">Remarks : <span class="alert-error">*</span></label>
+                                <textarea formControlName="remarks" name="remarks" class="form-control"></textarea>
+                                <div *ngIf="r.remarks.touched && r.remarks.invalid" class="alert-error">
+                                    <div *ngIf="r.remarks.errors.required"><small><b>Remarks is required.</b></small></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button type="submit" class="mt-4 btn btn-primary center-block" [disabled]="!otp.valid" style="text-align: center;">Submit</button>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="text-right" >
+                                <span *ngIf="count">Resend again after {{count}} second</span>
+                            <a href="javascript:void(0)" class="mt-4 btn btn-danger center-block " *ngIf="!count" (click)="resendOtp()" > Resend OTP</a>
+                            </span>
+                        </div>
+                    </div>
+                  
+              
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" (click)="closeModal()" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+  </div>

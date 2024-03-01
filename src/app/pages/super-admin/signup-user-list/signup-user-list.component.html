@@ -1,0 +1,238 @@
+<div class="layout-px-spacing">
+    <div class="row layout-top-spacing">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing p-0 p-md-2">
+            <div class="widget">
+                <h5>Signup User List</h5>
+                <form (submit)="filter()">
+                    <div class="row">
+                        <div class="col-md-3 mt-1">
+                            <div class="form-group">
+                                <label>Start Date: <span class="alert-error">*</span></label>
+                                <input onkeydown="return false" class="form-control" name="startdate" id="startdate" placeholder="yyyy-mm-dd" #dp="bsDatepicker" bsDatepicker [(ngModel)]="search.startdate" autocomplete="off">
+
+                            </div>
+                        </div>
+                        <div class="col-md-3 mt-1">
+                            <div class="form-group">
+                                <label>End Date : <span class="alert-error">*</span></label>
+                                <input  onkeydown="return false" class="form-control" name="enddate" id="enddate" placeholder="yyyy-mm-dd" #dp="bsDatepicker" bsDatepicker [maxDate]="maxDate" [(ngModel)]="search.enddate" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="col-md-3 mt-1">
+                            <div class="form-group">
+                                <label>Status </label>
+                                    <select name="status" [(ngModel)]="search.status" class="form-control" >
+                                        <option value="1">Approved</option>
+                                        <option value="2">Rejected</option>
+                                        <option value="0">Pending</option> 
+                                    </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mt-1">
+                            <div class="form-group">
+                                <button class="btn btn-primary mt-2 btn-lg" type="submit">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <app-data-table-tools [columns]="columns" (funObj)="funObj($event)" [url]="url"></app-data-table-tools>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+<div class="modal fade" id="signupform" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog signup" role="document">
+        <div class="modal-content">
+            <form [formGroup]="signupform" (submit)="signupForm()">
+                <div class="modal-body">
+                    <span class="close" data-dismiss="modal">&times;</span>
+                    <div class="add-edit-event-box">
+                        <div class="add-edit-event-content">
+                            <h5 class="add-event-title modal-title">Sighnup user</h5>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputAddress">Name : <span class="alert-error">*</span></label>
+                                    <input type="text" [ngClass]="{ 'is-invalid':  (f.name.touched || f.name.dirty) && f.name.invalid }" class="form-control" formControlName="name" autocomplete="off" placeholder="Enter Name">
+                                    <div *ngIf="(f.name.touched || f.name.dirty) && f.name.invalid" class="alert-error">
+                                        <div *ngIf="f.name.errors.required"><small><b>Name is required.</b></small></div>
+                                        <div *ngIf="f.name.errors.pattern"><small><b>Only alphabets allowed.</b></small></div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputAddress">Email : <span class="alert-error">*</span></label>
+                                    <input type="text" formControlName="email" [ngClass]="{ 'is-invalid': (f.email.touched || f.email.dirty) && f.email.invalid }" name="email" class="form-control" placeholder="Enter your email">
+                                    <div *ngIf="(f.email.touched || f.email.dirty) && f.email.invalid" class="alert-error">
+                                        <div *ngIf="f.email.errors.required"><small><b>Email is required.</b></small></div>
+                                        <div *ngIf="f.email.errors.email"><small><b>Enter a valid email.</b></small></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputAddress">Phone no : <span class="alert-error">*</span></label>
+                                    <input type="text" formControlName="phone" [ngClass]="{ 'is-invalid': f.phone.touched && f.phone.invalid }" name="phone" class="form-control" placeholder="Enter your phone no">
+                                    <div *ngIf="f.phone.touched && f.phone.invalid" class="alert-error">
+                                        <div *ngIf="f.phone.errors.required"><small><b>Phone no is required.</b></small></div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputAddress">Address : <span class="alert-error">*</span></label>
+                                    <input type="text" formControlName="address" [ngClass]="{ 'is-invalid': f.address.touched && f.address.invalid }" name="address" class="form-control" placeholder="Enter address">
+                                    <div *ngIf="f.address.touched && f.address.invalid" class="alert-error">
+                                        <div *ngIf="f.address.errors.required"><small><b>Address is required.</b></small></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputAddress">State : <span class="alert-error">*</span></label>
+                                    <input type="text" formControlName="state" [ngClass]="{ 'is-invalid': f.state.touched && f.state.invalid }" name="state" class="form-control" placeholder="Enter state">
+                                    <div *ngIf="f.state.touched && f.state.invalid" class="alert-error">
+                                        <div *ngIf="f.state.errors.required"><small><b>State is required.</b></small></div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputAddress">Pincode : <span class="alert-error">*</span></label>
+                                    <input type="text" formControlName="pincode" [ngClass]="{ 'is-invalid': f.pincode.touched && f.pincode.invalid }" name="pincode" class="form-control" placeholder="Enter pincode">
+                                    <div *ngIf="f.pincode.touched && f.pincode.invalid" class="alert-error">
+                                        <div *ngIf="f.pincode.errors.required"><small><b>Pincode no is required.</b></small></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputAddress">DOB : <span class="alert-error">*</span></label>
+                                    <input class="form-control" name="dob" formControlName="dob" id="dob" placeholder="yyyy-mm-dd" #dp="bsDatepicker" bsDatepicker autocomplete="off">
+                                    <div *ngIf="(f.dob.touched || f.dob.dirty) && f.dob.invalid" class="alert-error">
+                                        <div *ngIf="f.dob.errors.required"><small><b>Date of birth is required.</b></small></div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputAddress">Pan Nnumber : <span class="alert-error">*</span></label>
+                                    <input type="text" formControlName="pannumber" [ngClass]="{ 'is-invalid': f.pannumber.touched && f.pannumber.invalid }" name="pannumber" class="form-control" placeholder="Enter pan number">
+                                    <div *ngIf="f.pannumber.touched && f.pannumber.invalid" class="alert-error">
+                                        <div *ngIf="f.pannumber.errors.required"><small><b>Pan number is required.</b></small></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputAddress">Firm Name : <span class="alert-error">*</span></label>
+                                    <input type="text" formControlName="firmname" [ngClass]="{ 'is-invalid': f.firmname.touched && f.firmname.invalid }" name="firmname" class="form-control" placeholder="Enter your firm name">
+                                    <div *ngIf="f.firmname.touched && f.firmname.invalid" class="alert-error">
+                                        <div *ngIf="f.firmname.errors.required"><small><b>Firm Name is required.</b></small></div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6 pt-3 pl-3">
+                                    <label for="inputAddress">Gender : <span class="alert-error">*</span></label><br>
+                                    <label class="new-control new-radio new-radio-text radio-success">
+                                        <input  formControlName="gender" type="radio" checked class="new-control-input" name="gender" value="1">
+                                        <span class="new-control-indicator"></span><span class="new-radio-content">Male</span>
+                                      </label>
+                                    <label class="new-control new-radio new-radio-text radio-danger">
+                                        <input formControlName="gender" type="radio" class="new-control-input" name="gender" value="0">
+                                        <span class="new-control-indicator"></span><span class="new-radio-content">Female                                                </span>
+                                      </label>
+                                      <div *ngIf="(f.gender.touched || f.gender.dirty) && f.gender.invalid" class="alert-error">
+                                        <div *ngIf="f.gender.errors.required"><small><b>Gender is required.</b></small></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputAddress">User Type : <span class="alert-error">*</span></label>
+                                    <select formControlName="usertype" [ngClass]="{ 'is-invalid': f.usertype.touched && f.usertype.invalid }" name="usertype" class="form-control" >
+                                        <option value="2">Partner</option>
+                                        <option value="3">SuperDistributor</option>
+                                        <option value="4">Distributor</option>
+                                        <option value="5">Retailer</option>
+                                        <option value="6">ASM</option> 
+                                    </select>
+                                    <div *ngIf="f.usertype.touched && f.usertype.invalid" class="alert-error">
+                                        <div *ngIf="f.usertype.errors.required"><small><b>User type is required.</b></small></div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6" *ngIf="(usertype == '6' || usertype == '5' || usertype == '4')">
+                                    <label for="inputAddress">supdistributor : <span class="alert-error">*</span></label>
+                                    <ng-select2 [ngClass]="{ 'is-invalid': f.supdistributor.touched && f.supdistributor.invalid }" [options]="options" formControlName="supdistributor" [data]="supdistributorLisitng" [placeholder]="'Please select a supdistributor...'">
+                                    </ng-select2>
+                                    <div *ngIf="f.supdistributor.touched && f.supdistributor.invalid" class="alert-error">
+                                        <div *ngIf="f.supdistributor.errors.required"><small><b>Super distributor is required.</b></small></div>
+                                    </div>
+                                </div>
+                            </div> 
+                            <div class="form-row" *ngIf="(usertype == '6' || usertype == '5' || usertype == '4' || usertype == '3')">
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Partner : <span class="alert-error">*</span></label>
+                                    <ng-select2 [ngClass]="{ 'is-invalid': f.partner_id.touched && f.partner_id.invalid }" [options]="options" formControlName="partner_id" [data]="partnerLisitng" [placeholder]="'Please select a partner...'">
+                                    </ng-select2>
+                                    <div *ngIf="f.partner_id.touched && f.partner_id.invalid" class="alert-error">
+                                        <div *ngIf="f.partner_id.errors.required"><small><b>Partner is required.</b></small></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6" *ngIf="(usertype == '6' || usertype == '5')">
+                                    <label for="inputAddress">Distributor : <span class="alert-error">*</span></label>
+                                    <ng-select2 [ngClass]="{ 'is-invalid': f.distributor.touched && f.distributor.invalid }" [options]="options" formControlName="distributor" [data]="distributorLisitng" [placeholder]="'Please select a distributor...'">
+                                    </ng-select2>
+                                    <div *ngIf="f.distributor.touched && f.distributor.invalid" class="alert-error">
+                                        <div *ngIf="f.distributor.errors.required"><small><b>Distributor is required.</b></small></div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6" *ngIf="(usertype == '5')">
+                                    <label for="inputAddress">ASM : <span class="alert-error">*</span></label>
+                                    <ng-select2 [ngClass]="{ 'is-invalid': f.asm.touched && f.asm.invalid }" [options]="options" formControlName="asm" [data]="asmLisitng" [placeholder]="'Please select a asm...'">
+                                    </ng-select2>
+                                    <div *ngIf="f.asm.touched && f.asm.invalid" class="alert-error">
+                                        <div *ngIf="f.asm.errors.required"><small><b>ASM no is required.</b></small></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12">
+                                    <label for="start-date" class="">Remarks:</label>
+                                    <div class="event-title">
+                                        <textarea id="write-e" [ngClass]="{ 'is-invalid': (f.remarks.touched || f.remarks.dirty) && f.remarks.invalid }" formControlName="remarks" placeholder="Enter remarks" class="form-control" name="remarks"></textarea>
+                                        <div *ngIf="(f.remarks.touched || f.remarks.dirty) && f.remarks.invalid" class="alert-error">
+                                            <div *ngIf="f.remarks.errors.required"><small><b>Remarks is required.</b></small></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row mt-3">
+                                <div class="col-md-12">
+                                    <div class="event-badge">
+                                        <label for="start-date" class="">Transaction Mode:</label>
+                                        <div class="d-sm-flex d-block">
+                                            <div class="n-chk">
+                                                <label class="new-control new-radio radio-primary newlabel">
+                                                    <input type="radio" formControlName="status" class="new-control-input" name="status" value="1">
+                                                    <span class="new-control-indicator"></span>Approve
+                                                </label>
+                                            </div>
+                                            <div class="n-chk">
+                                                <label class="new-control new-radio radio-primary newlabel">
+                                                    <input type="radio" formControlName="status" class="new-control-input" name="status" value="2">
+                                                    <span class="new-control-indicator"></span>Rejecte
+                                                </label>
+                                            </div>
+                                            <div *ngIf="f.status.touched && f.status.invalid" class="alert-error">
+                                                <div *ngIf="f.status.errors.required"><small><b>Status is required.</b></small></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="discard" class="btn" data-dismiss="modal">Close</button>
+                    <button id="edit-event" class="btn btn-primary" [disabled]="!signupform.valid">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

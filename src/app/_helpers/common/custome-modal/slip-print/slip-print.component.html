@@ -1,0 +1,506 @@
+<div id="printIt" class="m-0 bg-light p-3 rounded">
+    <!-- <div class="text-center">
+        <img class="mb-3" src="{{logocolor}}">
+        <h3 class="text-center">PAYMENT RECEPIT</h3>
+        <div class="form_blk w-75 mx-auto">
+            <table class="table table-bordered table-sm " *ngIf="recepitListObj ">
+                <tbody>
+                    <tr *ngFor="let recepit of recepitListObj|keyvalue">
+                        <td class="text-left">{{recepit.key}}</td>
+                        <td class="text-left">{{recepit.value}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p *ngIf="!recepitListObj">Transaction not found</p>
+        </div>
+        <div class="text-center hideOnPrint d-print-none mt-2">
+            <button (click)="printInvoice()" class="btn btn-primary btn-sm px-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="feather feather-printer mr-1">
+                    <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                    <rect x="6" y="14" width="12" height="8"></rect>
+                </svg> Print Receipt</button>
+            <button class="btn btn-secondary ml-2" (click)="closeCallBack.emit()">Close</button>
+        </div>
+    </div> -->
+    <!-- --invoice-- -->
+    <div class="row invoice" *ngIf="this.dmt ==='dmt' || this.dmttran ==='dmttrans'">
+        {{this.dmttran}}   {{this.dmt}}
+        <div class="col-xl-9">
+            <div class="invoice-container">
+                <div class="invoice-inbox">
+                    <div id="ct" class="">
+                        <div class="invoice-00001">
+                            <div class="content-section" *ngIf="recepitListObj ">
+                                <div class="inv--head-section inv--detail-section">
+                                    <!-- *ngFor="let recepit of recepitListObj|keyvalue" -->
+                                    <div class="row">
+                                        <div class="col-sm-3 col-12 text-black">
+                                            <span class="inv-date">{{recepitListObj.addeddate}}</span>
+                                                <span class="inv-date">{{recepitListObj.dateadded}}</span>
+                                            <div class="d-flex mt-2">
+                                                
+                                                <img class="company-logo" width="170px" src="assets/logo.png" alt="company">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5 text-sm-right">
+                                            <p class="inv-list-number"><span class="inv-title">Invoice No. : </span>
+                                                <span
+                                                    class="inv-number d-inline-block">{{recepitListObj.refid?recepitListObj.refid:recepitListObj.txnno}}</span>
+                                            </p>
+                                        </div>
+                                        <div class="col-sm-4 text-sm-right">
+                                            <p class="inv-list-number"><span class="inv-title">{{recepitListObj.username}}</span>
+                                            </p>
+                                            <p class="inv-list-number"><span style="font-size: 20px;"></span><span class="inv-title">{{recepitListObj.phone}}</span>
+                                            </p>
+                                        </div>
+                                        <div class="col-sm-4 text-left mt-3">
+                                            
+                                            <!-- <p class="inv-email-address">{{compay_mail}}</p> -->
+                                            
+                                        </div>
+                                        <div class="col-sm-4 text-center mt-3">
+                                            <!-- <p class="inv-street-addr">{{company_address}}</p> -->
+                                           
+                                        </div>
+                                        <div class="col-sm-4 text-right mt-3">
+                                            
+                                            <!-- <p class="inv-email-address">{{company_mob}}</p> -->
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <!-- <div class="inv--detail-section inv--customer-detail-section">
+
+                                <div class="row">
+
+                                    <div class="col-xl-8 col-lg-7 col-md-6 col-sm-4 align-self-center">
+                                        <p class="inv-to">Invoice To</p>
+                                    </div>
+
+                                    <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8 align-self-center order-sm-0 order-1 inv--payment-info">
+                                        <h6 class=" inv-title">Payment Info:</h6>
+                                    </div>
+                                    
+                                    <div class="col-xl-8 col-lg-7 col-md-6 col-sm-4">
+                                        <p class="inv-customer-name">Jesse Cory</p>
+                                        <p class="inv-street-addr">405 Mulberry Rd. Mc Grady, NC, 28649</p>
+                                        <p class="inv-email-address">redq@company.com</p>
+                                        <p class="inv-email-address">(128) 666 070</p>
+                                    </div>
+                                    
+                                    <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8 col-12 order-sm-0 order-1">
+                                        <div class="inv--payment-info">
+                                            <p><span class=" inv-subtitle">Bank Name:</span> <span>Bank of America</span></p>
+                                            <p><span class=" inv-subtitle">Account Number: </span> <span>1234567890</span></p>
+                                            <p><span class=" inv-subtitle">SWIFT code:</span> <span>VS70134</span></p>
+                                            <p><span class=" inv-subtitle">Country: </span> <span>United States</span></p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                
+                            </div> -->
+
+                                <!-- {{recepitListObj | json}} -->
+
+                                <div class="inv--product-table-section" *ngIf="recepitListObj">
+                                    <div class="table-responsive">
+                                        <!-- <table class="table" >
+                                        <thead class="">
+                                            <tr>
+                                                <th scope="col">User Name</th>
+                                                <th scope="col">Items</th>
+                                                <th class="text-right" scope="col">Qty</th>
+                                                <th class="text-right" scope="col">Price</th>
+                                                <th class="text-right" scope="col">Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>{{recepitListObj.username}}</td>
+                                                <td>Crocin</td>
+                                                <td class="text-right">1</td>
+                                                <td class="text-right">2000.00</td>
+                                                <td class="text-right">{{recepitListObj.status}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>Crocin</td>
+                                                <td class="text-right">1</td>
+                                                <td class="text-right">2000.00</td>
+                                                <td class="text-right">2360.00</td>
+                                            </tr>
+                                              <tr>
+                                                <td>3</td>
+                                                <td>Crocin</td>
+                                                <td class="text-right">1</td>
+                                                <td class="text-right">2000.00</td>
+                                                <td class="text-right">2360.00</td>
+                                            </tr>
+                                     
+                                        </tbody>
+                                    </table> -->
+
+                                        <table class="table table-bordered table-sm form_blk">
+                                            <tbody >
+                                                <tr>
+                                                    <th>Account </th>
+                                                    <td>{{recepitListObj.acno}}</td> 
+                                                    <th>Transaction Mode</th>
+                                                    <td>{{recepitListObj.transfertype}}</td> 
+                                                </tr>
+                                                <tr>
+                                                    <th>Ifsc Code </th>
+                                                    <td>{{recepitListObj.ifsccode}}</td> 
+                                                    <th>Bank Name</th>
+                                                    <td>{{recepitListObj.bankname}}</td> 
+                                                </tr>
+                                                <tr>
+                                                    <th>Receiver Mobile</th>
+                                                    <td>{{recepitListObj.mobile}}</td> 
+                                                    <th>Charge</th>
+                                                    <td>{{recepitListObj.customercharge}}</td> 
+                                                </tr>
+                                                <tr>
+                                                    <th>Receiver Name </th>
+                                                    <td>{{recepitListObj.benename}}</td> 
+                                                    <th>Ackno</th>
+                                                    <td>{{recepitListObj.ackno}}</td> 
+                                                </tr>
+                                                <tr>
+                                                    <th>Status </th>
+                                                    <td>{{recepitListObj.status}}</td> 
+                                                    <th>Remarks</th>
+                                                    <td>{{recepitListObj.remarks}}</td> 
+                                                </tr>
+                                                <tr>
+                                                    <th>Utr </th>
+                                                    <td>{{recepitListObj.utr}}</td> 
+                                                    <th>Txnid</th>
+                                                    <td>{{recepitListObj.txnid}}</td> 
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table class="table table-bordered table-sm form_blk">
+                                            <tbody  >
+                                                <tr>
+                                                    <th>Total Amount </th>
+                                                    <td>{{recepitListObj.amount  | currency:'INR'}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    
+                                </div>
+
+                                <div class="inv--total-amounts">
+                                    <div class="row">
+                                        <!-- <div class="col-sm-5 col-12 order-sm-0 order-1">
+                                        </div> -->
+                                        <div class="col-sm-12 col-12 order-sm-1 order-0">
+                                            <div class="text-center">
+                                                <div class="row">
+                                                    <!-- <div class="col-sm-8 col-7">
+                                                    <p class="">Sub Total: </p>
+                                                </div>
+                                                <div class="col-sm-4 col-5">
+                                                    <p class="">$3155</p>
+                                                </div>
+                                                <div class="col-sm-8 col-7">
+                                                    <p class="">GST</p>
+                                                </div>
+                                                <div class="col-sm-4 col-5">
+                                                    <p class="">$700</p>
+                                                </div>
+                                                <div class="col-sm-8 col-7">
+                                                    <p class=" discount-rate">Discount : <span class="discount-percentage">5%</span> </p>
+                                                </div>
+                                                <div class="col-sm-4 col-5">
+                                                    <p class="">$10</p>
+                                                </div> -->
+                                                    <div class="col-sm-12 col-12 grand-total-title">
+                                                        <p><strong>Note: Multipe is not liable if the money is transferred in wrong bank account or wrong account number</strong></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <div class="col-xl-3 onprint">
+            <div class="invoice-actions-btn">
+                <div class="invoice-action-btn">
+                    <div class="row body">
+                        <div class="col-xl-12 col-md-3 col-sm-6">
+                            <button (click)="printInvoice();" class="btn btn-primary w-100 mb-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-printer mr-1">
+                                    <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                                    <path
+                                        d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2">
+                                    </path>
+                                    <rect x="6" y="14" width="12" height="8"></rect>
+                                </svg> Print Receipt</button>
+                        </div>
+                        <div class="col-xl-12 col-md-3 col-sm-6">
+                            <button class="btn btn-secondary w-100 mb-3" (click)="closeCallBack.emit()">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row invoice" *ngIf="this.dmt !=='dmt' && this.dmttran !=='dmttrans'">
+ 
+        <div class="col-xl-9">
+    
+            <div class="invoice-container">
+                <div class="invoice-inbox">
+                    
+                    <div id="ct" class="">
+                        
+                        <div class="invoice-00001">
+                            <div class="content-section" *ngIf="recepitListObj ">
+    
+                                <div class="inv--head-section inv--detail-section"  >
+    
+                                    <!-- *ngFor="let recepit of recepitListObj|keyvalue" -->
+                                
+                                    <div class="row">
+                                    
+                                        <div class="col-sm-6 col-12 mr-auto">
+                                            <div class="d-flex">
+                                                <img class="company-logo" src="assets/logo.png" alt="company">
+                                               
+                                            </div>
+                                        </div>
+    
+                                        <div class="col-sm-6 text-sm-right">
+                                            <p class="inv-list-number"><span class="inv-title">Invoice No. : </span> <span class="inv-number d-block" >{{recepitListObj.txnid?recepitListObj.txnid:recepitListObj.txnno}}</span></p>
+                                        </div>
+    
+                                        <div class="col-sm-6 align-self-center mt-3">
+                                            <!-- <p class="inv-street-addr">{{company_address}}</p>
+                                            <p class="inv-email-address">{{compay_mail}}</p>
+                                            <p class="inv-email-address">{{company_mob}}</p> -->
+                                        </div>
+                                        <div class="col-sm-6 align-self-center mt-3 text-sm-right">
+                                            <p class="inv-created-date"><span class="inv-title">Date and Time : </span> <span class="inv-date">{{recepitListObj.addeddate}}</span><span class="inv-date">{{recepitListObj.dateadded}}</span></p>
+                                            <!-- <p class="inv-due-date"><span class="inv-title">Due Date : </span> <span class="inv-date">26 Aug 2020</span></p> -->
+                                        </div>
+                                    
+                                    </div>
+                                    
+                                </div>
+    
+                                <!-- <div class="inv--detail-section inv--customer-detail-section">
+    
+                                    <div class="row">
+    
+                                        <div class="col-xl-8 col-lg-7 col-md-6 col-sm-4 align-self-center">
+                                            <p class="inv-to">Invoice To</p>
+                                        </div>
+    
+                                        <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8 align-self-center order-sm-0 order-1 inv--payment-info">
+                                            <h6 class=" inv-title">Payment Info:</h6>
+                                        </div>
+                                        
+                                        <div class="col-xl-8 col-lg-7 col-md-6 col-sm-4">
+                                            <p class="inv-customer-name">Jesse Cory</p>
+                                            <p class="inv-street-addr">405 Mulberry Rd. Mc Grady, NC, 28649</p>
+                                            <p class="inv-email-address">redq@company.com</p>
+                                            <p class="inv-email-address">(128) 666 070</p>
+                                        </div>
+                                        
+                                        <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8 col-12 order-sm-0 order-1">
+                                            <div class="inv--payment-info">
+                                                <p><span class=" inv-subtitle">Bank Name:</span> <span>Bank of America</span></p>
+                                                <p><span class=" inv-subtitle">Account Number: </span> <span>1234567890</span></p>
+                                                <p><span class=" inv-subtitle">SWIFT code:</span> <span>VS70134</span></p>
+                                                <p><span class=" inv-subtitle">Country: </span> <span>United States</span></p>
+                                            </div>
+                                        </div>
+    
+                                    </div>
+                                    
+                                </div> -->
+    
+                                <!-- {{recepitListObj | json}} -->
+    
+    
+                                
+    
+    
+                                <div class="inv--product-table-section">
+                                    <div class="table-responsive">
+                                        <!-- <table class="table" >
+                                            <thead class="">
+                                                <tr>
+                                                    <th scope="col">User Name</th>
+                                                    <th scope="col">Items</th>
+                                                    <th class="text-right" scope="col">Qty</th>
+                                                    <th class="text-right" scope="col">Price</th>
+                                                    <th class="text-right" scope="col">Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>{{recepitListObj.username}}</td>
+                                                    <td>Crocin</td>
+                                                    <td class="text-right">1</td>
+                                                    <td class="text-right">2000.00</td>
+                                                    <td class="text-right">{{recepitListObj.status}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>Crocin</td>
+                                                    <td class="text-right">1</td>
+                                                    <td class="text-right">2000.00</td>
+                                                    <td class="text-right">2360.00</td>
+                                                </tr>
+                                                  <tr>
+                                                    <td>3</td>
+                                                    <td>Crocin</td>
+                                                    <td class="text-right">1</td>
+                                                    <td class="text-right">2000.00</td>
+                                                    <td class="text-right">2360.00</td>
+                                                </tr>
+                                         
+                                            </tbody>
+                                        </table> -->
+    
+                                        <table class="table table-bordered table-sm form_blk w-75 mx-auto" *ngIf="recepitListObj ">
+                                            <tbody>
+                                                <tr *ngFor="let recepit of recepitListObj|keyvalue:originalOrder">
+                                                    <td class="text-right" style="width:30%;">{{recepit.key}}</td>                                            
+                                                    <td class="text-center" *ngIf="recepit.key ==='amount'">₹{{recepit.value}}</td>
+                                                    <td class="text-center" *ngIf="recepit.key !=='amount'">{{recepit.value}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <p *ngIf="!recepitListObj">Transaction not found</p>
+    
+                                    </div>
+                                    <div class="inv--total-amounts">
+                                
+                                        <div class="row">
+                                            <div class="col-sm-5 col-12 order-sm-0 order-1">
+                                            </div>
+                                            <div class="col-sm-7 col-12 order-sm-1 order-0">
+                                                <div class="text-sm-right">
+                                                    <div class="row">
+                                                        <!-- <div class="col-sm-8 col-7">
+                                                            <p class="">Sub Total: </p>
+                                                        </div>
+                                                        <div class="col-sm-4 col-5">
+                                                            <p class="">$3155</p>
+                                                        </div>
+                                                        <div class="col-sm-8 col-7">
+                                                            <p class="">GST</p>
+                                                        </div>
+                                                        <div class="col-sm-4 col-5">
+                                                            <p class="">$700</p>
+                                                        </div>
+                                                        <div class="col-sm-8 col-7">
+                                                            <p class=" discount-rate">Discount : <span class="discount-percentage">5%</span> </p>
+                                                        </div>
+                                                        <div class="col-sm-4 col-5">
+                                                            <p class="">$10</p>
+                                                        </div> -->
+                                                        <div class="col-sm-8 col-7 grand-total-title">
+                                                            <h4 class="" *ngIf="recepitListObj.amount">Total Amount  : </h4>
+                                                        </div>
+                                                        <div class="col-sm-4 col-5 grand-total-amount">
+                                                            <h4 class="">{{recepitListObj.amount | currency:'INR'}}</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+        
+                                    </div>
+                                </div>
+                                
+                
+    
+                                <div class="inv--note">
+    
+                                    <div class="row">
+                                        <div class="col-sm-12 col-12 order-sm-0 order-1">
+                                            <p>Note: Thank you for doing Business with us.</p>
+                                        </div>
+                                    </div>
+    
+                                </div>
+    
+                            </div>
+                        </div> 
+                        
+                    </div>
+    
+    
+                </div>
+    
+            </div>
+    
+        </div>
+    
+        <div class="col-xl-3 onprint">
+    
+            <div class="invoice-actions-btn">
+    
+                <div class="invoice-action-btn">
+    
+                    <div class="row body">
+                        <div class="col-xl-12 col-md-3 col-sm-6">
+                            <button (click)="printInvoice()" class="btn btn-primary w-100 mb-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                    class="feather feather-printer mr-1">
+                                    <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                                    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                                    <rect x="6" y="14" width="12" height="8"></rect>
+                                </svg> Print Receipt</button>
+                        </div>
+                        <div class="col-xl-12 col-md-3 col-sm-6">
+                            <button class="btn btn-secondary w-100 mb-3" (click)="closeCallBack.emit()">Close</button>
+                        </div>
+    
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+    
+    
+    </div>
+
+
+    <!-- <div class="modal-footer" id="non-printable">
+        <button type="button" class="btn btn-primary" (click)="onPrint()">
+          Print Receipt
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="modal.dismiss('cancel click')"
+        >
+          Cancel
+        </button>
+      </div> -->
+    
+</div>

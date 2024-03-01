@@ -1,0 +1,87 @@
+<div class="page-header text-right">
+    <div class="dropdown filter custom-dropdown-icon mt-4">
+        <a class="dropdown-toggle btn dropmenu" href="#" role="button" id="filterDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="text"><span>Show</span> : {{(datavalue)}}</span> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
+
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="filterDropdown">
+            <a class="dropdown-item" data-value="<span>Show</span> : Today" href="javascript:void(0);" (click)="getcurrenttxn('0','Today')">Today</a>
+            <a class="dropdown-item" href="javascript:void(0);" (click)="getcurrenttxn('7','Last 7 Days')">Last 7 Days</a>
+            <a class="dropdown-item" href="javascript:void(0);" (click)="getcurrenttxn('30','Last 30 Days')">Last 30 Days</a>
+            <a class="dropdown-item" href="javascript:void(0);" (click)="getcurrenttxn('180','Last 6 Months')">Last 6 Months</a>
+            <a class="dropdown-item" href="javascript:void(0);" (click)="getcurrenttxn('365','Last 1 Year')">Last 1 Year</a>
+        </div>
+    </div>
+</div>
+
+<div class="row layout-top-spacing">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing p-0 p-md-2">
+        <div class="widget widget-table-three">
+
+            <div class="widget-heading">
+                <h5 class="">Current Transaction</h5>
+            </div>
+
+            <div class="widget-content">
+                <div class="table-responsive">
+                    <table class="table table-bordered customTable">
+                        <tr>
+                            <th></th>
+                            <th *ngFor="let heading of headings">{{heading | titlecase}}</th>
+                        </tr>
+                        <tr *ngFor="let txn of values;">
+                            <th>{{txn.heading | titlecase}}</th>
+                            <td *ngFor="let child of txn.children;">
+                                <div class="td-content product-name">{{child | currency:"INR"}}</div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing p-0 p-md-2">
+        <div class="widget widget-one">
+            <div class="widget-heading">
+                <h6 class="">Commissions</h6>
+            </div>
+            <div class="w-chart">
+                <div class="w-chart-section" *ngFor="let item of commission">
+                    <div class="w-detail">
+                        <p class="w-title">{{item.service | titlecase}}</p>
+                        <p class="w-stats">{{item.commission | currency:"INR"}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- <div id="buttonsBlock" class="col-lg-12 layout-spacing">
+        <div class="statbox widget box box-shadow">
+            <div class="widget-header">
+                <div class="row">
+                    <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                        <h4> Quick Links </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6 col-md-6 col-sm-6 col-6">
+                    <div class="widget-content widget-content-area text-center">
+                        <a routerLink="/dmt" class="btn btn-warning btn-block mb-4 mr-2">DMT</a>
+                        <a routerLink="/recharge" class="btn btn-success  btn-block mb-4 mr-2">RECHARGE</a>
+                        <a routerLink="/bbps" class="btn btn-info  btn-block mb-4 mr-2">BBPS</a>
+                        <a routerLink="/paytm-wallet" class="btn btn-primary  btn-block mb-4 mr-2">PAYTM WALLET</a>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-md-6 col-sm-6 col-6">
+                    <div class="widget-content widget-content-area text-center">
+                        <a routerLink="/aeps/cash-withdrawal" class="btn btn-secondary  btn-block mb-4 mr-2">AEPS CASH WITHDRAWAL</a>
+                        <a routerLink="/aeps/balance-enquiry" class="btn btn-primary btn-block mb-4 mr-2">AEPS BALANCE ENQUIRY</a>
+                        <a routerLink="/aeps/aadhar-pay" class="btn btn-info btn-block mb-4 mr-2">AEPS AADHAARPAY</a>
+                        <a routerLink="/aeps/mini-statement" class="btn btn-success btn-block mb-4 mr-2">AEPS MINI STATEMENT</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+</div>

@@ -1,0 +1,34 @@
+<div class="layout-px-spacing d-none">
+    <div class="row layout-top-spacing">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing p-0 p-md-2">
+            <div class="form-form">
+                <div class="col-12">
+                    <div class="form-container">
+                        <div class="form-content">
+                            <h1 class="">PAYMENT RECEPIT</h1>
+                            <p class="text-center">Check Receipt</p>
+                            <div class="form_blk">
+                                <table class="table table-sm " *ngIf="recepitList.length > 0 ">
+                                    <tbody>
+                                        <tr *ngFor="let recepit of recepitList">
+                                            <td class="text-left">{{recepit.label}}</td>
+                                            <td class="text-left">{{recepit.value}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p *ngIf="recepitList.length == 0">Transaction not found</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<ri-custom-mdl [id]="mdlId">
+    <app-slip-print [riCustomMdlId]="mdlId" [recepitListObj]="recepitList" (closeCallBack)="slipClose()"></app-slip-print>
+</ri-custom-mdl>

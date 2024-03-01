@@ -1,0 +1,112 @@
+<div class="container-fluid">
+  <div class="row layout-top-spacing">
+    <div id="basic" class="col-lg-12 layout-spacing">
+      <div class="widget-content widget-content-area">
+        <div class="form-row">
+          <div class="col-md-6 mx-auto">
+            <label>Search User By</label><br>
+            <div class="ng-autocomplete userAutoComData">
+              <ng-autocomplete [data]="userAutoComData" [searchKeyword]="userKeyword" [debounceTime]="600"
+                (selected)='selectEvent($event)' (inputCleared)="searchCleared()"
+                (inputChanged)='getServerResponse($event)' [itemTemplate]="userItemTemplate"
+                [notFoundTemplate]="userNotFoundTemplate" [minQueryLength]="5"
+                placeholder="eg 'name', 'firm name', 'firm id'">
+              </ng-autocomplete>
+
+              <ng-template #userItemTemplate let-item>
+                <a [innerHTML]="item.userdetails"></a>
+              </ng-template>
+
+              <ng-template #userNotFoundTemplate let-notFound>
+                <div [innerHTML]="notFound"></div>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div id="toggleAccordion" class="row justify-content-center">
+            <div class="col-5 card" *ngFor="let item of data;index as i" [ngClass]="{'border52': this.assignTempID == item.id}">
+              <div class="card-header my-2" id="...">
+                <section class="mb-0 mt-0">
+                  <ul role="menu" class="list-group list-group-horizontal ">
+                      <li class="list-group-item ">
+                        <span>ID : {{item.id}}</span>
+                      </li>
+                      <li class="list-group-item ">
+                        <p><strong>Template Name : {{item.name}}</strong></p>
+                      </li>
+
+                      <li class="list-group-item text-center collapsed" data-toggle="collapse"
+                        data-target="#defaultAccordionOne" aria-expanded="true" aria-controls="defaultAccordionOne"
+                        [attr.aria-controls]="'docsget_'+ i" [attr.data-target]="'#docsget_'+ i"
+                        (click)="getData(item.id)"><i class="fas fa-chevron-down"></i>
+                    </li>
+                      <li class="list-group-item">
+                        <button class="btn btn-primary" *ngIf="this.assignTempID != item.id"
+                          (click)="onSubmit(item.id)">Apply</button>
+                        <button class="btn btn-warning" *ngIf="this.assignTempID == item.id">Applied</button>
+                      </li>
+                    </ul>
+                </section>
+              </div>
+              <div id="docsget_{{i}}" class="collapse" aria-labelledby="..." data-parent="#toggleAccordion">
+                <div>
+                  <div class="card-body" *ngIf="subData">
+                    <table style="width: 100%;text-align: center;">
+                      <thead>
+                        <tr>
+                          <th>
+                            Operator Name
+                          </th>
+                          <th>
+                            Value
+                          </th>
+                          <!-- <th>
+                                  Commission Distributor
+                                </th>
+                                <th>
+                                  Commission Partner
+                                </th>
+                                <th>
+                                  Commission Retailer
+                                </th> -->
+                          <th>
+                            Commission Type
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let item of subData">
+                          <td>
+                            {{item.operatorName}}
+                          </td>
+                          <td>
+                            {{item.value}}
+                          </td>
+                          <!-- <td>
+                                  {{item.comm_distributor}}
+                                </td>
+                                <td>
+                                  {{item.comm_partner}}
+                                </td>
+                                <td>
+                                  {{item.comm_retailer}}
+                                </td> -->
+                          <td>
+                            <span *ngIf="item.is_fixed == '0'">Percentage</span>
+                            <span *ngIf="item.is_fixed == '1'">Fixed</span>
+                          </td>
+
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

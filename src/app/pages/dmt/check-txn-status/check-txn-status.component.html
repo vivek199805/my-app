@@ -1,0 +1,38 @@
+<!--  BEGIN CONTENT AREA  -->
+<div class="layout-px-spacing">
+    <div class="row layout-top-spacing">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing p-0 p-md-2">
+            <div class="form-form">
+                <div class="form-form-wrap">
+                    <div class="form-container">
+                        <div class="form-content">
+
+                            <h1 class="">Check Transaction Status</h1>
+
+                            <form class="text-left" [formGroup]="form" (submit)="onSubmit()">
+                                <div class="form">
+                                    <div id="username-field" class="field-wrapper input">
+                                        <label for="username">Enter Reference No.</label>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="top: 52px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                                         <input type="text" [ngClass]="{ 'is-invalid': f.referenceid.touched && f.referenceid.invalid }" formControlName="referenceid" name="referenceid" class="form-control" placeholder="Reference Id">
+                                        <div *ngIf="f.referenceid.touched && f.referenceid.invalid" class="alert-error">
+                                            <div *ngIf="f.referenceid.errors.required"><small><b>Reference id is required.</b></small></div>
+                                        </div>
+                                    </div>
+                                    <div class="d-sm-flex justify-content-between">
+                                        <div class="field-wrapper">
+                                            <button type="submit" class="btn btn-primary" value="">Submit</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--  END CONTENT AREA  -->

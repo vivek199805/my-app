@@ -1,0 +1,28 @@
+<div class="widget mt-4">
+    <h5 class="aeps-title">ID Transfer To User</h5>
+    <form [formGroup]="form" class="mt-3" (submit)="onSubmit()">
+        <div class="form-row">
+
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Select User : <span class="alert-error">*</span></label>
+                <ng-select2 [ngClass]="{ 'is-invalid': f.username.touched && f.username.invalid }" [options]="options"
+                    formControlName="username" [data]="userLisitng" [placeholder]="'Please select a username/name...'">
+                </ng-select2>
+                <div *ngIf="f.username.touched && f.username.invalid" class="alert-error">
+                    <div *ngIf="f.username.errors.required"><small><b>User Name is required.</b></small></div>
+                </div>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="inputAddress">Enter No. of ID<span class="alert-error">*</span></label>
+                <input type="text" formControlName="purchaseid"
+                    [ngClass]="{ 'is-invalid': f.purchaseid.touched && f.purchaseid.invalid }" name="purchaseid"
+                    class="form-control" placeholder="Enter No. of ID">
+                <div *ngIf="f.purchaseid.touched && f.purchaseid.invalid" class="alert-error">
+                    <div *ngIf="f.purchaseid.errors.required"><small><b>No. of ID is required.</b></small></div>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3" [disabled]="!form.valid">Submit</button>
+    </form>
+</div>

@@ -1,0 +1,346 @@
+<!-- <div class="alert alert-gradient mb-md-2 mt-4" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" data-dismiss="alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x close"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button> GYTTY</div> -->
+<div class="row layout-top-spacing">
+  <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-8">
+        <label for="">Select Date</label>
+        <input type="text" placeholder="Select Date" class="form-control" bsDaterangepicker [maxDate]="maxDate"
+          [(ngModel)]="search" [bsConfig]="bsCustConfg" #rangePicker="bsDaterangepicker"
+          (onShown)="onDateRangePickerShow()">
+      </div>
+      <div class="col-md-4 mt-4">
+        <label><span class="alert-error"></span></label>
+        <button class="form-control btn btn-danger" (click)="filter()">Submit</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 mt-3">
+    <div class="row">
+      <div class="col-12 col-md-7 col-xl-8">
+        <div class=" widget">
+          <owl-carousel-o [options]="sliderOptions">
+            <ng-container *ngFor="let slide of slidesStore">
+              <ng-template carouselSlide>
+                <img [src]="slide" class="img-fluid" >
+              </ng-template>
+            </ng-container>
+      
+          </owl-carousel-o>
+        </div>
+        
+      </div>
+      <!-- /.col-12 col-md-7 col-xl-7 -->
+      <div class="col-12 col-md-5 col-lg-5 col-xl-4" *ngIf="usertype == '1'">
+      
+        <div class="widget widget-chart-two widget-three">
+       
+          <div class="widget-content">
+            <div id="chart" class="">
+               <!-- <h2><span>Amount</span>:&nbsp;&nbsp;<span>{{item.amount}}</span></h2><br>
+               <h2><span>Status</span>:&nbsp;&nbsp;<span>{{(item.status == 0?"Rejected":"Approved")}}</span></h2> -->
+               <table class="table">
+                <thead>
+                  <tr>
+                    
+                    <th scope="col">Amount</th>
+                    <th scope="col">Status</th>
+                   
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor = " let item of amount">
+                    <td>{{item.amount}}</td>
+                    <td>{{(item.status == 0?"Rejected":"Approved")}}</td>
+                    
+                  </tr>
+          
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <div class="col-12 col-md-5 col-lg-5 col-xl-4" *ngIf="usertype !== '1'">
+      
+        <div class="widget widget-chart-two widget-three">
+          <div class="heading mb-2">
+            <h6>Product Wise Volume Share (MTD) <i class="fa fa-question-circle " data-toggle="tooltip" data-html="true"
+                data-placement="right" title="<em>Product-wise total volumes in ₹ for a month till date </em>"></i></h6>
+          </div>
+          <!-- /.heading -->
+          <div class="widget-content">
+            <div id="chart" class="">
+              <div *ngIf="product_wise_status?.length != 0">
+                <apx-chart [chart]="product_wise_volume_share.chart" [dataLabels]="product_wise_volume_share.dataLabels"
+                  [legend]="product_wise_volume_share.legend" [plotOptions]="product_wise_volume_share.plotOptions"
+                  [stroke]="product_wise_volume_share.stroke" [labels]="product_wise_volume_share.labels"
+                  [series]="product_wise_volume_share.series" [responsive]="product_wise_volume_share.responsive">
+                </apx-chart>
+              </div>
+              <div *ngIf="product_wise_status?.length == 0">
+                <h5>No data!</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <!-- /.col-md-4 -->
+      
+        
+       
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-top-spacing mt-2" *ngIf="usertype == '5'">
+
+        <!-- /.heading -->
+        <div class="card quick-main">
+          <div class="heading text-center mt-0 mb-2">
+            <h6><strong>Quick Links</strong></h6>
+          </div>
+          <div class="qLink">
+            <div _ngcontent-qsf-c74="" class="row">
+              <div _ngcontent-qsf-c74="" class="col-6 col-sm-4 col-md-3 col-lg-3 mb-md-2"><a _ngcontent-qsf-c74=""
+                  href="#/dmt" routerlink="/dmt">
+                  <div _ngcontent-qsf-c74="" class="service-box">
+                    <div _ngcontent-qsf-c74="" class="img-wrap"><img _ngcontent-qsf-c74="" src="assets/img/dmt-icon.png"
+                        alt=""></div>
+                    <div _ngcontent-qsf-c74="" class="heading">
+                      <h3 _ngcontent-qsf-c74="">Domestic money transfer</h3>
+                    </div>
+                  </div>
+                </a></div>
+              <div _ngcontent-qsf-c74="" class="col-6 col-sm-4 col-md-3 col-lg-3 mb-md-2"><a _ngcontent-qsf-c74=""
+                  href="#/aeps/aadhar-pay" routerlink="/aeps/aadhar-pay">
+                  <div _ngcontent-qsf-c74="" class="service-box">
+                    <div _ngcontent-qsf-c74="" class="img-wrap"><img _ngcontent-qsf-c74="" src="assets/img/aeps.png"
+                        alt=""></div>
+                    <div _ngcontent-qsf-c74="" class="heading">
+                      <h3 _ngcontent-qsf-c74="">AEPS Aadharpay</h3>
+                    </div>
+                  </div>
+                </a></div>
+              <div _ngcontent-qsf-c74="" class="col-6 col-sm-4 col-md-3 col-lg-3 mb-md-2"><a _ngcontent-qsf-c74=""
+                  href="#/aeps/cash-withdrawal" routerlink="/aeps/cash-withdrawal">
+                  <div _ngcontent-qsf-c74="" class="service-box">
+                    <div _ngcontent-qsf-c74="" class="img-wrap"><img _ngcontent-qsf-c74=""
+                        src="assets/img/cash-withdrawal.png" alt=""></div>
+                    <div _ngcontent-qsf-c74="" class="heading">
+                      <h3 _ngcontent-qsf-c74="">AEPS Cash withdrawal</h3>
+                    </div>
+                  </div>
+                </a></div>
+              <div _ngcontent-qsf-c74="" class="col-6 col-sm-4 col-md-3 col-lg-3 mb-md-2"><a _ngcontent-qsf-c74=""
+                  href="#/paytm-wallet" routerlink="/paytm-wallet">
+                  <div _ngcontent-qsf-c74="" class="service-box">
+                    <div _ngcontent-qsf-c74="" class="img-wrap"><img _ngcontent-qsf-c74=""
+                        src="assets/img/paytm-wallet.png" alt=""></div>
+                    <div _ngcontent-qsf-c74="" class="heading">
+                      <h3 _ngcontent-qsf-c74="">Paytm Wallet</h3>
+                    </div>
+                  </div>
+                </a></div>
+              <div _ngcontent-qsf-c74="" class="col-6 col-sm-4 col-md-3 col-lg-3 mb-md-2"><a _ngcontent-qsf-c74=""
+                  href="#" routerLink="/aeps/balance-enquiry">
+                  <div _ngcontent-qsf-c74="" class="service-box">
+                    <div _ngcontent-qsf-c74="" class="img-wrap"><img _ngcontent-qsf-c74=""
+                        src="assets/img/aeps-bal-enq.png" alt=""></div>
+                    <div _ngcontent-qsf-c74="" class="heading">
+                      <h3 _ngcontent-qsf-c74="">AEPS Balance Enquiry</h3>
+                    </div>
+                  </div>
+                </a></div>
+              <div _ngcontent-qsf-c74="" class="col-6 col-sm-4 col-md-3 col-lg-3 mb-md-2"><a _ngcontent-qsf-c74=""
+                  href="#/bbps" routerlink="/bbps">
+                  <div _ngcontent-qsf-c74="" class="service-box">
+                    <div _ngcontent-qsf-c74="" class="img-wrap"><img _ngcontent-qsf-c74="" src="assets/img/bbps.png"
+                        alt=""></div>
+                    <div _ngcontent-qsf-c74="" class="heading">
+                      <h3 _ngcontent-qsf-c74="">BBPS</h3>
+                    </div>
+                  </div>
+                </a></div>
+              <div _ngcontent-qsf-c74="" class="col-6 col-sm-4 col-md-3 col-lg-3 mb-md-2"><a _ngcontent-qsf-c74=""
+                  href="#/aeps/mini-statement" routerlink="/aeps/mini-statement">
+                  <div _ngcontent-qsf-c74="" class="service-box">
+                    <div _ngcontent-qsf-c74="" class="img-wrap"><img _ngcontent-qsf-c74=""
+                        src="assets/img/aeps-mini-stat.png" alt=""></div>
+                    <div _ngcontent-qsf-c74="" class="heading">
+                      <h3 _ngcontent-qsf-c74="">AEPS Mini Statement</h3>
+                    </div>
+                  </div>
+                </a></div>
+              <div _ngcontent-qsf-c74="" class="col-6 col-sm-4 col-md-3 col-lg-3 mb-md-2"><a _ngcontent-qsf-c74=""
+                  href="#/recharge" routerlink="/recharge">
+                  <div _ngcontent-qsf-c74="" class="service-box">
+                    <div _ngcontent-qsf-c74="" class="img-wrap"><img _ngcontent-qsf-c74="" src="assets/img/recharge.png"
+                        alt=""></div>
+                    <div _ngcontent-qsf-c74="" class="heading">
+                      <h3 _ngcontent-qsf-c74="">Recharge</h3>
+                    </div>
+                  </div>
+                </a></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing p-0 p-md-2 slide">
+    <owl-carousel-o [options]="customOptions">
+      <ng-container *ngFor="let slide of slides">
+        <ng-template carouselSlide [id]="slide.id">
+          <div class="item">
+            <div class="custom-cards">
+              <div class="card text-white">
+                <img [src]="slide.img">
+                <div class="slide-title">{{slide.title}}</div>
+                <div class="stat-content">
+                  <div class="card-body">
+                    <p>₹ {{slide.amount}}</p>
+                    <hr class="border-b mt-1 mb-1">
+                    <p style="font-size: 15px;">Total No.<strong class="bold">[{{slide.count}}]</strong> </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
+  </div>
+  <!-- <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing p-0 p-md-2 slide">
+  <div class="custom-cards">
+    <div class="card text-white">
+      <div class="stat-content d-flex justify-content-between">
+        <div class="card-body">No transaction
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div class="col-12 col-md-7 col-xl-8">
+  <div class=" widget-chart-one">
+    <div class="widget widget-content widget-three">
+      <div class="widget-heading heading tabber mb-2">
+        <h6>Business Trend<i class="fa fa-question-circle" data-placement="right" data-toggle="tooltip"
+            data-html="true"
+            title="<em>Graphical trend for products based on their business performance via volume and number of transactions</em>"></i>
+        </h6>
+        <ul class="tabs tab-pills">
+          <li><a href="javascript:void(0);" (click)="dateType = 'TODAY';onselecttrend()"
+              [ngClass]="{'active': dateType == 'TODAY'}">Today</a></li>&nbsp;
+          <li><a href="javascript:void(0);" (click)="dateType = 'PAST7';onselecttrend()"
+              [ngClass]="{'active': dateType == 'PAST7'}">Past 7 Days</a></li>&nbsp;
+          <li><a href="javascript:void(0);" (click)="dateType = 'PAST30';onselecttrend()"
+              [ngClass]="{'active': dateType == 'PAST30'}">Past 30 Days</a></li>&nbsp;
+          <li><a href="javascript:void(0);" (click)="dateType = 'PAST1YEAR';onselecttrend()"
+              [ngClass]="{'active': dateType == 'PAST1YEAR'}">Past 1 year</a></li>&nbsp;
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+              aria-expanded="false">{{findType}} <i class="fa fa-chevron-down"></i></a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" id="icon-profile-tab" data-toggle="tab" href="javascript:void(0);"
+                (click)="findType = 'AEPS';onselecttrend()" role="tab" aria-selected="false">Aeps</a>
+              <a class="dropdown-item" id="icon-profile-tab" data-toggle="tab" href="javascript:void(0);"
+                (click)="findType = 'MATM';onselecttrend()" role="tab" aria-selected="false">M-ATM</a>
+              <a class="dropdown-item" id="icon-profile-tab" data-toggle="tab" href="javascript:void(0);"
+                (click)="findType = 'DMT';onselecttrend()" role="tab">DMT</a>
+              <a class="dropdown-item" id="icon-profile-tab" data-toggle="tab" href="javascript:void(0);"
+                (click)="findType = 'PG';onselecttrend()" role="tab" aria-selected="false">PG</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="tabs tab-content">
+        <div id="content_1" class="tabcontent">
+          <div *ngIf="bussinessstaus ?.length != 0">
+            <apx-chart [chart]="businesschart.chart" [dataLabels]="businesschart.dataLabels"
+              [stroke]="businesschart.stroke" [series]="businesschart.series" [labels]="businesschart.labels"
+              [xaxis]="businesschart.xaxis" [yaxis]="businesschart.yaxis" [grid]="businesschart.grid"
+              [legend]="businesschart.legend" [tooltip]="businesschart.tooltip" [fill]="businesschart.fill"
+              [responsive]="businesschart.responsive">
+            </apx-chart>
+          </div>
+          <div *ngIf="bussinessstaus ?.length == 0">
+            <h5>No data!</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.row -->
+</div>
+
+  <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 layout-top-spacing mt-2">
+    <div class="widget widget-content widget-three">
+      <div class="heading text-center my-4">
+        <h6><strong>Latest Updates</strong></h6>
+      </div>
+      <!-- /.heading -->
+      <div class="news-box" id="style-1">
+        <div class="news-main">
+
+          <marquee direction="up" onmouseout="this.start();" onmouseover="this.stop();">
+            <div *ngFor="let item of content" class="border-bottom py-2">
+              &nbsp;&nbsp;{{item.content}} ;
+            </div>
+          </marquee>
+
+
+          <!-- {{content}} -->
+          <!-- <p><img src="assets/message.svg"> Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry.</p>
+
+          <span><svg width="12" height="14" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M4 6.33331H2.66667V7.66665H4V6.33331ZM6.66667 6.33331H5.33333V7.66665H6.66667V6.33331ZM9.33333 6.33331H8V7.66665H9.33333V6.33331ZM10.6667 1.66665H10V0.333313H8.66667V1.66665H3.33333V0.333313H2V1.66665H1.33333C0.593333 1.66665 0.00666666 2.26665 0.00666666 2.99998L0 12.3333C0 13.0666 0.593333 13.6666 1.33333 13.6666H10.6667C11.4 13.6666 12 13.0666 12 12.3333V2.99998C12 2.26665 11.4 1.66665 10.6667 1.66665ZM10.6667 12.3333H1.33333V4.99998H10.6667V12.3333Z"
+                fill="#858585" />
+            </svg> Aug 14, 2021 <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12.0002 4.74667H7.48016L9.30683 2.86667C7.48683 1.06667 4.54016 1 2.72017 2.8C0.900165 4.60667 0.900165 7.52 2.72017 9.32667C4.54016 11.1333 7.48683 11.1333 9.30683 9.32667C10.2135 8.43333 10.6668 7.38667 10.6668 6.06667H12.0002C12.0002 7.38667 11.4135 9.1 10.2402 10.26C7.90016 12.58 4.10016 12.58 1.76017 10.26C-0.573168 7.94667 -0.593168 4.18667 1.74683 1.87333C4.08683 -0.44 7.84016 -0.44 10.1802 1.87333L12.0002 0V4.74667ZM6.3335 3.33333V6.16667L8.66683 7.55333L8.18683 8.36L5.3335 6.66667V3.33333H6.3335Z"
+                fill="#858585" />
+            </svg>11:24 am</span> -->
+        </div>
+
+        <!-- <div class="news-main">
+          <p><img src="assets/message.svg"> Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry.</p>
+
+          <span><svg width="12" height="14" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M4 6.33331H2.66667V7.66665H4V6.33331ZM6.66667 6.33331H5.33333V7.66665H6.66667V6.33331ZM9.33333 6.33331H8V7.66665H9.33333V6.33331ZM10.6667 1.66665H10V0.333313H8.66667V1.66665H3.33333V0.333313H2V1.66665H1.33333C0.593333 1.66665 0.00666666 2.26665 0.00666666 2.99998L0 12.3333C0 13.0666 0.593333 13.6666 1.33333 13.6666H10.6667C11.4 13.6666 12 13.0666 12 12.3333V2.99998C12 2.26665 11.4 1.66665 10.6667 1.66665ZM10.6667 12.3333H1.33333V4.99998H10.6667V12.3333Z"
+                fill="#858585" />
+            </svg> Aug 14, 2021 <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12.0002 4.74667H7.48016L9.30683 2.86667C7.48683 1.06667 4.54016 1 2.72017 2.8C0.900165 4.60667 0.900165 7.52 2.72017 9.32667C4.54016 11.1333 7.48683 11.1333 9.30683 9.32667C10.2135 8.43333 10.6668 7.38667 10.6668 6.06667H12.0002C12.0002 7.38667 11.4135 9.1 10.2402 10.26C7.90016 12.58 4.10016 12.58 1.76017 10.26C-0.573168 7.94667 -0.593168 4.18667 1.74683 1.87333C4.08683 -0.44 7.84016 -0.44 10.1802 1.87333L12.0002 0V4.74667ZM6.3335 3.33333V6.16667L8.66683 7.55333L8.18683 8.36L5.3335 6.66667V3.33333H6.3335Z"
+                fill="#858585" />
+            </svg>11:24 am</span>
+        </div>
+        <div class="news-main">
+          <p><img src="assets/message.svg"> Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry.</p>
+
+          <span><svg width="12" height="14" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M4 6.33331H2.66667V7.66665H4V6.33331ZM6.66667 6.33331H5.33333V7.66665H6.66667V6.33331ZM9.33333 6.33331H8V7.66665H9.33333V6.33331ZM10.6667 1.66665H10V0.333313H8.66667V1.66665H3.33333V0.333313H2V1.66665H1.33333C0.593333 1.66665 0.00666666 2.26665 0.00666666 2.99998L0 12.3333C0 13.0666 0.593333 13.6666 1.33333 13.6666H10.6667C11.4 13.6666 12 13.0666 12 12.3333V2.99998C12 2.26665 11.4 1.66665 10.6667 1.66665ZM10.6667 12.3333H1.33333V4.99998H10.6667V12.3333Z"
+                fill="#858585" />
+            </svg> Aug 14, 2021 <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12.0002 4.74667H7.48016L9.30683 2.86667C7.48683 1.06667 4.54016 1 2.72017 2.8C0.900165 4.60667 0.900165 7.52 2.72017 9.32667C4.54016 11.1333 7.48683 11.1333 9.30683 9.32667C10.2135 8.43333 10.6668 7.38667 10.6668 6.06667H12.0002C12.0002 7.38667 11.4135 9.1 10.2402 10.26C7.90016 12.58 4.10016 12.58 1.76017 10.26C-0.573168 7.94667 -0.593168 4.18667 1.74683 1.87333C4.08683 -0.44 7.84016 -0.44 10.1802 1.87333L12.0002 0V4.74667ZM6.3335 3.33333V6.16667L8.66683 7.55333L8.18683 8.36L5.3335 6.66667V3.33333H6.3335Z"
+                fill="#858585" />
+            </svg>11:24 am</span>
+        </div> -->
+      </div>
+    </div>
+   
+  </div>
+
+</div>

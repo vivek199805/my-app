@@ -1,0 +1,87 @@
+<div class="container-fluid">
+    <div class="row layout-top-spacing">
+      <div id="basic" class="col-lg-12 layout-spacing p-0">
+        <div class="widget-content widget-content-area">
+          <div >
+            <label>Template Name</label>
+            <input type="text" class="form-control mb-3 mx-auto w-75" placeholder="Enter Template Name"
+              value="{{Template_name}}" [(ngModel)]="Template_name">
+            <div class="commBox">
+
+              <ul class="list-group list-group-horizontal">
+                <li class="list-group-item"> <label>Super Distributor commission</label>
+                </li>
+                <li class="list-group-item"> <label>Partner commission</label>
+                </li>
+                <li class="list-group-item"> <label>Distributor commission</label>
+                </li>
+               
+                <li class="list-group-item"> <label>Retailer commission</label>
+                </li>
+                <li class="list-group-item"> <label> Commission Type</label>
+                </li>
+                <li class="list-group-item"> <label> Options</label>
+                </li>
+              </ul>
+
+              <ul class="list-group list-group-horizontal"  *ngFor="let item of filterDt">
+                <li class="list-group-item"><input class="form-control" type="text" (keypress)="numberOnly($event)"
+                  [(ngModel)]="item.comm_superdistributor"></li>
+                  <li class="list-group-item"><input class="form-control" type="text" (keypress)="numberOnly($event)"
+                    [(ngModel)]="item.comm_partner"></li>
+                <li class="list-group-item"><input class="form-control" type="text" (keypress)="numberOnly($event)"
+                  [(ngModel)]="item.comm_distributor"></li>
+                
+                <li class="list-group-item"><input class="form-control" type="text" (keypress)="numberOnly($event)"
+                  [(ngModel)]="item.comm_retailer"></li>
+                <li class="list-group-item"><select class="form-control" [(ngModel)]="item.is_fixed">
+                  <option value="1">Fixed</option>
+                  <option value="0">Percentage</option>
+                </select></li>
+                <li class="list-group-item"><select class="form-control" [(ngModel)]="item.mode">
+                  <option value="E">E-PAN</option>
+                  <option value="P">PHYSICAL</option>
+                </select></li>
+              </ul>
+
+
+
+              
+              <div>
+                <div class="row mb-2 ">
+            
+                  <!-- <div class="col-md-1">
+                    {{item.type}}
+                  </div> -->
+                  <div class="col-md-2">
+                    
+                  </div>
+                  <div class="col-md-2">
+                    
+                  </div>
+                  <!-- /.col-md-2 -->
+                  <div class="col-md-2">
+                    
+                  </div>
+                  <!-- /.col-md-2 -->
+                  <div class="col-md-2">
+                    
+                  </div>
+                  <div class="col-md-1">
+                    
+                  </div>
+                  <div class="col-md-1">
+                    
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+            <div class="text-center mt-2">
+              <input class="btn btn-info" (click)="onSubmit()" type="button" value="Submit">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

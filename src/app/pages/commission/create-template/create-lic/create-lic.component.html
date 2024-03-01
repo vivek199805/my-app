@@ -1,0 +1,156 @@
+<form [formGroup]="DMTForm">
+  <input type="input" formControlName='templateName'  class="form-control" placeholder="Enter Template Name">
+  <div formArrayName="quantities">
+    <div *ngFor="let arr of mainStart.controls; index as i" class="mainSection mt-5">
+      <div [formArrayName]="i">
+        <div *ngFor="let form of getArr(arr,i).controls; index as j; first as isFirst; last as isLast"
+          formArrayName="arr" class="mt-sm-5">
+          <div [formGroupName]="j">
+            <div class="row">
+              <div class="col-md-3 col-ms-1">
+                <label class="font-weight-bold">Min Slab</label>
+                <input type="number"
+                  [ngClass]="{ 'is-invalid':  form.get('slab_min')?.touched && form.get('slab_min')?.invalid }"
+                  name="min" formControlName="slab_min" class="form-control">
+                <div *ngIf=" form.get('slab_min')?.invalid" class="alert-error">
+                  <div *ngIf="form.get('slab_min').errors?.required">
+                    <small><b>required.</b></small>
+                  </div>
+                </div>
+                <div class="alert-error" *ngIf="form.get('slab_min').errors?.firstMinAmountRangess && isFirst">
+                  <small><b>Minimum Amount is Fixed 100 Rs</b></small>
+                </div>
+                <div class="alert-error"
+                  *ngIf="form.get('slab_min').errors?.minToMaxRange && form.get('slab_min').dirty">
+                  <small><b>Minimum Amount Should Be less then Max
+                      Amount</b></small>
+                </div>
+                <div class="alert-error" *ngIf="form.get('slab_min').errors?.minRange && form.get('slab_min').dirty">
+                  <small><b>Minimum Amount Should Be less then Max
+                      Amount</b></small>
+                </div>
+              </div>
+              <div class="col-md-3 col-ms-12">
+                <label class="font-weight-bold">Max Slab</label>
+                <input type="number" name="max" formControlName="slab_max" class="form-control">
+                <!-- <div *ngIf="form.get('slab_max')?.touched && form.get('slab_max')?.invalid" -->
+                <div *ngIf="form.get('slab_max')?.invalid" class="alert-error">
+                  <div *ngIf="form.get('slab_max').errors['required']">
+                    <small><b>required.</b></small>
+                  </div>
+                </div>
+                <div class="alert-error" *ngIf="arr.get('validCheck')?.errors?.lastMaxAmountss && isLast">
+                  <small><b>Max Amount Fixed {{maxAmount}} Rs</b></small>
+                </div>
+
+                <div class="alert-error" *ngIf="form.get('slab_min').errors?.minRange && form.get('slab_min').dirty">
+                  <small><b>Minimum Amount Should Be less then Max
+                      Amount</b></small>
+                </div>
+              </div>
+              <div class="col-md-3 col-ms-12">
+                <label class="font-weight-bold">Comm. Superdistributor</label>
+                <input type="number" name="amount" formControlName="commission_superdistributor" class="form-control">
+                <!-- <div *ngIf="form.get('value')?.touched && form.get('value')?.invalid" -->
+                <div *ngIf="form.get('commission_superdistributor')?.invalid" class="alert-error">
+                  <div *ngIf="form.get('commission_superdistributor').errors['required']">
+                    <small><b>required.</b></small>
+                  </div>
+                  <div *ngIf="form.get('commission_superdistributor').errors['min']">
+                    <small><b>Amount should minimum 0 Rs.</b></small>
+                  </div>
+                </div>
+                <div *ngIf="form.get('is_fixed')?.errors?.trueError" class="alert-error">
+                  <small><b>Amount should be less then 1 Rs.</b></small>
+                </div>
+              </div>
+
+              <div class="col-md-4 col-ms-12">
+                <label class="font-weight-bold">Comm. Partner</label>
+                <input type="number" name="amount" formControlName="commission_partner" class="form-control">
+                <!-- <div *ngIf="form.get('value')?.touched && form.get('value')?.invalid" -->
+                <div *ngIf="form.get('commission_partner')?.invalid" class="alert-error">
+                  <div *ngIf="form.get('commission_partner').errors['required']">
+                    <small><b>required.</b></small>
+                  </div>
+                  <div *ngIf="form.get('commission_partner').errors['min']">
+                    <small><b>Amount should minimum 0 Rs.</b></small>
+                  </div>
+                </div>
+                <div *ngIf="form.get('is_fixed')?.errors?.trueError" class="alert-error">
+                  <small><b>Amount should be less then 1 Rs.</b></small>
+                </div>
+              </div>
+
+              <div class="col-md-3 col-ms-12">
+                <label class="font-weight-bold">Comm. Distributor</label>
+                <input type="number" name="amount" formControlName="commission_distributor" class="form-control">
+                <!-- <div *ngIf="form.get('value')?.touched && form.get('value')?.invalid" -->
+                <div *ngIf="form.get('commission_distributor')?.invalid" class="alert-error">
+                  <div *ngIf="form.get('commission_distributor').errors['required']">
+                    <small><b>required.</b></small>
+                  </div>
+                  <div *ngIf="form.get('commission_distributor').errors['min']">
+                    <small><b>Amount should minimum 0 Rs.</b></small>
+                  </div>
+                </div>
+                <div *ngIf="form.get('is_fixed')?.errors?.trueError" class="alert-error">
+                  <small><b>Amount should be less then 1 Rs.</b></small>
+                </div>
+              </div>
+              
+              <div class="col-md-4 col-ms-12">
+                <label class="font-weight-bold">Comm. Retailer</label>
+                <input type="number" name="amount" formControlName="commission_retailer" class="form-control">
+                <!-- <div *ngIf="form.get('value')?.touched && form.get('value')?.invalid" -->
+                <div *ngIf="form.get('commission_retailer')?.invalid" class="alert-error">
+                  <div *ngIf="form.get('commission_retailer').errors['required']">
+                    <small><b>required.</b></small>
+                  </div>
+                  <div *ngIf="form.get('commission_retailer').errors['min']">
+                    <small><b>Amount should minimum 0 Rs.</b></small>
+                  </div>
+                </div>
+                <div *ngIf="form.get('is_fixed')?.errors?.trueError" class="alert-error">
+                  <small><b>Amount should be less then 1 Rs.</b></small>
+                </div>
+              </div>
+              <div class="col-md-4 col-ms-12">
+                <label class="font-weight-bold">Commission Type</label>
+                <div class="row">
+                  <div class="col-md-6 col-ms-12 ">
+                    <!-- <input type="checkbox" name="isFixed" formControlName="is_fixed" class="form-control text-left"> -->
+                    <select name="isFixed" formControlName="is_fixed" class="form-control text-left">
+                      <option value="1">Fixed</option>
+                      <option value="0">Percentage</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6 col-ms-12 text-sm-left">
+                    <i class="fa fa-trash" (click)="remove(arr,i,j)"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="form?.errors?.minMaxError" class="alert-error mt-3" role="alert">
+              <strong>Minimum</strong> amount should be less then
+              <strong>Maximum</strong>
+              amount.
+            </div>
+          </div>
+        </div>
+        <div>
+          <input type="button" [disabled]="!getArr(arr,i).valid" *ngIf="isAddBtnDisabled(arr,i) !== true"
+            class="btn btn-outline-secondary font-weight-bold mt-3" value="Add New Record" (click)="add(arr,i)">
+
+          <div *ngIf="arr.get('arr')?.errors?.MinLengthArray" class="alert-error mt-3" role="alert">
+            <strong>Amount Slab</strong> is Not Valid.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-5 text-center">
+      <button type="button" [disabled]="!formArr.valid" class="btn btn-success" (click)="onSubmit()">Submit</button>
+    </div>
+  </div>
+
+</form>

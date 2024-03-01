@@ -1,0 +1,227 @@
+
+  <div class="widget">
+    <div class="widget-header">
+      <div class="row">
+        <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+          <h4>Product Stocks</h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" *ngIf="this.userType != '0' && this.userType != '5' && details ">
+      <div class="col-xl-12 col-md-12 col-sm-12 col-12 p-0">
+        <h5>My Stocks</h5>
+      </div>
+      <div class="row">
+        <div class="col-md-12 d-flex">
+
+          <div class="card m-3 p-3" *ngFor="let item of details">
+            <p class="package-type" *ngIf="item.is_package == null">Single</p>
+            <p class="package-type" *ngIf="item.is_package == '1'">Package</p>
+            <div class="card-heading border-bottom mb-1 pb-1">
+              {{item.product}}
+            </div>
+            <p class="m-0">Stock : <strong>{{item.quantity}}</strong> </p>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+    <div class="widget-content border-tab mt-3"  >
+      <div class="col-xl-12 col-md-12 col-sm-12 col-12 p-0">
+        <h5>Assign Stocks</h5>
+      </div>
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+        <!-- <nav _ngcontent-bhd-c107="" class="nav flex-column flex-sm-row bg-white w-100 mb-3">
+
+          <ul class="nav nav-tabs" id="border-tabs" role="tablist">
+            <li class="nav-item" *ngIf="userType == 0 || userType == 1" >
+              <a class="nav-link active" [ngClass]="{'active': buyerType=='sd'}" aria-selected="true" (click)="Select('sd')"> Super Distributor Stock</a>
+            </li>
+            <li class="nav-item" *ngIf="userType == 0 || userType == 1 || userType == 2" >
+              <a class="nav-link" 
+                aria-selected="false" (click)="Select('p')" [ngClass]="{'active': buyerType=='p'}" >Partner Stock</a>
+            </li>
+            <li class="nav-item" *ngIf="userType == 0 || userType == 1 || userType == 2 ||  userType == 3" >
+              <a class="nav-link" 
+                aria-selected="false" (click)="Select('d')" [ngClass]="{'active': buyerType=='d'}"> Distributor Stock</a>
+            </li>
+            <li class="nav-item"
+              *ngIf="userType == 0 || userType == 1 || userType == 2 ||  userType == 3||userType == 4" >
+              <a class="nav-link" 
+                 aria-selected="false" (click)="Select('r')" [ngClass]="{'active': buyerType=='r'}"> Reatiler Stock</a>
+            </li>
+
+          </ul>
+        </nav> -->
+        <div>
+          <div>
+            <!-- <div class="tab-pane fade show active" id="prepaid" role="tabpanel" aria-labelledby="prepaid-tab">
+              <div class="form-row"> -->
+                <div class="col-md-6 mx-auto p-0">
+                  <label>Search User By</label><br>
+                  <div class="ng-autocomplete userAutoComData">
+                    <ng-autocomplete [data]="userAutoComData" [searchKeyword]="userKeyword" [debounceTime]="600"
+                      (selected)='selectEvent($event)' (inputCleared)="searchCleared()"
+                      (inputChanged)='getServerResponse($event)' [itemTemplate]="userItemTemplate"
+                      [notFoundTemplate]="userNotFoundTemplate" [minQueryLength]="5"
+                      placeholder="eg 'name', 'firm name', 'firm id'">
+                    </ng-autocomplete>
+
+                    <ng-template #userItemTemplate let-item>
+                      <a [innerHTML]="item.userdetails"></a>
+                    </ng-template>
+
+                    <ng-template #userNotFoundTemplate let-notFound>
+                      <div [innerHTML]="notFound"></div>
+                    </ng-template>
+                  </div>
+                </div>
+              <!-- </div>
+            </div> -->
+            <!-- <div class="tab-pane fade" id="dth" role="tabpanel" aria-labelledby="dth-tab">
+              <div class="form-row">
+                <div class="col-md-6 mx-auto">
+                  <label>Search User By</label><br>
+                  <div class="ng-autocomplete userAutoComData">
+                    <ng-autocomplete [data]="userAutoComData" [searchKeyword]="userKeyword" [debounceTime]="600"
+                      (selected)='selectEvent($event)' (inputCleared)="searchCleared()"
+                      (inputChanged)='getServerResponse($event)' [itemTemplate]="userItemTemplate"
+                      [notFoundTemplate]="userNotFoundTemplate" [minQueryLength]="5"
+                      placeholder="eg 'name', 'firm name', 'firm id'">
+                    </ng-autocomplete>
+
+                    <ng-template #userItemTemplate let-item>
+                      <a [innerHTML]="item.userdetails"></a>
+                    </ng-template>
+
+                    <ng-template #userNotFoundTemplate let-notFound>
+                      <div [innerHTML]="notFound"></div>
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="status" role="tabpanel" aria-labelledby="status-tab">
+              <div class="form-row">
+                <div class="col-md-6 mx-auto">
+                  <label>Search User By</label><br>
+                  <div class="ng-autocomplete userAutoComData">
+                    <ng-autocomplete [data]="userAutoComData" [searchKeyword]="userKeyword" [debounceTime]="600"
+                      (selected)='selectEvent($event)' (inputCleared)="searchCleared()"
+                      (inputChanged)='getServerResponse($event)' [itemTemplate]="userItemTemplate"
+                      [notFoundTemplate]="userNotFoundTemplate" [minQueryLength]="5"
+                      placeholder="eg 'name', 'firm name', 'firm id'">
+                    </ng-autocomplete>
+                    <ng-template #userItemTemplate let-item>
+                      <a [innerHTML]="item.userdetails"></a>
+                    </ng-template>
+                    <ng-template #userNotFoundTemplate let-notFound>
+                      <div [innerHTML]="notFound"></div>
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="reatiler" role="tabpanel" aria-labelledby="reatiler-tab">
+              <div class="form-row">
+                <div class="col-md-6 mx-auto">
+                  <label>Search User By</label><br>
+                  <div class="ng-autocomplete userAutoComData">
+                    <ng-autocomplete [data]="userAutoComData" [searchKeyword]="userKeyword" [debounceTime]="600"
+                      (selected)='selectEvent($event)' (inputCleared)="searchCleared()"
+                      (inputChanged)='getServerResponse($event)' [itemTemplate]="userItemTemplate"
+                      [notFoundTemplate]="userNotFoundTemplate" [minQueryLength]="5"
+                      placeholder="eg 'name', 'firm name', 'firm id'">
+                    </ng-autocomplete>
+                    <ng-template #userItemTemplate let-item>
+                      <a [innerHTML]="item.userdetails"></a>
+                    </ng-template>
+                    <ng-template #userNotFoundTemplate let-notFound>
+                      <div [innerHTML]="notFound"></div>
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+
+            <div class="row">
+              <div class="col-12 col-md-4" *ngFor="let item of details1; index as i">
+                <div class="card  mt-3 p-3" >
+                  <div class="img-wrap">
+                    <img [src]="item.image" style="width: 100%;">
+                  </div>
+                  <div class="card-header">
+                   <strong>{{item.product}}</strong> 
+                  </div>
+                  <div class="" *ngIf="userType != '0' && userType != '5'">
+                    {{item.quantity * item.price }}
+                  </div>
+                  <div class="" *ngIf="userType == '0'">
+                    {{item.price }}
+                  </div>
+                 
+                    <p>{{item.description}}</p>
+                  
+                  <div class="card-header">
+                    <div class="row">
+                      <div class="col-lg-12 d-flex">
+                        <div class="form-group w-50 mx-1">
+                          <label>Quantity</label>
+                          <input class="form-control p-1" type="number" placeholder="Quantity" [(ngModel)]="item.quantity1">
+                        </div>
+                        <!-- /.form-group -->
+                        <div class="form-group w-50 mx-1">
+                          <label>Amount</label>
+                        <input class="form-control p-1" type="number" placeholder="price"  [(ngModel)]="item.price1">
+                        </div>
+                        <!-- /.form-group -->
+                        
+
+                      </div>
+                      <div class="col-12">
+                        <button class="btn btn-success d-block w-100" (click)="SendService(item)">Send</button>
+                      </div>
+                      <!-- /.col-12 -->
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /.col-12 col-md-12 -->
+            </div>
+            <!-- /.row -->
+            
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- <section *ngIf="userType != 0">
+  <div class="statbox widget box box-shadow">
+    <div class="widget-header">
+      <div class="row">
+        <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+          <h4>Product Stocks</h4>
+        </div>
+      </div>
+    </div>
+    <div class="widget-content border-tab">
+      <div class="tab-content mb-4">
+        <div class="card">
+          <div class="card-header">
+            fdg
+          </div>
+          <div class="card-body">
+            d
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->

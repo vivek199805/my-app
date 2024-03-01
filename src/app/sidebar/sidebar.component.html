@@ -1,0 +1,17 @@
+<!--  BEGIN SIDEBAR  -->
+<div class="sidebar-wrapper sidebar-theme">
+    <nav id="sidebar">
+        
+        <div class="shadow-bottom"></div>
+        <!----Menu----->
+        <app-super-admin *ngIf="usertype == '0'"></app-super-admin>
+        <app-admin *ngIf="usertype == '1'"></app-admin>
+        <app-partner *ngIf="usertype == '3'"></app-partner>
+        <app-super-distributor *ngIf="usertype == '2'"></app-super-distributor>
+        <app-distributer *ngIf="usertype == '4'"></app-distributer>
+        <app-retailer *ngIf="usertype == '5'"></app-retailer>
+        <app-asm *ngIf="usertype == '6'"></app-asm>
+        <!----End------>
+    </nav>
+</div>
+<!--  END SIDEBAR  -->

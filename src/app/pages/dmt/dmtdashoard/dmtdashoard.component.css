@@ -1,0 +1,60 @@
+.progressbar {
+    height: 8px;
+    display: block;
+    max-width: 100%;
+}
+
+.table>tbody:before {
+    line-height: 0em !important;
+    content: "_";
+    color: white;
+    display: none !important;
+}
+
+#togglePinBox {
+    display: none;
+}
+
+.myRotate {
+    -moz-transition: transform 1s;
+    -webkit-transition: transform 1s;
+    transition: transform 1s;
+}
+
+.flip {
+    transform: rotate(-180deg);
+}
+.nav li{width:33.33%;text-align:center;}
+.nav-link.active{
+    position: relative;
+}
+
+.blockquote.blockquote{border: 0;padding:0;}
+.headings-top{background:#1b2e4b;line-height: 39px;color:#fefefe;font-size:12px;font-weight:600;}
+.otp input{border: 1px solid #26547c;}
+.otp{margin-top:0;}
+label.checkbox{position: inherit;
+transition: none;
+transform: none;
+z-index: 99;
+}
+.input-group i {
+    position: absolute;
+    left: 19px;
+    color: #787878;
+    top: 13px;
+    z-index: 9;
+    font-size: 20px;
+    width: 20px;
+}
+
+.forgot{
+    font-size: 13px;
+}
+
+.reg_bene_input input[type='text'] {
+    padding: 5px 10px;
+    height: 37px;
+}
+
+.submit-btn{height:100%}

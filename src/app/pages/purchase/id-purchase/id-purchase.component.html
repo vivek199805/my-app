@@ -1,0 +1,21 @@
+<div class="widget mt-4">
+    <h5 class="aeps-title"></h5>
+    <form [formGroup]="form" class="mt-3" (submit)="onSubmit()">
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="inputAddress">Enter No. of ID Purchase<span class="alert-error">*</span></label>
+                <input type="text" formControlName="purchaseid" (keyup)="totalamt($event)" [ngClass]="{ 'is-invalid': f.purchaseid.touched && f.purchaseid.invalid }" name="purchaseid" class="form-control" placeholder="Enter No. of ID Purchase">
+                <div *ngIf="f.purchaseid.touched && f.purchaseid.invalid" class="alert-error">
+                    <div *ngIf="f.purchaseid.errors.required"><small><b>No. of ID Purchase is required.</b></small></div>
+                </div>
+            </div>
+            <span class="rate">X {{this.idrate}}</span>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+            <label style="color: #303131;" for="inputAddress">Total ID Purchase Amount : <span class="rate">{{total | currency:"INR" }}</span></label>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3" [disabled]="!form.valid">Submit</button>
+    </form>
+</div>

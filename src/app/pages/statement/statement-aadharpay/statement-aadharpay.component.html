@@ -1,0 +1,256 @@
+<div class="layout-px-spacing">
+  <div class="row layout-top-spacing">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing p-0 p-md-2">
+      <div class="widget">
+        <h5>Aadhar Pay Statement</h5>
+        <!--  <p class="text-center">DMT Statement</p> -->
+        <form (submit)="filter()" [formGroup]="form">
+          <!-- <div class="row">
+                        <div class="col-md-4">
+                            <label for="">Select Date</label>
+                            <input type="text" onkeydown="return false" placeholder="Select Date" class="form-control" bsDaterangepicker
+                                [maxDate]="maxDate" formControlName="selectdate" [bsConfig]="bsCustConfg"
+                                #rangePicker="bsDaterangepicker" (onShown)="onDateRangePickerShow()">
+                        </div>
+                       
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <br>
+                                <button class="btn btn-primary mt-2 btn-lg" type="submit">Submit</button>
+                            </div>
+                        </div>
+                    </div> -->
+
+          <div class="row">
+            <!-- [ngClass]="{'col-md-6':userType == 0,'col-md-4':userType != 0}" -->
+            <div class="col-md-4">
+              <label for="">Select Date</label>
+              <input type="text" placeholder="Select Date" class="form-control" bsDaterangepicker [maxDate]="maxDate"
+                formControlName="selectdate" [bsConfig]="bsCustConfg" #rangePicker="bsDaterangepicker"
+                (onShown)="onDateRangePickerShow()">
+
+            </div>
+            <div class="col-md-6">
+            <div class="form-group btns-top">
+              <input type="submit" class="btn btn-danger" [disabled]="!form.valid" value="Submit"> &nbsp;&nbsp;
+              <input type="reset" class="btn btn-warning" (click)="searchCleared()" value="Reset">
+            </div>
+            </div>
+
+
+            <!-- *ngIf="userType==0" -->
+            <!-- <div class="col-md-6" >
+                            <label>Search By User</label><br>
+                            <div class="ng-autocomplete userAutoComData w-100">
+                                <ng-autocomplete [data]="userAutoComData" [searchKeyword]="userKeyword" [debounceTime]="600" (selected)='selectEvent($event)' (inputCleared)="searchCleared()" (inputChanged)='getServerResponse($event)' [itemTemplate]="userItemTemplate" [notFoundTemplate]="userNotFoundTemplate"
+                                    [minQueryLength]="5" placeholder="Search User. eg 'name', 'firm name', 'firm id'">
+                                </ng-autocomplete>
+    
+                                <ng-template #userItemTemplate let-item>
+                                    <a [innerHTML]="item.name"></a>
+                                </ng-template>
+    
+                                <ng-template #userNotFoundTemplate let-notFound>
+                                    <div [innerHTML]="notFound"></div>
+                                </ng-template>
+                            </div>
+                        </div> -->
+          </div>
+          <div *ngIf="userType != '5'">
+            <div class="row mt-2" *ngIf="morefilter">
+              <div class="col-md-3" *ngIf="userType != '3' && userType != '4' && userType != '2'">
+                <label>Super Distributor</label><br>
+                <div class="ng-autocomplete SuperDistributorData">
+                  <ng-autocomplete [data]="SuperDistributorData" [searchKeyword]="userKeyword" [debounceTime]="600"
+                    (selected)='selectSuperDistributor($event)' (inputCleared)="searchCleared()"
+                    (inputChanged)='forSuperDistributorData($event)' [itemTemplate]="userItemTemplate"
+                    [notFoundTemplate]="userNotFoundTemplate" [minQueryLength]="5"
+                    placeholder="Search User. eg 'name', 'firm name', 'firm id'">
+                  </ng-autocomplete>
+
+                  <ng-template #userItemTemplate let-item>
+                    <a [innerHTML]="item.userdetails"></a>
+                  </ng-template>
+
+                  <ng-template #userNotFoundTemplate let-notFound>
+                    <div [innerHTML]="notFound"></div>
+                  </ng-template>
+                </div>
+              </div>
+              <div class="col-md-3" *ngIf="userType != '3'  && userType != '4'"  >
+                <label>Partner</label><br>
+                <div class="ng-autocomplete partnerData">
+                  <ng-autocomplete [data]="partnerData" [searchKeyword]="userKeyword" [debounceTime]="600"
+                    (selected)='selectPartner($event)' (inputCleared)="searchCleared()"
+                    (inputChanged)='forPartnerData($event)' [itemTemplate]="userItemTemplate1"
+                    [notFoundTemplate]="userNotFoundTemplate1" [minQueryLength]="5"
+                    placeholder="Search User. eg 'name', 'firm name', 'firm id'">
+                  </ng-autocomplete>
+
+                  <ng-template #userItemTemplate1 let-item>
+                    <a [innerHTML]="item.userdetails"></a>
+                  </ng-template>
+
+                  <ng-template #userNotFoundTemplate1 let-notFound>
+                    <div [innerHTML]="notFound"></div>
+                  </ng-template>
+                </div>
+              </div>
+              <div class="col-md-3" *ngIf="userType != '4'">
+                <label>Distributor</label><br>
+                <div class="ng-autocomplete distributorData">
+                  <ng-autocomplete [data]="distributorData" [searchKeyword]="userKeyword" [debounceTime]="600"
+                    (selected)='selectDistributor($event)' (inputCleared)="searchCleared()"
+                    (inputChanged)='forDistributorData($event)' [itemTemplate]="userItemTemplate2"
+                    [notFoundTemplate]="userNotFoundTemplate2" [minQueryLength]="5"
+                    placeholder="Search User. eg 'name', 'firm name', 'firm id'">
+                  </ng-autocomplete>
+
+                  <ng-template #userItemTemplate2 let-item>
+                    <a [innerHTML]="item.userdetails"></a>
+                  </ng-template>
+
+                  <ng-template #userNotFoundTemplate2 let-notFound>
+                    <div [innerHTML]="notFound"></div>
+                  </ng-template>
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <label>Retailer</label><br>
+                <div class="ng-autocomplete retailerData">
+                  <ng-autocomplete [data]="retailerData" [searchKeyword]="userKeyword" [debounceTime]="600"
+                    (selected)='selectRetailer($event)' (inputCleared)="searchCleared()"
+                    (inputChanged)='forRetailerData($event)' [itemTemplate]="userItemTemplate3"
+                    [notFoundTemplate]="userNotFoundTemplate3" [minQueryLength]="5"
+                    placeholder="Search User. eg 'name', 'firm name', 'firm id'">
+                  </ng-autocomplete>
+
+                  <ng-template #userItemTemplate3 let-item>
+                    <a [innerHTML]="item.userdetails"></a>
+                  </ng-template>
+
+                  <ng-template #userNotFoundTemplate3 let-notFound>
+                    <div [innerHTML]="notFound"></div>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+            <div class="row my-2">
+              <div class="col-md-4">
+                <a href="javascript:void(0);" style="color: red;" (click)="morefilter = !morefilter">
+                  {{!morefilter? 'More Filter':'Show Less'}}</a>
+              </div>
+            </div>
+          </div>
+      
+
+        </form>
+        <div>
+          <button (click)="download($event)" *ngIf="downloadexl" class="btn btn-danger mb-2 mr-2"
+            style="float: right;">Export</button>
+        </div>
+        <app-data-table-tools [columns]="columns" [url]="url" [listtype]="listtype"  (funObj)="funObj($event)" [objectforSatement]="objectIDs"
+          (btnexl)="GetChildData($event)"></app-data-table-tools>
+      </div>
+      <!--  -->
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="addharpaydetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <button type="button" class="close" data-dismiss="modal">x</button> -->
+        <h4 class="modal-title" id="myModalLabel">AADHAAR PAY STATEMENT DETAILS</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="labletxnd">Access mode : </label><span class="lbvalue"> {{accessmode}}</span>
+            </div>
+          </div>
+          <div class="col-md-4" *ngIf="userType === 0">
+            <div class="form-group">
+              <label class="labletxnd">Profit : </label><span class="lbvalue"> {{profit}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="labletxnd">Bankiiin : </label><span class="lbvalue"> {{bankiiin}}</span>
+            </div>
+          </div>
+          <div class="col-md-4" *ngIf="userType === 0">
+            <div class="form-group">
+              <label class="labletxnd">IP Address : </label><span class="lbvalue"> {{ipaddress}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="labletxnd">Aadhaar Pay Ref Id : </label><span class="lbvalue">
+                {{aadharpayrefid}}</span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="labletxnd">Mobile No. : </label><span class="lbvalue"> {{mobile}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="labletxnd">Latitude : </label><span class="lbvalue"> {{lat}}</span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="labletxnd">Longitude : </label><span class="lbvalue"> {{longt}}</span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="labletxnd">Aadhaar Last No. : </label><span class="lbvalue"> {{last_aadhar}}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" *ngIf="userType === 0">
+          <div class="col-md-8">
+            <div class="form-group">
+              <label class="labletxnd">Device IMEI : </label><span class="lbvalue"> {{deviceimei}}</span>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="labletxnd">Devic EMI. : </label><span class="lbvalue"> {{devicemi}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label class="labletxnd">Remarks : </label><span class="lbvalue"> {{remarks}}</span>
+            </div>
+          </div>
+          <div class="col-md-7">
+            <div class="form-group">
+              <label class="labletxnd">Date Added : </label><span class="lbvalue"> {{dateadded}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="discard" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

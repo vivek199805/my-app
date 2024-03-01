@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <div class="form-group">
+                    <label>Select User</label>
+                    <ng-select2 [options]="options" [data]="userDetailsList" [placeholder]="'Please select a details...'">
+                    </ng-select2>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="showData" class="row" [formGroup]="mainForm">
+            <div class="col-12"> <label class="font-weight-bold">value</label>
+                <input type="number" [ngClass]="{'is-invalid': mainForm.get('value')?.invalid}"
+                    placeholder="Enter Value" class="form-control" placeholder="" formControlName="value">
+                <div *ngIf="mainForm.get('value')?.touched || mainForm.get('value')?.invalid" class="alert-error">
+                    <div *ngIf="mainForm.get('value')?.errors?.min">
+                        <small><b>Minimum add 0.</b></small>
+                    </div>
+                </div>
+                <div *ngIf="mainForm.get('value')?.errors?.required">
+                    <small><b>required.</b></small>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="text-center mt-3">
+                    <button type="button" class="btn btn-primary" [disabled]="!mainForm.valid"
+                        (click)="onSubmit()">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+.list-group-item{
+    width: 100%;
+}
+
+.form-group label, label{
+    font-size: 12px;
+    letter-spacing: 0;
+
+}
+
+.form-control{
+    font-size: 13px;
+    padding: 10px;
+}
+
+.list-group-horizontal>.list-group-item:first-child{
+    font-size: 12px;
+}

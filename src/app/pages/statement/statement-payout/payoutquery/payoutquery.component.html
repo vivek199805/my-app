@@ -1,0 +1,40 @@
+<div class="layout-px-spacing">
+    <div class="row layout-spacing">
+        <div class="col-xl-12 layout-top-spacing">
+            <div class="widget-content widget-content-area">
+                <div class="table-responsive mb-4 mt-4">
+                    <table class="multi-table table table-bordered   non-hover" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Acno</th>
+                                <th>Bank Name</th>
+                                <th>Amount</th>
+                                <th>Benename</th>
+                                <th>Ifsccode</th>
+                                <th>remarks</th>
+                                <th>status</th>
+                                <th>txnid</th>
+                                <th>utr</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th> {{queryList?.acno }}</th>
+                                <td>{{queryList?.bankname}}</td>
+                                <td> {{queryList?.amount }} </td>
+                                <td> {{queryList?.benename }} </td>
+                                <td> {{queryList?.ifsccode }} </td>
+                                <td> {{queryList?.remarks }} </td>
+                                <td> {{queryList?.status }} </td>
+                                <td> {{queryList?.txnid }} </td>
+                                <td> {{queryList?.utr }} </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <textarea readonly [(ngModel)]="myTextarea" cols="30" rows="10"></textarea>
+            </div>
+        </div>
+    </div>
+</div>

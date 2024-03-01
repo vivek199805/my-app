@@ -1,0 +1,54 @@
+<div class="layout-px-spacing">
+  <div class="row layout-top-spacing" id="cancel-row">
+    <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+      <div class="widget-content widget-content-area br-6">
+        <div class="table-responsive mb-4 mt-4">
+          <table id="html5-extension" class="table table-hover non-hover" style="width:100%">
+            <thead>
+              <tr>
+                <th>Bank Name</th>
+                <th>Account No.</th>
+                <th>IFSC Code</th>
+                <!-- <th>Utr No.</th> -->
+                <th>Name</th>
+                <th>Account Type</th>
+                <th>Date</th>
+                <th>Action</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let list of acclist">
+                <td>{{list.bankname}}</td>
+                <td>{{list.account}}</td>
+                <td>{{list.ifsc}}</td>
+                <!-- <td>{{list.account_type}}</td> -->
+                <td>{{list.name}}</td>
+                <td>{{list.account_type}}</td>
+                <td>{{list.dateadded | date:"medium"}}</td>
+
+                <td class="centers">
+                  <button type="button"
+                    *ngIf="list.payout_account_status == '1' && list.a_status == '2' && list.status == '1'"
+                    class="btn btn-danger btn-sm actionBtn mb-2" (click)="getbeneidud(list,'1')">Approve</button><br>
+                  <button type="button"
+                    *ngIf="list.payout_account_status == '1' && list.a_status == '2' && list.status == '1'"
+                    class="btn btn-danger btn-sm actionBtn mb-2" (click)="getbeneidud(list ,'0')">Reject</button><br>
+
+                  <span type="button" class="text-success font-italic font-weight-bold" *ngIf="( list.a_status == '1' && list.status == '1' )">Approve</span>
+                  <span type="button" class="text-danger font-italic font-weight-bold" *ngIf="( list.a_status == '0' && list.status == '1' )">reject</span>
+                  <span></span>
+                </td>
+              </tr>
+            </tbody>
+            <tbody *ngIf="acclist?.length == 0">
+              <tr>
+                <td colspan="7" class="no-data-available text-center">No data!</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

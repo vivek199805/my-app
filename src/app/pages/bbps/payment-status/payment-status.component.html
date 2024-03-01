@@ -1,0 +1,52 @@
+<div class="widget mt-3">
+    <div class="d-flex align-items-center">
+        <h5 class="ml-2 my-0">Bill Payment Status</h5>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <form [formGroup]="form" autocomplete="off" class="mt-3" (submit)="onSubmit()">
+                <div class="form-group">
+                    <label for="" class="font-weight-bolder">Reference no : </label>
+                    <input type="text" [ngClass]="{ 'is-invalid':  f.ref.touched && f.ref.invalid }" class="form-control" formControlName="ref" autocomplete="off" placeholder="Please fill the reference no">
+                    <div *ngIf="f.ref.touched && f.ref.invalid" class="alert-error">
+                        <div *ngIf="f.ref.errors.required"><small><b>Reference no is required.</b></small></div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <div class="col-md-8 mt-5">
+            <table class="table table-bordered" *ngIf="fetchBill != null">
+                <tr>
+                    <th>Reference No</th>
+                    <td>{{fetchBill.refid}}</td>
+                </tr>
+                <tr>
+                    <th>Transation ID</th>
+                    <td>{{fetchBill.txnid}}</td>
+                </tr>
+                <tr>
+                    <th>Operator</th>
+                    <td>{{fetchBill.operatorname}}</td>
+                </tr>
+                <tr>
+                    <th>Operator ID</th>
+                    <td>{{fetchBill.operatorid}}</td>
+                </tr>
+
+                <tr>
+                    <th>Date/Time</th>
+                    <td>{{fetchBill.dateadded | date:"MMM d, y h:mm:ss a"}}</td>
+                </tr>
+                <tr>
+                    <th>TDS</th>
+                    <td>{{fetchBill.tds | currency:"INR"}}</td>
+                </tr>
+                <tr>
+                    <th>Amount</th>
+                    <td>{{fetchBill.amount | currency:"INR"}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
